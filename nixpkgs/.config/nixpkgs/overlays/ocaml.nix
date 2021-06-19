@@ -1,14 +1,14 @@
 self: super:
 
 rec {
-  opam2nix = super.callPackage ../packages/opam2nix {
+  opam2nix = super.callPackage ../pkgs/opam2nix {
   };
 
-  dream = super.callPackage ../packages/dream {
+  dream = super.callPackage ../pkgs/dream {
     inherit opam2nix;
   };
 
-  uuidm = super.callPackage ../packages/uuidm {
+  uuidm = super.callPackage ../pkgs/uuidm {
     inherit opam2nix;
   };
 }
