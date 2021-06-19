@@ -1,0 +1,20 @@
+source ~/.config/nvim/init.vim
+
+set idearefactormode=keep
+set ideajoin
+set clipboard+=ideaput  "Add ideaput to clipboard option to perform a put via the IDE
+
+nnoremap <leader>l :action GotoSymbol<CR>
+nnoremap <leader>f :action GotoFile<CR>
+nnoremap <leader>a :action GotoAction<CR>
+nnoremap <leader>r :action ReformatCode<CR>
+
+" map <leader>r <Action>(RenameElement)
+" map <leader>o <Action>(FileStructurePopup)
+" map <leader>z <Action>(ToggleDistractionFreeMode)
+" map <leader>s <Action>(SelectInProjectView)
+" map <S-Space> <Action>(GotoNextError)
+
+" Configure emulated plugins
+set commentary
+set surround

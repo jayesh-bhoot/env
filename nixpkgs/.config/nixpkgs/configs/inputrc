@@ -1,0 +1,37 @@
+set bell-style none
+
+###################
+# menu completion #
+###################
+
+# display all possible matches for an ambiguous pattern at first tab
+set show-all-if-ambiguous on
+
+# next tab(s) will cycle through matches
+TAB: menu-complete
+
+# shift tab cycles backward
+"\e[Z": menu-complete-backward
+
+# ignore case in TAB autocomplete
+set completion-ignore-case on
+
+# on menu-complete, first display the common prefix, then cycle through the 
+# options when hitting TAB
+set menu-complete-display-prefix on
+
+##################
+# vi keybindings #
+##################
+
+set editing-mode vi
+ 
+# reduce the ESC delay from 100ms
+set keyseq-timeout 100
+ 
+# Keymaps for when we're in insert (i.e., typing stuff in) mode
+set keymap vi-insert
+"jj": vi-movement-mode
+"\C-l": clear-screen
+"\e[6~": menu-complete  # PgDn to cycle forward through the completion options. Alt+n PgDn to Move forward to nth option from the current one.
+"\e[5~": menu-complete-backward  # PgUp to cycle backward through the completion options. Alt+n PgDn to move backward to nth option from the current one.

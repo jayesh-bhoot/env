@@ -1,0 +1,19 @@
+@import url("resource:///org/gnome/theme/gnome-shell.css");
+
+stage {
+  font-family: Fira Sans;
+  /*font-family: Ubuntu;*/
+  font-size: 12pt;
+  font-weight: normal;
+}
+
+#panel {
+  /*background-color: #31363b;*/
+}
+
+#panel .panel-button {
+  /* change the font-weight in the top bar. */
+  font-weight: normal;
+  color: #eff0f1;
+}
+
