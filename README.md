@@ -49,20 +49,106 @@ References:
 
 ## Overlays
 
-Nix manual says: "The list of overlays can be set either explicitly in a Nix expression, or through `<nixpkgs-overlays>` in NIX_PATH, or in user configuration files... If one of `~/.config/nixpkgs/overlays.nix` and `~/.config/nixpkgs/overlays/` exists, then we look for overlays at that path... Because overlays that are set in NixOS configuration do not affect non-NixOS operations such as nix-env, the overlays.nix option provides a convenient way to use the same overlays for a NixOS system configuration and user configuration: the same file can be used as overlays.nix and imported as the value of nixpkgs.overlays". 
+Nix manual says:
 
-This implies that overlays specified at `~/.config/nixpkgs/overlays` should be processed automatically in nixos or non-nixos environment, without having to feed those to `nixpkgs.overlays` in either `configuration.nix` or `home.nix`. Just ensure that the setup is wholly and correctly stowed. If `overlays` in the repo is not visible as a symbolic link at `~/.config/nixpkgs/overlays`, then the overlays won't be visible to Nix.
+> The list of overlays can be set either explicitly in a Nix expression, or through `<nixpkgs-overlays>` in NIX_PATH, or in user configuration files...
 
+> If one of `~/.config/nixpkgs/overlays.nix` and `~/.config/nixpkgs/overlays/` exists, then we look for overlays at that path...
+
+> Because overlays that are set in NixOS configuration do not affect non-NixOS operations such as nix-env, the overlays.nix option provides a convenient way to use the same overlays for a NixOS system configuration and user configuration: the same file can be used as overlays.nix and imported as the value of nixpkgs.overlays". 
+
+This implies that overlays specified at `~/.config/nixpkgs/overlays` should be processed automatically in nixos or non-nixos environment, without having to feed those to `nixpkgs.overlays` in either `configuration.nix` or `home.nix`. Just ensure that the setup is wholly and correctly `stow`ed. If the content of the repo's `overlays` dir is not visible as a symbolic link inside `~/.config/nixpkgs/overlays`, then the overlays won't be visible to Nix.
 
 **The packages made available through an overlay are not visible to `nix-env`**. The only way I know currently is to declare a package in **`systemPackages` in `configuration.nix` or `home.packages` in `home.nix`**. Issuing a `rebuild` after declaration will build the package or pull it from the local cache, if already built.
 
 ## OCaml overlay
 
-powered by `opam2nix`.
+OCaml packages are built using `opam2nix`. 
 
-### opam2nix
+Let's take the example of `uuidm`.
 
-`opam2nix resolve <package-name-on-opam>` best approach. No need to download `.opam` and source, and no need to specify `src` attr in `package/default.nix`.
+The general process is as follows:
+
+1. Generate a nix packageset that describes the `uuidm` package as well as its dependencies in nix format. `opam2nix resolve` does this by processing the package's `.opam` file, and producing an `opam-selection.nix` file.
+1. Build the packages described in `opam-selection.nix`. The entry point is usually defined in a separate `default.nix`. `nix-build` uses this `default.nix` to trigger the build process.
+
+`opam2nix` can build a package out of local as well as remote source.
+
+### Build from remote source
+
+The OCaml package you want to build must be present in the official `ocaml/opam-repository`.
+
+1. `mkdir pkgs/uuidm && cd pkgs/uuidm`
+
+1. `opam2nix resolve uuidm` to automatically fetch `uuidm.opam` file from the `opam-repository`, and generate `opam-selection.nix`. Not using a local `.opam` file configures the `uuidm` package in `opam-selection.nix` such that source-code will be looked for in the `opam-repository`. Hence, the source code need not be locally available.
+
+     ```
+   ...
+    uuidm = 
+    {
+      ...
+      opamSrc = repoPath (repos.opam-repository.src) 
+      {
+        hash = "sha256:0gczj4p886wzyjr11x4wg5qwvj6lvzb1rnhy0l9ya7z01n51bkwr";
+        package = "packages/uuidm/uuidm.0.9.7";
+      };
+      pname = "uuidm";
+      src = pkgs.fetchurl 
+      {
+        sha256 = "1ivxb3hxn9bk62rmixx6px4fvn52s4yr1bpla7rgkcn8981v45r8";
+        url = "https://erratique.ch/software/uuidm/releases/uuidm-0.9.7.tbz";
+      };
+      version = "0.9.7";
+    };
+    ...
+   ```
+
+1. Write a `default.nix` file. We need not specify `src` attr here.
+
+   ```
+   { ocaml, opam2nix }:
+
+   let
+     selection = opam2nix.build {
+       inherit ocaml;
+       selection = ./opam-selection.nix;
+     };
+   in
+   selection.uuidm
+   ```
+
+1. Trigger the build process with `nix-build --no-out-link --keep-failed -E '(import <nixpkgs> {}).callPackage ./default.nix {}'`.
+
+### Build from local source
+
+`opam2nix's` readme suggests this approach.
+
+1. `mkdir pkgs/uuidm && cd pkgs/uuidm`
+
+1. Download and extract the source code of `uuidm` from `opam-repository`. It will also contain the `uuidm.opam` file.
+
+1. `opam2nix resolve ./uuidm.opam` to generate `opam-selection.nix`. Using a local `.opam` file configures the `uuidm` package in `opam-selection.nix` such that source-code will *not* be looked for in the `opam-repository`. Hence, the source code must be locally available.
+
+1. Write a `default.nix` file. We need to specify the `src` attr here, while making sure that the source code is locally available.
+
+      ```
+   { ocaml, opam2nix }:
+
+   let
+     selection = opam2nix.build {
+       inherit ocaml;
+       selection = ./opam-selection.nix;
+       src = ./.;
+     };
+   in
+   selection.uuidm
+   ```
+
+   Make sure that the source code is locally available. Keeping only `.opam` file locally available is not enough. `opam2nix` does not complain if source code is locally absent, but it also does not fetch it, and hence the build process fails later.
+
+1. Trigger the build process with `nix-build --no-out-link --keep-failed -E '(import <nixpkgs> {}).callPackage ./default.nix {}'`.
+
+**I found the remote approach much better as it's way less cumbersome**. There is no need to maintain the source code locally.
 
 ### dream
 
