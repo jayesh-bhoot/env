@@ -10,7 +10,6 @@
     jq
     tldr
     rsync
-    finger_bsd
 
     wget      
     curl      
@@ -25,9 +24,6 @@
     
     git      
     nixpkgs-fmt
-    clojure      
-    adoptopenjdk-bin      
-    nodejs-14_x      
 
     mpv
     ffmpeg-full
@@ -43,6 +39,8 @@
 
   (if pkgs.stdenv.isLinux then
     [
+      finger_bsd
+
       xdotool
       xclip
       kitty
@@ -50,9 +48,11 @@
       firefox
       chromium
       thunderbird
+
       vscodium
       jetbrains.webstorm      
       jetbrains.idea-community
+      
       teams  
     ]
    else 
