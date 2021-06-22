@@ -11,4 +11,8 @@ rec {
   uuidm = super.callPackage ../pkgs/uuidm {
     inherit opam2nix;
   };
+
+  re = super.callPackage ../pkgs/re {
+    inherit opam2nix;
+  };
 }
