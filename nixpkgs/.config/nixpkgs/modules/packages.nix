@@ -2,6 +2,10 @@
 
 {
   home.packages = with pkgs; [
+    bashInteractive_5  # why not bash_5? bashInteractive_5 comes with readline support by default.
+    bash-completion
+    nix-bash-completions
+
     parallel
     tree
     htop
@@ -14,10 +18,6 @@
     wget      
     curl      
 
-    bashInteractive_5  # why not bash_5? bashInteractive_5 comes with readline support by default.
-    bash-completion
-    nix-bash-completions
-    zsh      
 
     openssl      
     cacert      

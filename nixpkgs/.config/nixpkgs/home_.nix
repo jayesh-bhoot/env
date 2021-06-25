@@ -6,8 +6,8 @@
   };
 
   imports = [
-    ./modules/zsh.nix
     ./modules/bash.nix
+    ./modules/zsh.nix
     ./modules/packages.nix
     ./modules/xdg.nix
     ./modules/nixpkgs-config.nix
