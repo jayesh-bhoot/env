@@ -1,0 +1,23 @@
+HISTSIZE="10000"
+SAVEHIST="10000"
+HISTFILE="$HOME/.zsh_history"
+mkdir -p "$(dirname "$HISTFILE")"
+setopt HIST_FCNTL_LOCK
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+
+## auto-completion, pattern-matching
+setopt autocd
+setopt extendedglob nomatch
+
+## vi keybindings 
+bindkey -v
+export KEYTIMEOUT=1  # reduce ESC key delay to 0.1s=100ms
+
+## visual, audio feedback on shell 
+unsetopt beep
+NEWLINE=$'\n'
+PROMPT="${NEWLINE}%F{green}%D{%a %d %b %Y %H:%M:%S} | %n@%M | %~ | zsh %k${NEWLINE}>>%f ";

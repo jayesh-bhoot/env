@@ -1,5 +1,0 @@
-[
-    { "keys": ["ctrl+f"], "command": "move", "args": {"by": "pages", "forward": true} },
-    { "keys": ["ctrl+b"], "command": "move", "args": {"by": "pages", "forward": false} },
-    { "keys": ["ctrl+["], "command": "_enter_normal_mode", "args": {"mode": "mode_insert"}, "context": [{"key": "vi_insert_mode_aware"}] }
-]

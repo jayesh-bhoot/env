@@ -8,7 +8,7 @@
   imports = [
     ./modules/packages.nix
     ./modules/xdg.nix
-    ./modules/session.nix
+    ./modules/env-vars.nix
     ./modules/nixpkgs-config.nix
     ./modules/fonts.nix
     ./modules/git.nix
