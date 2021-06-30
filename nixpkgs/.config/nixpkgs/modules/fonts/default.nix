@@ -22,14 +22,14 @@
 
   xdg.dataFile = if pkgs.stdenv.isLinux then 
   {
-    "fonts".source = ../fonts;
+    "fonts".source = ./fonts;
   } else { };
 
   home.activation = if pkgs.stdenv.isDarwin then 
     {
       copyExtraFonts = lib.hm.dag.entryAfter ["writeBoundary"] ''
        $DRY_RUN_CMD rm -rf $VERBOSE_ARG ~/Library/Fonts/HomeManagerExtra
-       $DRY_RUN_CMD cp -r $VERBOSE_ARG ${../fonts} ~/Library/Fonts/HomeManagerExtra
+       $DRY_RUN_CMD cp -r $VERBOSE_ARG ${./fonts} ~/Library/Fonts/HomeManagerExtra
        $DRY_RUN_CMD find $VERBOSE_ARG ~/Library/Fonts/HomeManagerExtra -type d -exec chmod 744 {} \;
        $DRY_RUN_CMD find $VERBOSE_ARG ~/Library/Fonts/HomeManagerExtra -type f -exec chmod 644 {} \;
      '';

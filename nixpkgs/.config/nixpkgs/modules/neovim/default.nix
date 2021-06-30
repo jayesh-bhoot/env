@@ -10,7 +10,8 @@
     plugins = with pkgs.vimPlugins; [ 
       vim-nix
       papercolor-theme
+      vim-ocaml
     ];
-    extraConfig = builtins.readFile ../configs/vimrc;
+    extraConfig = builtins.readFile ./init.vim;
   };
 }

@@ -35,8 +35,8 @@
 # 3. `. $XDG_DATA_HOME/bash-completion/bash_completion`
 
 let
-  sessionEnv = builtins.readFile ../configs/session-env.sh;
-  bashrc = builtins.readFile ../configs/bashrc;
+  sessionEnv = builtins.readFile ../session-env.sh;
+  bashrc = builtins.readFile ./bashrc;
 
   newline = "\n";
 

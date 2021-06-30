@@ -1,11 +1,10 @@
-"{ navigation and search
+"""{ navigation and search
 " use j and k to move across the visible, soft-wrapped screen lines, instead of physical lines.
 " this solution also ensures that jumping around using the relative linenumbers keep working.
 " use gj and gk to move across physical lines instead.
 " https://stackoverflow.com/a/21000307/663911
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
-
 " Retain the default case-sensitive search.
 " Use the escape sequence \c for a case-insensitive search.
 " eg: /esc will ignore Esc, but /\cesc or /esc\c will find it.
@@ -13,33 +12,27 @@ nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 " https://stackoverflow.com/a/2287449
 set noignorecase 
 set incsearch  
-
 " keep n lines above/below cursor when scrolling
 set scrolloff=1  
-
 " Hit `%` on `if` to jump to `else`.
 runtime macros/matchit.vim
-"}
+
+nnoremap gb :ls<CR>:b<space>
+"""}
 
 
-"{ buffer management
-set ruler
-set number
+"""{ ui
+set noruler
+set nonumber
+set norelativenumber
 
 set showmode
 set showcmd
 set mouse=nvic
-
-set hidden  
-nnoremap gb :ls<CR>:b<space>
-
-nnoremap <space>w :w<CR>
-nnoremap <space>q :wq<CR>
-nnoremap <space>xx :q!<CR>
-"}
+"""}
 
 
-"{ formatting 
+"""{ formatting 
 " https://old.reddit.com/r/vim/wiki/tabstop
 " https://tedlogan.com/techblog3.html
 " https://old.reddit.com/r/vim/comments/1yfdds/confused_about_cin_smartindent_autoindent_etc/cfk0r70/
@@ -76,9 +69,9 @@ colorscheme PaperColor
 
 " Don't activate ex-mode on Q. Remap Q to formatting the current line.
 map Q gq 
-"}
+"""}
 
-"{ editing
+"""{ editing
 nnoremap <space>s :s/
 nnoremap <space>S :%s/
 vnoremap <space>s :s/
@@ -86,9 +79,20 @@ vnoremap <space>S :%s/
 
 inoremap jj <Esc>
 
+
+set hidden  
+nnoremap <space>w :w<CR>
+nnoremap <space>q :wq<CR>
+nnoremap <space>xx :q!<CR>
+
+augroup autosave
+  autocmd!
+  autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost,BufLeave * silent! wa
+augroup END
+
 " always use system clipboard. ^= means *prepend* to the existing clipboard value. 
 set clipboard^=unnamed,unnamedplus
-"}
+"""}
 
 nnoremap , :
 vnoremap , :
