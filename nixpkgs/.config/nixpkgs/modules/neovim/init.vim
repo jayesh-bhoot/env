@@ -96,3 +96,4 @@ set clipboard^=unnamed,unnamedplus
 
 nnoremap , :
 vnoremap , :
+tnoremap <Esc> <C-\><C-n>

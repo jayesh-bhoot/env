@@ -10,20 +10,17 @@
     tree
     htop
     fzf      
-    silver-searcher      
     jq
     tldr
-    rsync
 
+    openssl
+    cacert
+
+    rsync
     wget      
     curl      
 
-
-    openssl      
-    cacert      
-    
     git      
-    nixpkgs-fmt
 
     mpv
     ffmpeg-full
@@ -41,13 +38,10 @@
     [
       finger_bsd
 
-      xdotool
       xclip
-      kitty
 
       firefox
       chromium
-      thunderbird
 
       vscodium
       jetbrains.webstorm      
@@ -61,7 +55,29 @@
   ++
 
   (if pkgs.stdenv.isDarwin then
-    [ ]
+  [ 
+    coreutils-full
+    findutils
+    diffutils
+    binutils
+    inetutils
+
+    gnugrep
+    gnused
+    gawkInteractive
+
+    readline
+    bc
+    gzip
+    gnutar
+    ncurses
+    less
+    more
+    gnupatch
+    time
+    which
+    texinfo
+  ]
    else
     [ ]);
 }

@@ -6,17 +6,17 @@
   home.packages = [
     # pkgs.open-sans      
     # pkgs.roboto      
-    pkgs.ubuntu_font_family      
+    # pkgs.ubuntu_font_family      
     pkgs.fira      
-    pkgs.fira-code      
-    pkgs.fira-code-symbols      
+    # pkgs.fira-code      
+    # pkgs.fira-code-symbols      
     # pkgs.hack-font # horrible zero
     # pkgs.dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
     # pkgs.roboto-mono # [] are not wide enough. But ~ and - are good.
-    pkgs.source-code-pro      
-    pkgs.office-code-pro      
-    pkgs.courier-prime      
-    pkgs.iosevka-bin
+    # pkgs.source-code-pro      
+    # pkgs.office-code-pro      
+    # pkgs.courier-prime      
+    # pkgs.iosevka-bin
     # pkgs.vistafonts  # for consolas
   ];
 

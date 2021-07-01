@@ -6,14 +6,14 @@
   };
 
   imports = [
+    ./modules/packages
+    ./modules/inputrc
     ./modules/bash
     ./modules/zsh
-    ./modules/packages
-    ./modules/xdg
-    ./modules/nixpkgs-config
     ./modules/git
     ./modules/fzf
     ./modules/neovim
+    ./modules/ideavimrc
     ./modules/fonts
     ./modules/gtk
   ];
