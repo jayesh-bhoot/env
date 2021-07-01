@@ -9,7 +9,6 @@
     ./modules/packages
     ./modules/inputrc
     ./modules/bash
-    ./modules/zsh
     ./modules/git
     ./modules/fzf
     ./modules/neovim
