@@ -6,14 +6,13 @@
   };
 
   imports = [
-    ./modules/packages
-    ./modules/inputrc
-    ./modules/bash
-    ./modules/git
-    ./modules/fzf
-    ./modules/neovim
-    ./modules/ideavimrc
-    ./modules/fonts
-    ./modules/gtk
+    # ./modules/inputrc
+    # ./modules/bash
+    # ./modules/git
+    # ./modules/fzf
+    # ./modules/neovim
+    # ./modules/ideavimrc
+    # ./modules/fonts
+    # ./modules/gtk
   ];
 }

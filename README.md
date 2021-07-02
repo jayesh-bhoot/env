@@ -155,3 +155,15 @@ The OCaml package you want to build must be present in the official `ocaml/opam-
 problem faced in building `digestif` dependency. solution: `patchShebang`, which led to another problem in macOS.
 
 `utop -require digestif.c` to correctly use `dream` in utop.
+
+## TODO
+
++ share code like `create_link` across builder scripts
+- fold `nixos/modules/*` within `configuration_.nix`
+- replace `source ~/.config/nvim/init.vim` with `source ${pkgs.neovimrc}` in ideavimrc?
+- Populate the XDG_* env variables (in .profile or .bashrc?).
+- Fix the ready-made packaged fonts installation for macOS. For example, Installing to Fira will not copy to ~/Library/Fonts.
+- Verify whether ready-made packaged fonts work on Linux with a simple `nix-env -i`. (`fc-cache` needed?)
+- Should I abandon linking to non-nix directories? For example, I could just add ~/.nix-profile/share/fonts As one of the directories to check for fonts? Wouldn't this work if I add ~/.nix-profile/share to XDG_DATA_DIRS?
+- Should I link ~/.nix-profile/etc/bashrc to ~/.bashrc? or the /nix/store/<hash>-bashrc-<ver>/etc/bashrc to ~/.bashrc?
+- split corePackages into several packages

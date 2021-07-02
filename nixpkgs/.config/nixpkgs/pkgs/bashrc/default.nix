@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{stdenv, writeText, pkgs}:
 
 # Note on bash completion:
 # 
@@ -35,21 +35,54 @@
 # 3. `. $XDG_DATA_HOME/bash-completion/bash_completion`
 
 let
-  sessionEnv = builtins.readFile ../session-env.sh;
-  bashrc = builtins.readFile ./bashrc;
+  bashConfig = ''
+    PS1="\n\[\e[32m\]bash | \w | \u@\h | \D{%a %d %b %Y %H:%M:%S} \[\e[00m\] \n>> "
 
-  newline = "\n";
+    HISTCONTROL=ignorespace:ignoredups:erasedups
+    HISTSIZE=10000
+    HISTFILESIZE=10000
 
-  bashCompletionSource = ~/.nix-profile/share/bash-completion;
-  bashCompletionConfig =
-    ''
-    export BASH_COMPLETION_USER_DIR=$XDG_DATA_HOME/bash-completion
-    . $XDG_DATA_HOME/bash-completion/bash_completion
-    '';
+    shopt -s histappend
+    shopt -s autocd 
+    shopt -s cdspell 
+    shopt -s direxpand
+    shopt -s dirspell 
+    shopt -s extglob extquote globstar nocaseglob 
+    shopt -s checkwinsize
+    shopt -s checkjobs
+
+    source ${pkgs.bash-completion}/share/bash-completion/bash_completion
+    export BASH_COMPLETION_USER_DIR=~/.nix-profile/share/bash-completion
+  '';
+
+  nixConfig = ''
+    src=~/.nix-profile/etc/profile.d/nix.sh; [ -e $src ] && source $src; src=
+  '';
+
+  commonVars = ''
+    export EDITOR="vim"
+    export VISUAL="vim"
+    export DOTNET_CLI_TELEMETRY_OPTOUT=true
+    export LC_ALL="en_US.UTF-8"
+    export LANG="en_US.UTF-8"
+    export SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt
+  '';
+
+  fzfConfig = ''
+    source ${pkgs.fzf}/share/fzf/completion.bash
+    source ${pkgs.fzf}/share/fzf/key-bindings.bash
+    export FZF_CTRL_T_COMMAND='find . -name .git -prune -o -print'
+  '';
+
+  src = writeText "bashrc" (builtins.concatStringsSep "\n" [bashConfig nixConfig commonVars fzfConfig]);
+
 in
-{
-  programs.bash.enable = true;
 
-  xdg.dataFile."bash-completion".source = bashCompletionSource;
-  programs.bash.initExtra = sessionEnv + newline + bashrc + newline + bashCompletionConfig;
+stdenv.mkDerivation rec {
+  pname = "bashrc";
+  version = "0.0.1";
+  inherit src;
+  builder = ./builder.sh;
+  buildInputs = [../../build-helpers/create-link.sh];
+  HOME = builtins.getEnv "HOME";
 }
