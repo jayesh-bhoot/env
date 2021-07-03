@@ -158,6 +158,7 @@ problem faced in building `digestif` dependency. solution: `patchShebang`, which
 
 ## TODO
 
+- install fira
 + share code like `create_link` across builder scripts
 - fold `nixos/modules/*` within `configuration_.nix`
 - replace `source ~/.config/nvim/init.vim` with `source ${pkgs.neovimrc}` in ideavimrc?
@@ -167,3 +168,4 @@ problem faced in building `digestif` dependency. solution: `patchShebang`, which
 - Should I abandon linking to non-nix directories? For example, I could just add ~/.nix-profile/share/fonts As one of the directories to check for fonts? Wouldn't this work if I add ~/.nix-profile/share to XDG_DATA_DIRS?
 - Should I link ~/.nix-profile/etc/bashrc to ~/.bashrc? or the /nix/store/<hash>-bashrc-<ver>/etc/bashrc to ~/.bashrc?
 - split corePackages into several packages
+- Configure editor like vscode or nvim per-project? Or create an overlay which configuration per-project?

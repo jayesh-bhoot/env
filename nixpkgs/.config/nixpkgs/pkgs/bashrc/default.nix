@@ -74,7 +74,13 @@ let
     export FZF_CTRL_T_COMMAND='find . -name .git -prune -o -print'
   '';
 
-  src = writeText "bashrc" (builtins.concatStringsSep "\n" [bashConfig nixConfig commonVars fzfConfig]);
+  neovimConfig = ''
+    if command -v nvim &> /dev/null; then
+      alias vimdiff="nvim -d"
+    fi
+  '';
+
+  src = writeText "bashrc" (builtins.concatStringsSep "\n" [bashConfig nixConfig commonVars fzfConfig neovimConfig]);
 
 in
 
