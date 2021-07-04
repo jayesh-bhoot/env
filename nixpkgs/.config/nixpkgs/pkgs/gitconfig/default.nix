@@ -22,6 +22,4 @@ stdenv.mkDerivation rec {
   version = "0.0.1";
   builder = ./builder.sh;
   inherit src;
-  buildInputs = [../../build-helpers/create-link.sh];
-  HOME = builtins.getEnv "HOME";
 }

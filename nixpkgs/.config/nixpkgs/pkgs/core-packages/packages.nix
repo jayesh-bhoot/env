@@ -44,7 +44,7 @@ let
     vscodium
     jetbrains.webstorm      
     jetbrains.idea-community
-    
+
     teams  
   ];
 
@@ -87,7 +87,7 @@ let
     # pkgs.open-sans      
     # pkgs.roboto      
     # pkgs.ubuntu_font_family      
-    # pkgs.fira
+    pkgs.fira
     # pkgs.fira-code      
     # pkgs.fira-code-symbols      
     # pkgs.hack-font # horrible zero

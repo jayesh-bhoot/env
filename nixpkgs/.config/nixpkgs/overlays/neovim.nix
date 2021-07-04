@@ -73,8 +73,7 @@ rec {
             " 8. default simple syntax highlighting is turned on . This is usually reset by a colour scheme.
             syntax on
             set background=light
-            " colorscheme PaperColor
-            colorscheme one
+            colorscheme PaperColor
 
             " Don't activate ex-mode on Q. Remap Q to formatting the current line.
             map Q gq 
@@ -112,7 +111,6 @@ rec {
         vim-ocaml
 
         papercolor-theme
-        vim-one
 
         vim-fugitive
         vim-surround
