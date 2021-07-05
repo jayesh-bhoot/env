@@ -18,8 +18,15 @@ function create_link {
 }
 
 # todo: stow -R
+case $(uname) in
+    *NixOS*)
+        nix-env -iA nixos.corePackages
+        ;;
 
-nix-env -iA nixos.corePackages
+    *)
+        nix-env -iA nixpkgs.corePackages
+        ;;
+esac
 
 nix_profile="$HOME/.nix-profile"
 create_link $nix_profile/etc/bashrc $HOME/.bashrc
@@ -30,6 +37,7 @@ create_link $nix_profile/etc/gitconfig $HOME/.gitconfig
 
 case $(uname -s) in
     Linux)
+        echo "L"
         src="$nix_profile/share/fonts/InputMonoCustom"
         dst="$HOME/.local/share/fonts/InputMonoCustom"
         mkdir -p $HOME/.local/share/fonts
@@ -40,7 +48,8 @@ case $(uname -s) in
         ;;
 
     Darwin)
-        src="$nix_profile/share/fonts/InputMonoCustom"
+        echo "D"
+        src="$(readlink -f $nix_profile/share/fonts/InputMonoCustom)"
         dst="$HOME/Library/Fonts/InputMonoCustom"
         $DRY_RUN_CMD rm -rf $VERBOSE_ARG $dst
         $DRY_RUN_CMD cp -r $VERBOSE_ARG $src $dst
