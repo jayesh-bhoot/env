@@ -31,6 +31,9 @@ let
     wireshark-cli
 
     neovim
+     
+    rnix-lsp
+    nixpkgs-fmt
   ];
 
   linuxOnly = [
