@@ -29,14 +29,14 @@ function copy_fonts {
     src=;dst=
 }
 
-# todo: stow -R?
-
 case $(uname) in
     *NixOS*)
+        create_link "$(pwd)/nixos" "/etc/nixos/config"
         nix-env -iA nixos.corePackages
         ;;
 
     *)
+        create_link "$(pwd)/nixpkgs" "$HOME/.config/nixpkgs"
         nix-env -iA nixpkgs.corePackages
         ;;
 esac
