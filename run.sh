@@ -17,6 +17,18 @@ function create_link {
     fi
 }
 
+function copy_fonts {
+    src=$1; dst=$2
+    mkdir -p $dst
+    for f in $src/*
+    do
+        cp $(readlink -f $f) $dst/
+    done
+    find $dst -type d -exec chmod 744 {} \;
+    find $dst -type f -exec chmod 644 {} \;
+    src=;dst=
+}
+
 # todo: stow -R?
 
 case $(uname) in
@@ -38,23 +50,15 @@ create_link $nix_profile/etc/gitconfig $HOME/.gitconfig
 
 case $(uname -s) in
     Linux)
-        src="$nix_profile/share/fonts/InputMonoCustom"
-        dst="$HOME/.local/share/fonts/InputMonoCustom"
-        mkdir -p $HOME/.local/share/fonts
-        create_link $src $dst
+        create_link "$nix_profile/share/fonts" "$HOME/.local/share/fonts"
         echo "Info: Refreshing font cache"
-        fc-cache $dst
-        src=;dst=
+        fc-cache "$HOME/.local/share/fonts"
         ;;
 
     Darwin)
-        src="$(readlink -f $nix_profile/share/fonts/InputMonoCustom)"
-        dst="$HOME/Library/Fonts/InputMonoCustom"
-        $DRY_RUN_CMD rm -rf $VERBOSE_ARG $dst
-        $DRY_RUN_CMD cp -r $VERBOSE_ARG $src $dst
-        $DRY_RUN_CMD find $VERBOSE_ARG $dst -type d -exec chmod 744 {} \;
-        $DRY_RUN_CMD find $VERBOSE_ARG $dst -type f -exec chmod 644 {} \;
-        src=;dst=
+        echo "Info: Copying fonts"
+        copy_fonts "$nix_profile/share/fonts/truetype" "$HOME/Library/Fonts/truetype"
+        copy_fonts "$nix_profile/share/fonts/opentype" "$HOME/Library/Fonts/opentype"
         ;;
 
     *)

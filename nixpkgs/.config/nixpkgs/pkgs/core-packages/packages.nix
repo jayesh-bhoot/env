@@ -87,20 +87,20 @@ let
   ];
 
   fonts = [
-    # pkgs.open-sans      
-    # pkgs.roboto      
-    # pkgs.ubuntu_font_family      
-    pkgs.fira
-    # pkgs.fira-code      
-    # pkgs.fira-code-symbols      
-    # pkgs.hack-font # horrible zero
-    # pkgs.dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
-    # pkgs.roboto-mono # [] are not wide enough. But ~ and - are good.
-    # pkgs.source-code-pro      
-    # pkgs.office-code-pro      
-    # pkgs.courier-prime      
-    # pkgs.iosevka-bin
-    # pkgs.vistafonts  # for consolas
+    # open-sans      
+    # roboto      
+    # ubuntu_font_family      
+    fira
+    fira-code      
+    fira-code-symbols      
+    # hack-font # horrible zero
+    # dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
+    # roboto-mono # [] are not wide enough. But ~ and - are good.
+    source-code-pro      
+    # office-code-pro      
+    # courier-prime      
+    iosevka-bin
+    # vistafonts  # for consolas
     input-mono-custom
   ];
 
