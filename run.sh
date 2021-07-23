@@ -1,5 +1,5 @@
 function create_link {
-    target=$1; link=$2
+    target=$1; link=$2; as_root=$3
     if [ -L $link ]; then
         curr_link_target=$(readlink $link)
         if [ $curr_link_target = $target ]; then
@@ -13,7 +13,11 @@ function create_link {
         exit 1
     else
         echo "Info: Pointing $link to $target"
-        ln -s $target $link
+        if [ $as_root ] && [ $as_root = "as_root" ]; then
+            sudo ln -s $target $link
+        else
+            ln -s $target $link
+        fi
     fi
 }
 
@@ -29,9 +33,11 @@ function copy_fonts {
     src=;dst=
 }
 
-case $(uname) in
+case $(uname -a) in
     *NixOS*)
-        create_link "$(pwd)/nixos" "/etc/nixos/config"
+        create_link "$(pwd)/nixos" "/etc/nixos/config" "as_root"
+        sudo nixos-rebuild switch
+        create_link "$(pwd)/nixpkgs" "$HOME/.config/nixpkgs"
         nix-env -iA nixos.corePackages
         ;;
 
