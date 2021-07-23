@@ -14,11 +14,15 @@ in
       sha256 = "00pjnsbv0yv3hhxbbl8dsljgr95kjgi9w8j1x46gjyxg9zayrxzl";
     };
 
-    buildInputs = [
-      ocamlPackages.js_of_ocaml
-      ocamlPackages.ppxlib
-      ocamlPackages.js_of_ocaml-ppx
-      ocamlPackages.gen_js_api
+    buildInputs = with ocamlPackages; [
+      js_of_ocaml
+      ppxlib
+      js_of_ocaml-ppx
+      gen_js_api
+    ];
+
+    propagatedBuildInputs = with ocamlPackages; [
+      ojs
     ];
 
     meta = with lib; {
