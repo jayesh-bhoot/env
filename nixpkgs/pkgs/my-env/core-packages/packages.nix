@@ -34,6 +34,8 @@ let
      
     rnix-lsp
     nixpkgs-fmt
+
+    watson
   ];
 
   linuxOnly = [
@@ -87,12 +89,13 @@ let
   ];
 
   fonts = [
+    rubik
     # open-sans      
     # roboto      
     # ubuntu_font_family      
     fira
-    fira-code      
-    fira-code-symbols      
+    fira-code-static
+    # fira-code      
     # hack-font # horrible zero
     # dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
     # roboto-mono # [] are not wide enough. But ~ and - are good.
