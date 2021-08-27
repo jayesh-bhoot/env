@@ -22,11 +22,11 @@ let
     git
 
     mpv
-    ffmpeg-full
+    ffmpeg-full # does not build on Silicon M1
     imagemagickBig
 
     youtube-dl
-    transmission
+    # transmission # does not build on Silicon M1
 
     wireshark-cli
 
