@@ -1,6 +1,6 @@
 self: super:
 
-rec {
+{
   neovim = super.neovim.override {
     viAlias = true;
     vimAlias = true;

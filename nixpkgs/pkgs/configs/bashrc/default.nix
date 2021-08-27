@@ -36,7 +36,7 @@
 
 let
   bashConfig = ''
-    PS1="\n\[\e[32m\]bash | \w | \u@\h | \D{%a %d %b %Y %H:%M:%S} \[\e[00m\] \n>> "
+    PS1="\n\[\e[32m\]\u@\h | \w \n>> \[\e[00m\]"
 
     HISTCONTROL=ignorespace:ignoredups:erasedups
     HISTSIZE=10000

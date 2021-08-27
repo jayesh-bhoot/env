@@ -1,0 +1,30 @@
+[buildPlans.iosevka-custom]
+family = "Iosevka Custom"
+spacing = "normal"
+serifs = "sans"
+no-cv-ss = true
+
+[buildPlans.iosevka-custom.variants.design]
+capital-d = "more-rounded-serifless"
+capital-g = "toothless-rounded-serifless-hooked"
+a = "single-storey-earless-corner-serifless"
+e = "rounded"
+f = "flat-hook"
+g = "double-storey-open"
+y = "straight-turn"
+eszet = "sulzbacher-descending"
+zero = "slashed-oval"
+two = "straight-neck"
+three = "flat-top"
+four = "closed"
+tilde = "low" 
+asterisk = "hex-low"
+paren = "large-contour"
+brace = "curly-flat-boundary"
+dollar = "open"
+cent = "open"
+percent = "rings-continuous-slash"
+lig-ltgteq = "slanted"
+
+  [buildPlans.iosevka-custom.ligations]
+  inherits = "dlig"

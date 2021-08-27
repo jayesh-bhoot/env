@@ -38,12 +38,12 @@ case $(uname -a) in
         create_link "$(pwd)/nixos" "/etc/nixos/config" "as_root"
         sudo nixos-rebuild switch
         create_link "$(pwd)/nixpkgs" "$HOME/.config/nixpkgs"
-        nix-env -iA nixos.corePackages
+        nix-env -iA nixos.myEnv
         ;;
 
     *)
         create_link "$(pwd)/nixpkgs" "$HOME/.config/nixpkgs"
-        nix-env -iA nixpkgs.corePackages
+        nix-env -iA nixpkgs.myEnv
         ;;
 esac
 
