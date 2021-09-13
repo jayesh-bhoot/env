@@ -7,6 +7,7 @@ no-cv-ss = true
 [buildPlans.iosevka-custom.variants.design]
 capital-d = "more-rounded-serifless"
 capital-g = "toothless-rounded-serifless-hooked"
+capital-m = "slanted-sides-hanging"
 a = "single-storey-earless-corner-serifless"
 e = "rounded"
 f = "flat-hook"
