@@ -5,27 +5,55 @@ serifs = "sans"
 no-cv-ss = true
 
 [buildPlans.iosevka-custom.variants.design]
+capital-b = "more-asymmetric-serifless"
 capital-d = "more-rounded-serifless"
 capital-g = "toothless-rounded-serifless-hooked"
 capital-m = "slanted-sides-hanging"
 a = "single-storey-earless-corner-serifless"
+b = "toothless-corner"
 e = "rounded"
-f = "flat-hook"
-g = "double-storey-open"
+g = "earless-corner"
+q = "earless-corner"
+r = "serifed"
 y = "straight-turn"
-eszet = "sulzbacher-descending"
 zero = "slashed-oval"
 two = "straight-neck"
 three = "flat-top"
 four = "closed"
-tilde = "low" 
+five = "oblique-upper-left-bar"
+six = "open-contour"
+nine = "open-contour"
+tilde = "low"
 asterisk = "hex-low"
+underscore = "high"
+caret = "medium"
 paren = "large-contour"
 brace = "curly-flat-boundary"
-dollar = "open"
+number-sign = "slanted"
+ampersand = "closed"
+at = "fourfold"
 cent = "open"
 percent = "rings-continuous-slash"
 lig-ltgteq = "slanted"
 
-  [buildPlans.iosevka-custom.ligations]
-  inherits = "dlig"
+[buildPlans.iosevka-custom.variants.italic]
+i = "serifed-diagonal-tailed"
+l = "serifed-diagonal-tailed"
+t = "diagonal-tailed"
+
+[buildPlans.iosevka-custom.widths.normal]
+shape = 600
+menu = 5
+css = "normal"
+
+[buildPlans.iosevka-custom.slopes.upright]
+angle = 0
+shape = "upright"
+menu = "upright"
+css = "normal"
+
+[buildPlans.iosevka-custom.slopes.italic]
+angle = 9.4
+shape = "italic"
+menu = "italic"
+css = "italic"
