@@ -31,7 +31,7 @@ let
     wireshark-cli
 
     neovim
-     
+
     rnix-lsp
     nixpkgs-fmt
 
@@ -94,17 +94,17 @@ let
     # ubuntu_font_family      
     fira
     # fira-code      
-    fira-code-static
+    # fira-code-static
     # hack-font # horrible zero
     # dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
     # roboto-mono # [] are not wide enough. But ~ and - are good.
-    source-code-pro      
+    # source-code-pro      
     # office-code-pro      
     # courier-prime      
     # vistafonts  # for consolas
-    iosevka-bin
+    # iosevka-bin
     iosevka-custom
-    input-mono-custom
+    # input-mono-custom
   ];
 
 in

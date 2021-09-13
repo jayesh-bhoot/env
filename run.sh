@@ -62,9 +62,10 @@ case $(uname -s) in
         ;;
 
     Darwin)
-        echo "Info: Initializing nix-fonts dir at ~/Library/Fonts/nix-fonts"
+        echo "Info: Deleting old nix-fonts dir at ~/Library/Fonts/nix-fonts"
+        rm -rf "$HOME/Library/Fonts/nix-fonts"
+        echo "Info: Initializing new nix-fonts dir at ~/Library/Fonts/nix-fonts"
         mkdir -p "$HOME/Library/Fonts/nix-fonts"
-        rm -rf "$HOME/Library/Fonts/nix-fonts/*"
         echo "Info: Copying fonts in ~/Library/Fonts/nix-fonts/"
         copy_fonts "$nix_profile/share/fonts/truetype" "$HOME/Library/Fonts/nix-fonts/truetype"
         copy_fonts "$nix_profile/share/fonts/opentype" "$HOME/Library/Fonts/nix-fonts/opentype"

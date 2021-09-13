@@ -38,7 +38,7 @@ let
   bashConfig = ''
     source ~/.nix-profile/share/bash-completion/completions/git-prompt.sh
     export GIT_PS1_SHOWDIRTYSTATE=1
-    PS1="\n\[\e[32m\]\u | \w $(__git_ps1 " (%s)") \n>> \[\e[00m\]"
+    PS1="\n\[\e[32m\]\u | \w \[\e[00m\] \n>> "
 
     HISTCONTROL=ignorespace:ignoredups:erasedups
     HISTSIZE=10000
