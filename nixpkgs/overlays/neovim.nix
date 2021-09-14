@@ -161,7 +161,7 @@ in
 
           -- Use a loop to conveniently call 'setup' on multiple servers and
           -- map buffer local keybindings when the language server attaches
-          local servers = { "ocamllsp", "rnix" }
+          local servers = { "ocamllsp", "rnix", "clojure_lsp" }
           for _, lsp in ipairs(servers) do
           nvim_lsp[lsp].setup {
             on_attach = on_attach,
@@ -178,15 +178,16 @@ in
         '';
 
         plug.plugins = with self.vimPlugins; [
-          # vim-nix
+          vim-nix
 
           papercolor-theme
 
           vim-fugitive
           vim-surround
           vim-commentary
+          fzf-vim
 
-          # snippets-nvim
+          snippets-nvim
 
           nvim-lspconfig
 
