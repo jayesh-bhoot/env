@@ -1,23 +1,23 @@
-pkgs: 
+pkgs:
 
-with pkgs; 
+with pkgs;
 
 let
   common = [
-    bashInteractive_5  # why not bash_5? bashInteractive_5 comes with readline support by default.
+    bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
     bash-completion
     nix-bash-completions
 
     parallel
     tree
     htop
-    fzf      
+    fzf
     jq
     tldr
 
     rsync
-    wget      
-    curl      
+    wget
+    curl
 
     git
 
@@ -31,11 +31,7 @@ let
     wireshark-cli
 
     neovim
-
-    rnix-lsp
-    nixpkgs-fmt
-
-    watson
+    rnix-lsp  # perhaps automatically installs nixpkgs-fmt
   ];
 
   linuxOnly = [
@@ -47,13 +43,13 @@ let
     chromium
 
     vscodium
-    jetbrains.webstorm      
+    jetbrains.webstorm
     jetbrains.idea-community
 
-    teams  
+    teams
   ];
 
-  darwinOnly = [ 
+  darwinOnly = [
     coreutils-full
     findutils
     diffutils
@@ -109,8 +105,4 @@ let
 
 in
 
-  common ++ 
-  (if pkgs.stdenv.isLinux then linuxOnly else [ ]) ++ 
-  (if pkgs.stdenv.isDarwin then darwinOnly else [ ]) ++
-  custom ++
-  fonts
+common ++ (if pkgs.stdenv.isLinux then linuxOnly else []) ++ (if pkgs.stdenv.isDarwin then darwinOnly else []) ++ custom ++ fonts
