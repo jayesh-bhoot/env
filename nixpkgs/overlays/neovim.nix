@@ -177,24 +177,33 @@ in
           EOF
         '';
 
-        plug.plugins = with self.vimPlugins; [
-          vim-nix
+        packages.myVimPackage = with self.vimPlugins; {
+          # loaded on launch
+          start = [
+            vim-nix
 
-          papercolor-theme
+            papercolor-theme
 
-          vim-fugitive
-          vim-surround
-          vim-commentary
-          fzf-vim
+            vim-fugitive
+            vim-surround
+            vim-commentary
+            fzf-vim
 
-          snippets-nvim
+            snippets-nvim
 
-          nvim-lspconfig
+            nvim-lspconfig
 
-          vim-iced
-          vim-sexp
-          vim-sexp-mappings-for-regular-people
-        ];
+            vim-iced
+            vim-sexp
+            vim-sexp-mappings-for-regular-people
+          ];
+          # manually loadable by calling `:packadd $plugin-name`
+          # however, if a Vim plugin has a dependency that is not explicitly listed in
+          # opt that dependency will always be added to start to avoid confusion.
+          opt = [ ];
+          # To automatically load a plugin when opening a filetype, add vimrc lines like:
+          # autocmd FileType php :packadd phpCompletion
+        };
       };
     };
   }
