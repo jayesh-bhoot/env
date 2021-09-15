@@ -102,7 +102,7 @@ let
     # office-code-pro      
     # courier-prime      
     # vistafonts  # for consolas
-    # iosevka-bin
+    jetbrains-mono
     iosevka-custom
     # input-mono-custom
   ];
