@@ -73,7 +73,7 @@ let
   fzfConfig = ''
     source ${pkgs.fzf}/share/fzf/completion.bash
     source ${pkgs.fzf}/share/fzf/key-bindings.bash
-    export FZF_CTRL_T_COMMAND='find . -name .git -prune -o -print'
+    # export FZF_CTRL_T_COMMAND='find . -name .git -prune -o -print'
   '';
 
   neovimConfig = ''
