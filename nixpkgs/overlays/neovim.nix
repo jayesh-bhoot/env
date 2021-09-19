@@ -228,7 +228,7 @@ rec {
           vim-sexp
           vim-sexp-mappings-for-regular-people
           vim-iced
-          vim-iced-compe
+          # vim-iced-compe  # did not work plug and play. dont want to waste more time. let clojure-lsp handle autocomplete.
         ];
         # manually loadable by calling `:packadd $plugin-name`
         # however, if a Vim plugin has a dependency that is not explicitly listed in
