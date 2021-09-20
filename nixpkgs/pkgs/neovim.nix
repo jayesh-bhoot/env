@@ -1,38 +1,33 @@
-self: super:
+{ self, super }:
 
-rec {
-  vim-iced = super.callPackage ../pkgs/vim-iced/plugin.nix {};
-  vim-iced-compe = super.callPackage ../pkgs/vim-iced/auto-completion-plugin.nix {};
-
-  neovim = super.neovim.override {
-    viAlias = true;
-    vimAlias = true;
-    configure = {
-      customRC = ''
-          """{ navigation and search
+let
+  navigationAndSearch = ''
           " use j and k to move across the visible, soft-wrapped screen lines, instead of physical lines.
           " this solution also ensures that jumping around using the relative linenumbers keep working.
           " use gj and gk to move across physical lines instead.
           " https://stackoverflow.com/a/21000307/663911
           nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
           nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
           " Retain the default case-sensitive search.
           " Use the escape sequence \c for a case-insensitive search.
           " eg: /esc will ignore Esc, but /\cesc or /esc\c will find it.
           " IF ignorecase is true, then \C (capital C) can perform an explicit case-sensitive search.
           " https://stackoverflow.com/a/2287449
           set noignorecase 
+
           set incsearch  
+
           " keep n lines above/below cursor when scrolling
           set scrolloff=1  
+
           " Hit `%` on `if` to jump to `else`.
           runtime macros/matchit.vim
 
           nnoremap gb :ls<CR>:b<space>
-          """}
+    '';
 
-
-          """{ ui
+    ui = ''
           set noruler
           set nonumber
           set norelativenumber
@@ -40,10 +35,9 @@ rec {
           set showmode
           set showcmd
           set mouse=nvic
-          """}
+      '';
 
-
-          """{ formatting 
+      formatting = ''
           " https://old.reddit.com/r/vim/wiki/tabstop
           " https://tedlogan.com/techblog3.html
           " https://old.reddit.com/r/vim/comments/1yfdds/confused_about_cin_smartindent_autoindent_etc/cfk0r70/
@@ -80,9 +74,9 @@ rec {
 
           " Don't activate ex-mode on Q. Remap Q to formatting the current line.
           map Q gq 
-          """}
+        '';
 
-          """{ editing
+        editing = ''
           nnoremap <space>s :s/
           nnoremap <space>S :%s/
           vnoremap <space>s :s/
@@ -102,66 +96,84 @@ rec {
 
           " always use system clipboard. ^= means *prepend* to the existing clipboard value. 
           set clipboard^=unnamed,unnamedplus
-          """}
-
-          nnoremap , :
-          vnoremap , :
-          tnoremap <Esc> <C-\><C-n>
-
-          let g:iced_enable_default_key_mappings = v:true
 
           set completeopt=menu,menuone,noselect
+          '';
 
+            terminalMode = ''
+          tnoremap <Esc> <C-\><C-n>
+              '';
+
+              commandLineMode = ''
+          nnoremap , :
+          vnoremap , :
+                '';
+
+          vimIcedPlugin = ''
+          let g:iced_enable_default_key_mappings = v:true
+            '';
+
+
+              lsp = ''
           lua << EOF
-          local nvim_lsp = require('lspconfig')
+          vim.lsp.set_log_level("debug")
+
 
           -- Use an on_attach function to only map the following keys
           -- after the language server attaches to the current buffer
           local on_attach = function(client, bufnr)
-          local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-          local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+            local function buf_set_keymap(...)
+              vim.api.nvim_buf_set_keymap(bufnr, ...)
+            end
 
-          --Enable completion triggered by <c-x><c-o>
-          buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+            local function buf_set_option(...)
+              vim.api.nvim_buf_set_option(bufnr, ...)
+            end
 
-          -- Mappings.
-          local opts = { noremap=true, silent=true }
+            --Enable completion triggered by <c-x><c-o>
+            buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-          -- See `:help vim.lsp.*` for documentation on any of the below functions
-          buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-          buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-          buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-          buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-          buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-          buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-          buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-          buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-          buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-          buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-          buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-          buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-          buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-          buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-          buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-          buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-          buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+            -- Mappings.
+            -- See `:help vim.lsp.*` for documentation on any of the below functions
+            local opts = { noremap=true, silent=true }
+
+            buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+            buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+            buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+            buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+            buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+            buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+            buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+            buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+            buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+            buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+            buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+            buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+            buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+            buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+            buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+            buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+            buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
           end
 
           -- Use a loop to conveniently call 'setup' on multiple servers and
           -- map buffer local keybindings when the language server attaches
+          local nvim_lsp = require('lspconfig')
           local servers = { "ocamllsp", "rnix", "clojure_lsp" }
           for _, lsp in ipairs(servers) do
-          nvim_lsp[lsp].setup {
-            on_attach = on_attach,
-            flags = {
-              debounce_text_changes = 150,
+            nvim_lsp[lsp].setup {
+              on_attach = on_attach,
+              flags = {
+                debounce_text_changes = 150,
+              },
+              capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
             }
-          }
           end
+          EOF
+                '';
 
-          vim.lsp.set_log_level("debug")
-
-          -- Setup nvim-cmp.
+                nvimCmp = ''
+          lua << EOF
           local cmp = require'cmp'
 
           cmp.setup({
@@ -187,56 +199,66 @@ rec {
               { name = 'buffer' },
             }
           })
-
-        require'lspconfig'.clojure_lsp.setup{
-            capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-        }
-        require'lspconfig'.ocamllsp.setup{
-            capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-        }
-        require'lspconfig'.rnix.setup{
-            capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-        }
         EOF
-      '';
+                  '';
+in
+super.neovim.override {
+    viAlias = true;
+    vimAlias = true;
+    configure = {
+      customRC =
+        navigationAndSearch
+        + ui
+        + formatting
+        + editing
+        + terminalMode
+        + commandLineMode
+        + vimIcedPlugin
+        + lsp
+        + nvimCmp;
 
       packages.myVimPackage = with self.vimPlugins; {
         # loaded on launch
         start = [
+          # ui
           papercolor-theme
 
           vim-fugitive
+
+          # editing
           vim-surround
           vim-commentary
           fzf-vim
           
-          vim-nix
-
           # lsp
           nvim-lspconfig
 
           # autocomplete
           cmp-nvim-lsp
           nvim-cmp
-
           # snippets
           vim-vsnip
           cmp-vsnip
           vim-vsnip-integ
 
+          # nix
+          vim-nix
+
           # clojure
           vim-sexp
           vim-sexp-mappings-for-regular-people
-          vim-iced
+          self.vim-iced
           # vim-iced-compe  # did not work plug and play. dont want to waste more time. let clojure-lsp handle autocomplete.
         ];
+
         # manually loadable by calling `:packadd $plugin-name`
         # however, if a Vim plugin has a dependency that is not explicitly listed in
         # opt that dependency will always be added to start to avoid confusion.
         opt = [];
+
         # To automatically load a plugin when opening a filetype, add vimrc lines like:
         # autocmd FileType php :packadd phpCompletion
       };
     };
-  };
-}
+  }
+
