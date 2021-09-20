@@ -1,6 +1,15 @@
 { self, super }:
 
 let
+  general = ''
+    " I have decided to use:
+    " <space> as the leader key
+    " <comma> as the personal namespace key. using <comma> for the personal namespace has a benefit of using the same key bindings even in insert mode, because nowhere during editing will I ever type ',<char>'. <comma> always precedes a <space>. 
+    " <CR> to invoke command line mode (:). <CR> is too far away to use as the leader key or as the personal namespace key, but close enough to invoke command line mode.
+
+    nnoremap <space> <Nop>
+    let mapleader = " "
+    '';
   navigationAndSearch = ''
           " use j and k to move across the visible, soft-wrapped screen lines, instead of physical lines.
           " this solution also ensures that jumping around using the relative linenumbers keep working.
@@ -24,6 +33,7 @@ let
           " Hit `%` on `if` to jump to `else`.
           runtime macros/matchit.vim
 
+          nnoremap ,f :find **/
           nnoremap gb :ls<CR>:b<space>
     '';
 
@@ -77,24 +87,24 @@ let
         '';
 
         editing = ''
-          nnoremap <space>s :s/
-          nnoremap <space>S :%s/
-          vnoremap <space>s :s/
-          vnoremap <space>S :%s/
+          " nnoremap ,s :s/
+          " nnoremap ,S :%s/
+          " vnoremap ,s :'<,'>s/
 
-          inoremap jj <Esc>
+          " I have re-mapped caps lock to escape key for now. Let's see how it works.
+          " inoremap jj <Esc> 
+          " inoremap ,, <Esc> 
 
           set hidden  
-          nnoremap <space>w :w<CR>
-          nnoremap <space>q :wq<CR>
-          nnoremap <space>xx :q!<CR>
+          nnoremap ,w :w<CR>
+          nnoremap ,q :q<CR>
 
           augroup autosave
-          autocmd!
-          autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost,BufLeave * silent! wa
+            autocmd!
+            autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost,BufLeave * silent! wa
           augroup END
 
-          " always use system clipboard. ^= means *prepend* to the existing clipboard value. 
+          " always use system clipboard. ^= means *prepend* to the existing value of the clipboard variable. 
           set clipboard^=unnamed,unnamedplus
 
           set completeopt=menu,menuone,noselect
@@ -105,8 +115,8 @@ let
               '';
 
               commandLineMode = ''
-          nnoremap , :
-          vnoremap , :
+          nnoremap <CR> :
+          vnoremap <CR> :
                 '';
 
           vimIcedPlugin = ''
@@ -139,20 +149,26 @@ let
 
             buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
             buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-            buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-            buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-            buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-            buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-            buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-            buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
             buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-            buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-            buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
             buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+            buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+
+            buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+            buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
+            buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+
+            -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+            -- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+            -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+
+            -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+
             buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+            buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
             buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
             buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-            buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
             buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
           end
 
@@ -207,7 +223,8 @@ super.neovim.override {
     vimAlias = true;
     configure = {
       customRC =
-        navigationAndSearch
+        general
+        + navigationAndSearch
         + ui
         + formatting
         + editing

@@ -2,16 +2,22 @@
 
 let
   configText = ''
-    source ~/.config/nvim/init.vim
+    nnoremap <space> <Nop>
+    let mapleader = " "
 
     set idearefactormode=keep
     set ideajoin
     set clipboard+=ideaput  "Add ideaput to clipboard option to perform a put via the IDE
 
-    nnoremap <space>l :action GotoSymbol<CR>
-    nnoremap <space>f :action GotoFile<CR>
-    nnoremap <space>a :action GotoAction<CR>
-    nnoremap <space>r :action ReformatCode<CR>
+    nnoremap ,s :action GotoSymbol<CR>
+    inoremap ,s <esc>:action GotoSymbol<CR>
+    nnoremap ,f :action GotoFile<CR>
+    inoremap ,f <esc>:action GotoFile<CR>
+
+    nnoremap ,r :action ReformatCode<CR>
+    inoremap ,r <esc>:action ReformatCode<CR>
+
+    " nnoremap ,a :action GotoAction<CR>
 
     " map <space>r <Action>(RenameElement)
     " map <space>o <Action>(FileStructurePopup)
