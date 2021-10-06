@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/1f06456eabe9f768f87a26d3ff8b2dc14eb4046d";
-    mypkgs.url = "github:jayesh-bhoot/nix-pkgs/60287b2ad6005e79df45cfe699b162cc6fce997e";
+    mypkgs.url = "github:jayesh-bhoot/nix-pkgs/main";
   };
 
   outputs = { self, nixpkgs, mypkgs }:
@@ -11,22 +11,22 @@
       system = "x86_64-darwin";
       pkgs = import nixpkgs {
         inherit system;
+        overlays = [
+          mypkgs.overlays.dotfiles
+          mypkgs.overlays.fonts 
+          mypkgs.overlays.ocaml
+          mypkgs.overlays.vim
+        ];
         config.allowUnfree = true;
       };
-      configPkgs = {
-        bashrc = pkgs.callPackage ./pkgs/bashrc {};
-        inputrc = pkgs.callPackage ./pkgs/inputrc {};
-        ideavimrc = pkgs.callPackage ./pkgs/ideavimrc {};
-        gitconfig = pkgs.callPackage ./pkgs/gitconfig {};
-        # neovim = pkgs.callPackage ../pkgs/neovim.nix {
-        #   inherit self;
-        #   inherit super;
-        # };
-      };
       commonPkgs = [
-        pkgs.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
+        # pkgs.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
         # (pkgs.hiPrio pkgs.bash-completion)
         # (pkgs.hiPrio pkgs.nix-bash-completions)
+        pkgs.zsh
+        pkgs.zsh-completions
+        pkgs.nix-zsh-completions
+        pkgs.zsh-nix-shell
 
         pkgs.parallel
         pkgs.tree
@@ -107,16 +107,17 @@
         # courier-prime      
         # vistafonts  # for consolas
         pkgs.jetbrains-mono
-        mypkgs.packages.${system}.iosevka-custom
+        # mypkgs.packages.${system}.iosevka-custom
+        pkgs.iosevka-custom
         # input-mono-custom
       ];
-      customPkgs = [
-        configPkgs.bashrc
-        configPkgs.inputrc
-        configPkgs.ideavimrc
+      dotfiles = [
+        pkgs.bashrc
+        pkgs.inputrc
+        pkgs.ideavimrc
         # got conflict error (with a /nix/store/<hash>-git-<ver>/etc/gitconfig) without hiPrio
         # solution suggested at: https://discourse.nixos.org/t/how-to-deal-with-conflicting-packages/12505/6?u=jayesh.bhoot
-        (pkgs.hiPrio configPkgs.gitconfig)
+        (pkgs.hiPrio pkgs.gitconfig)
       ];
     in
       {
@@ -124,16 +125,22 @@
         # https://www.thedroneely.com/posts/declarative-user-package-management-in-nixos/
         # https://gist.github.com/lheckemann/402e61e8e53f136f239ecd8c17ab1deb
         # https://gist.github.com/lheckemann/402e61e8e53f136f239ecd8c17ab1deb#gistcomment-3842764
-        # legacyPackages.${system}.defaultPackage.${system} = pkgs.buildEnv {
         defaultPackage.${system} = pkgs.buildEnv {
           name = "my-env";
-          paths = [];
-          # paths =
-          #   commonPkgs
-          #   ++ (if pkgs.stdenv.isLinux then linuxOnlyPkgs else [])
-          #   ++ (if pkgs.stdenv.isDarwin then darwinOnlyPkgs else [])
-          #   ++ fontPkgs
-          #   ++ customPkgs;
+          paths =
+            commonPkgs
+            ++ darwinOnlyPkgs
+            ++ fontPkgs
+            ++ dotfiles;
+        };
+
+        defaultPackage.x86_64-linux = pkgs.buildEnv {
+          name = "my-env";
+          paths =
+            commonPkgs
+            ++ linuxOnlyPkgs
+            ++ fontPkgs
+            ++ dotfiles;
         };
       };
 }

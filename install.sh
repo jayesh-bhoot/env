@@ -43,9 +43,10 @@ case $(uname -a) in
         ;;
 
     *)
-        create_link "$(pwd)/nixpkgs" "$HOME/.config/nixpkgs"
-        create_link "$(pwd)/nix" "$HOME/.config/nix"
-        nix-env -iA nixpkgs.myEnv
+        # create_link "$(pwd)/nixpkgs" "$HOME/.config/nixpkgs"
+        # create_link "$(pwd)/nix" "$HOME/.config/nix"
+        # nix-env -iA nixpkgs.myEnv
+        nix profile install .
         ;;
 esac
 
