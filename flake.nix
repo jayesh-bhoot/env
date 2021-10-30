@@ -3,35 +3,39 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/1f06456eabe9f768f87a26d3ff8b2dc14eb4046d";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mypkgs.url = "github:jayesh-bhoot/nix-pkgs/main";
   };
 
-  outputs = { self, nixpkgs, mypkgs }:
+  outputs = { self, nixpkgs, home-manager, mypkgs }:
     let
       system = "x86_64-darwin";
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          mypkgs.overlays.dotfiles
+          # mypkgs.overlays.dotfiles
           mypkgs.overlays.fonts 
-          mypkgs.overlays.ocaml
-          mypkgs.overlays.vim
+          # mypkgs.overlays.ocaml
+          # mypkgs.overlays.vim
         ];
         config.allowUnfree = true;
       };
       commonPkgs = [
-        # pkgs.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
-        # (pkgs.hiPrio pkgs.bash-completion)
-        # (pkgs.hiPrio pkgs.nix-bash-completions)
+        pkgs.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
+        pkgs.bash-completion
+        pkgs.nix-bash-completions
+
         pkgs.zsh
-        pkgs.zsh-completions
-        pkgs.nix-zsh-completions
-        pkgs.zsh-nix-shell
+	pkgs.antigen
 
         pkgs.parallel
         pkgs.tree
         pkgs.htop
         pkgs.fzf
+	pkgs.silver-searcher
         pkgs.jq
         pkgs.tldr
 
@@ -40,13 +44,14 @@
         pkgs.curl
 
         pkgs.git
+        pkgs.stow
 
         pkgs.mpv
-        # pkgs.ffmpeg-full # does not build on Silicon M1
+        pkgs.ffmpeg-full
         pkgs.imagemagickBig
 
         pkgs.youtube-dl
-        # pkgs.transmission # does not build on Silicon M1
+        pkgs.transmission
 
         pkgs.wireshark-cli
 
@@ -93,12 +98,10 @@
         pkgs.man-pages
       ];
       fontPkgs = [
-        # open-sans      
+        # open-sans
         # roboto      
         # ubuntu_font_family      
-        pkgs.fira
-        # fira-code      
-        # fira-code-static
+        pkgs.fira-code-static
         # hack-font # horrible zero
         # dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
         # roboto-mono # [] are not wide enough. But ~ and - are good.
@@ -107,40 +110,33 @@
         # courier-prime      
         # vistafonts  # for consolas
         pkgs.jetbrains-mono
-        # mypkgs.packages.${system}.iosevka-custom
-        pkgs.iosevka-custom
+        # pkgs.iosevka-custom
         # input-mono-custom
       ];
       dotfiles = [
-        pkgs.bashrc
-        pkgs.inputrc
-        pkgs.ideavimrc
+        # pkgs.bashrc
+        # pkgs.inputrc
+        # pkgs.ideavimrc
         # got conflict error (with a /nix/store/<hash>-git-<ver>/etc/gitconfig) without hiPrio
         # solution suggested at: https://discourse.nixos.org/t/how-to-deal-with-conflicting-packages/12505/6?u=jayesh.bhoot
-        (pkgs.hiPrio pkgs.gitconfig)
+        # (pkgs.hiPrio pkgs.gitconfig)
       ];
     in
       {
-        # https://github.com/luke-clifton/nix-config/blob/master/config.nix
-        # https://www.thedroneely.com/posts/declarative-user-package-management-in-nixos/
-        # https://gist.github.com/lheckemann/402e61e8e53f136f239ecd8c17ab1deb
-        # https://gist.github.com/lheckemann/402e61e8e53f136f239ecd8c17ab1deb#gistcomment-3842764
-        defaultPackage.${system} = pkgs.buildEnv {
-          name = "my-env";
-          paths =
+    homeConfigurations = {
+      jayesh = home-manager.lib.homeManagerConfiguration rec {
+        inherit system;
+        username = "jayesh";
+        homeDirectory = "/Users/${username}";
+        configuration = {
+          nixpkgs.config.allowUnfree = true;
+          home.packages =             
             commonPkgs
             ++ darwinOnlyPkgs
             ++ fontPkgs
             ++ dotfiles;
         };
-
-        defaultPackage.x86_64-linux = pkgs.buildEnv {
-          name = "my-env";
-          paths =
-            commonPkgs
-            ++ linuxOnlyPkgs
-            ++ fontPkgs
-            ++ dotfiles;
-        };
+      };
+    };
       };
 }

@@ -1,0 +1,9 @@
+[user]
+  name = Jayesh Bhoot
+  email = jayesh@bhoot.sh
+[color "diff"]
+  whitespace = bold red reverse
+[diff]
+  wserrorhighlight = all
+[pull]
+  rebase = false
