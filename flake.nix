@@ -8,16 +8,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mypkgs.url = "github:jayesh-bhoot/nix-pkgs/main";
+    # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
+    # NOTE2: Beware of master vs main branch. nix by default assumes master.
+    monolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
   };
 
-  outputs = { self, nixpkgs, home-manager, mypkgs }:
+  outputs = { self, nixpkgs, home-manager, mypkgs, monolisa }:
     let
       system = "x86_64-darwin";
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          # mypkgs.overlays.dotfiles
-          mypkgs.overlays.fonts 
+          mypkgs.overlays.fonts
           # mypkgs.overlays.ocaml
           # mypkgs.overlays.vim
         ];
@@ -29,13 +31,13 @@
         pkgs.nix-bash-completions
 
         pkgs.zsh
-	pkgs.antigen
+        pkgs.antigen
 
         pkgs.parallel
         pkgs.tree
         pkgs.htop
         pkgs.fzf
-	pkgs.silver-searcher
+        pkgs.silver-searcher
         pkgs.jq
         pkgs.tldr
 
@@ -101,6 +103,7 @@
         # open-sans
         # roboto      
         # ubuntu_font_family      
+        pkgs.fira
         pkgs.fira-code-static
         # hack-font # horrible zero
         # dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
@@ -112,31 +115,23 @@
         pkgs.jetbrains-mono
         # pkgs.iosevka-custom
         # input-mono-custom
-      ];
-      dotfiles = [
-        # pkgs.bashrc
-        # pkgs.inputrc
-        # pkgs.ideavimrc
-        # got conflict error (with a /nix/store/<hash>-git-<ver>/etc/gitconfig) without hiPrio
-        # solution suggested at: https://discourse.nixos.org/t/how-to-deal-with-conflicting-packages/12505/6?u=jayesh.bhoot
-        # (pkgs.hiPrio pkgs.gitconfig)
+        monolisa.defaultPackage.${system}
       ];
     in
       {
-    homeConfigurations = {
-      jayesh = home-manager.lib.homeManagerConfiguration rec {
-        inherit system;
-        username = "jayesh";
-        homeDirectory = "/Users/${username}";
-        configuration = {
-          nixpkgs.config.allowUnfree = true;
-          home.packages =             
-            commonPkgs
-            ++ darwinOnlyPkgs
-            ++ fontPkgs
-            ++ dotfiles;
+        homeConfigurations = {
+          jayesh = home-manager.lib.homeManagerConfiguration rec {
+            inherit system;
+            username = "jayesh";
+            homeDirectory = "/Users/${username}";
+            configuration = {
+              nixpkgs.config.allowUnfree = true;
+              home.packages =
+                commonPkgs
+                ++ darwinOnlyPkgs
+                ++ fontPkgs;
+            };
+          };
         };
-      };
-    };
       };
 }
