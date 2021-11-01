@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1635522650,
-        "narHash": "sha256-9tDPrrPSszMYvdub0sh39e4/0MSomvqQvDjlm3xGH6c=",
+        "lastModified": 1635672778,
+        "narHash": "sha256-WW1Gew3tL0ScjTre5hSWlpKy27c1huLCLweS63u9Wv4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "bc0acdad8c001843d4e22cfa20a6ce84b462ab19",
+        "rev": "275f955db979e069fbe7a1fd7cfcb5ec030a2096",
         "type": "github"
       },
       "original": {
@@ -20,9 +20,45 @@
         "type": "github"
       }
     },
-    "monolisa": {
+    "input-mono-custom": {
       "inputs": {
         "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1635766535,
+        "narHash": "sha256-+FAgLRKwtYOap9kqIyzZLOyxSO+Qz8NhIB5B1lAZQzc=",
+        "owner": "jayesh-bhoot",
+        "repo": "input-mono-custom",
+        "rev": "0dc7bdb6be25973082e185904237b9b66eb9aabe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jayesh-bhoot",
+        "repo": "input-mono-custom",
+        "type": "github"
+      }
+    },
+    "iosevka-custom": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1635765566,
+        "narHash": "sha256-JtMoSHZgvD3rf7RtAwZPJqTiPmD7CG4IhPOyeAIRO4Y=",
+        "owner": "jayesh-bhoot",
+        "repo": "Iosevka",
+        "rev": "373b8c3d3abd48ce816fe3f378c792b9bbd49f49",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jayesh-bhoot",
+        "repo": "Iosevka",
+        "type": "github"
+      }
+    },
+    "monolisa": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1635762874,
@@ -40,14 +76,14 @@
     },
     "mypkgs": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1633544182,
-        "narHash": "sha256-xGungGwqu3/bD1as/9SoYvtlylUL+/F0B4P2J1qpuxM=",
+        "lastModified": 1635600431,
+        "narHash": "sha256-B8v7uDZT5voqpBn/Orwoq9NVCAJi4quMSwmbwuUrftQ=",
         "owner": "jayesh-bhoot",
         "repo": "nix-pkgs",
-        "rev": "5dedcf196d33158c78be80529738e517c8d6a4c1",
+        "rev": "f5496fb6f04b90720bcc59f8a0b4d9406688442c",
         "type": "github"
       },
       "original": {
@@ -105,12 +141,46 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1631730427,
+        "narHash": "sha256-aemEECYbS+dYc6l+ZnQyL/H1bHYYgIqe3MeEQZ/6duY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1f06456eabe9f768f87a26d3ff8b2dc14eb4046d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1f06456eabe9f768f87a26d3ff8b2dc14eb4046d",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1631730427,
+        "narHash": "sha256-aemEECYbS+dYc6l+ZnQyL/H1bHYYgIqe3MeEQZ/6duY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1f06456eabe9f768f87a26d3ff8b2dc14eb4046d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1f06456eabe9f768f87a26d3ff8b2dc14eb4046d",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "input-mono-custom": "input-mono-custom",
+        "iosevka-custom": "iosevka-custom",
         "monolisa": "monolisa",
         "mypkgs": "mypkgs",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_5"
       }
     }
   },

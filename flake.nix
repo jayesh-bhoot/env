@@ -7,13 +7,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     mypkgs.url = "github:jayesh-bhoot/nix-pkgs/main";
+
     # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: Beware of master vs main branch. nix by default assumes master.
     monolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
+
+    iosevka-custom.url = "github:jayesh-bhoot/Iosevka";
+    input-mono-custom.url = "github:jayesh-bhoot/input-mono-custom";
   };
 
-  outputs = { self, nixpkgs, home-manager, mypkgs, monolisa }:
+  outputs = { self, nixpkgs, home-manager, mypkgs, monolisa, iosevka-custom, input-mono-custom }:
     let
       system = "x86_64-darwin";
       pkgs = import nixpkgs {
@@ -113,9 +118,10 @@
         # courier-prime      
         # vistafonts  # for consolas
         pkgs.jetbrains-mono
-        # pkgs.iosevka-custom
         # input-mono-custom
         monolisa.defaultPackage.${system}
+        iosevka-custom.defaultPackage.${system}
+        input-mono-custom.defaultPackage.${system}
       ];
     in
       {
