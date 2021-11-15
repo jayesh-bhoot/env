@@ -83,3 +83,5 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 src=$HOME/.nix-profile/etc/profile.d/nix.sh; [ -e $src ] && source $src; src=
 # export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 export NIX_PATH=$HOME/.nix-defexpr/channels:$HOME/.nix-defexpr/channels_root
+source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
