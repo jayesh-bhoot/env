@@ -1,26 +1,26 @@
-nnoremap <space> <Nop>
-let mapleader = " "
-
 set idearefactormode=keep
 set ideajoin
 set clipboard+=ideaput  "Add ideaput to clipboard option to perform a put via the IDE
+set incsearch
 
-nnoremap ,s :action GotoSymbol<CR>
-inoremap ,s <esc>:action GotoSymbol<CR>
+nnoremap ,a :action GotoAction<CR>
+nnoremap ,x :action SearchEverywhere<CR>
 nnoremap ,f :action GotoFile<CR>
-inoremap ,f <esc>:action GotoFile<CR>
+" inoremap ,f <esc>:action GotoFile<CR>
+nnoremap ,s :action GotoSymbol<CR>
+" go to buffer symbol
+nnoremap ,bs :action FileStructurePopup<CR>
+" inoremap ,s <esc>:action GotoSymbol<CR>
+nnoremap gl :action GotoNextError<CR>
+nnoremap gL :action GotoPreviousError<CR>
+nnoremap =b :action ReformatCode<CR>
+nnoremap cr :action RenameElement<CR>
+nnoremap gsd :action GotoDeclaration<CR>
+nnoremap gst :action GotoTypeDeclaration<CR>
+nnoremap gsi :action GotoImplementation<CR>
+" inoremap ,cr <ESC>:action RenameElement<CR>
 
-nnoremap ,r :action ReformatCode<CR>
-inoremap ,r <esc>:action ReformatCode<CR>
-
-" nnoremap ,a :action GotoAction<CR>
-
-" map <space>r <Action>(RenameElement)
-" map <space>o <Action>(FileStructurePopup)
-" map <space>z <Action>(ToggleDistractionFreeMode)
-" map <space>s <Action>(SelectInProjectView)
-" map <S-Space> <Action>(GotoNextError)
-
-" Configure emulated plugins
-set commentary
-set surround
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tommcdo/vim-exchange'
+Plug 'michaeljsmith/vim-indent-object'

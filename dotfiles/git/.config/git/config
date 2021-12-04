@@ -7,3 +7,5 @@
   wserrorhighlight = all
 [pull]
   rebase = false
+[core]
+	autocrlf = input

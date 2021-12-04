@@ -45,6 +45,7 @@
         pkgs.silver-searcher
         pkgs.jq
         pkgs.tldr
+        pkgs.bat
 
         pkgs.rsync
         pkgs.wget
@@ -113,12 +114,13 @@
         # hack-font # horrible zero
         # dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
         # roboto-mono # [] are not wide enough. But ~ and - are good.
-        # source-code-pro      
-        # office-code-pro      
-        # courier-prime      
-        # vistafonts  # for consolas
+        pkgs.source-code-pro      
+        pkgs.office-code-pro      
+        pkgs.courier-prime      
+        pkgs.vistafonts  # for consolas
         pkgs.jetbrains-mono
-        # input-mono-custom
+        pkgs.cascadia-code
+        pkgs.ibm-plex
         monolisa.defaultPackage.${system}
         iosevka-custom.defaultPackage.${system}
         input-mono-custom.defaultPackage.${system}
