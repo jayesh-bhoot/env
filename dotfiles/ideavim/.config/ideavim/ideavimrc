@@ -6,8 +6,8 @@ set incsearch
 nnoremap ,a :action GotoAction<CR>
 nnoremap ,x :action SearchEverywhere<CR>
 nnoremap ,f :action GotoFile<CR>
-" inoremap ,f <esc>:action GotoFile<CR>
 nnoremap ,s :action GotoSymbol<CR>
+nnoremap ,t :action GotoClass<CR>
 " go to buffer symbol
 nnoremap ,bs :action FileStructurePopup<CR>
 " inoremap ,s <esc>:action GotoSymbol<CR>
