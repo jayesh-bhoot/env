@@ -19,7 +19,11 @@ nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 " IF ignorecase is true, then \C (capital C) can perform an explicit case-sensitive search.
 " https://stackoverflow.com/a/2287449
 set noignorecase
+
 set incsearch
+set wildcharm=<C-z>
+cnoremap <expr> <Tab>   getcmdtype() =~ '[/?]' ? "<C-g>" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
 
 " keep n lines above/below cursor when scrolling
 set scrolloff=2
@@ -86,8 +90,8 @@ set completeopt=menu,menuone,noselect
 " enabling this overrides the escape the binding used by FZF to close its pop-up windows
 " tnoremap <Esc> <C-\><C-n>  
 
-nnoremap <CR> :
-vnoremap <CR> :
+nnoremap \ :
+vnoremap \ :
 "====
 
 
@@ -104,7 +108,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-
+Plug 'tommcdo/vim-exchange'
 
 "=== colorscheme
 " Plug 'NLKNguyen/papercolor-theme'
@@ -118,7 +122,17 @@ Plug 'junegunn/fzf.vim'
 
 let g:fzf_layout = { 'down': '40%' }
 nnoremap ,f :Files<CR>
-nnoremap gb :Buffers<CR>
+" inoremap ,f <ESC>:Files<CR>
+nnoremap ,b :Buffers<CR>
+" inoremap ,b <ESC>:Buffers<CR>
+nnoremap ,s :WorkspaceSymbols<CR>
+" inoremap ,s <ESC>:WorkspaceSymbols<CR>
+nnoremap ,bs :DocumentSymbols<CR>
+nnoremap ,bs <ESC>:DocumentSymbols<CR>
+nnoremap ,r :References<CR>
+nnoremap ,r <ESC>:References<CR>
+nnoremap ,lb :Diagnostics<CR>
+nnoremap ,la :DiagnosticsAll<CR>
 "===
 
 "=== lsp
@@ -128,6 +142,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'gfanto/fzf-lsp.nvim'
 
 function! SetUpLsp()
     lua << EOF
@@ -151,23 +166,24 @@ buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 
-buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+-- mnemonic gs => goto symbol (Decl|Def|Type|Impl|References)
+buf_set_keymap('n', 'gsd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+buf_set_keymap('n', 'gsD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+buf_set_keymap('n', 'gst', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+buf_set_keymap('n', 'gsi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+
 buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
--- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
--- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
--- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
--- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+-- mnemonic cr: change rename
+buf_set_keymap('n', 'cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+
+-- mnemonic gl: go to lapse/locho(next|previous|all)
+buf_set_keymap('n', 'gln', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+buf_set_keymap('n', 'glp', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+
+-- mnemonic =b: format buffer
+buf_set_keymap("n", "=b", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -218,13 +234,19 @@ autocmd VimEnter * :call SetupSnippetCompletion()
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 Plug 'liquidz/vim-iced', {'for': 'clojure'}
-Plug 'tami5/vim-iced-compe', {'for': 'clojure'}
+" Plug 'tami5/vim-iced-compe', {'for': 'clojure'}
 
 let g:iced_enable_default_key_mappings = v:true
 "===
 
 "=== nix
 Plug 'LnL7/vim-nix', {'for': 'nix'}
+"===
+
+"=== text objects
+Plug 'wellle/targets.vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'chaoren/vim-wordmotion'
 "===
 
 call plug#end()
