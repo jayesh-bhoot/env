@@ -14,11 +14,14 @@ nnoremap ,bs :action FileStructurePopup<CR>
 nnoremap gl :action GotoNextError<CR>
 nnoremap gL :action GotoPreviousError<CR>
 nnoremap =b :action ReformatCode<CR>
+nnoremap =i :action OptimizeImports<CR>
 nnoremap cr :action RenameElement<CR>
 nnoremap gsd :action GotoDeclaration<CR>
 nnoremap gst :action GotoTypeDeclaration<CR>
 nnoremap gsi :action GotoImplementation<CR>
 " inoremap ,cr <ESC>:action RenameElement<CR>
+nnoremap <C-i> :action Forward<CR>
+nnoremap <C-o> :action Back<CR>
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
