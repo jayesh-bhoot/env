@@ -35,6 +35,8 @@
         pkgs.bash-completion
         pkgs.nix-bash-completions
 
+        pkgs.pass
+
         pkgs.zsh
         pkgs.antigen
 
