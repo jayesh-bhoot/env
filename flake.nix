@@ -36,6 +36,7 @@
         pkgs.nix-bash-completions
 
         pkgs.pass
+        pkgs.bitwarden-cli
 
         pkgs.zsh
         pkgs.antigen
