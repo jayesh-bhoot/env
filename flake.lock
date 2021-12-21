@@ -43,11 +43,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1640058157,
-        "narHash": "sha256-7B8H/6pMhhx8QregGZ3ieax2R8lLejV+UBzIIJf688M=",
+        "lastModified": 1640061445,
+        "narHash": "sha256-70EXLVOx9txsEcl90HGzMKL/dY0IkdzhlF2ft1ouPZM=",
         "owner": "jayesh-bhoot",
         "repo": "Iosevka",
-        "rev": "60b7a7cc5e215ef0ffb2c1cd98fac31206286b14",
+        "rev": "a74bbd0ae6ce682658a250cfb5bbb5c758b29ec5",
         "type": "github"
       },
       "original": {

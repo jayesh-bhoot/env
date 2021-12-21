@@ -110,23 +110,23 @@
       ];
       fontPkgs = [
         # open-sans
-        # roboto      
-        # ubuntu_font_family      
-        pkgs.fira
-        pkgs.fira-code-static
-        # hack-font # horrible zero
-        # dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
-        # roboto-mono # [] are not wide enough. But ~ and - are good.
+        # pkgs.roboto      
+        pkgs.ubuntu_font_family      
+        # pkgs.fira
+        # pkgs.fira-code-static
+        # pkgs.hack-font # horrible zero
+        # pkgs.dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
+        # pkgs.roboto-mono # [] are not wide enough. But ~ and - are good.
         pkgs.source-code-pro      
-        pkgs.office-code-pro      
+        # pkgs.office-code-pro      
         pkgs.courier-prime      
         pkgs.vistafonts  # for consolas
         pkgs.jetbrains-mono
-        pkgs.cascadia-code
-        pkgs.ibm-plex
+        # pkgs.cascadia-code
+        # pkgs.ibm-plex
         monolisa.defaultPackage.${system}
-        iosevka-custom.defaultPackage.${system}
-        input-mono-custom.defaultPackage.${system}
+        # iosevka-custom.defaultPackage.${system}
+        # input-mono-custom.defaultPackage.${system}
       ];
     in
       {
