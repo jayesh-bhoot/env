@@ -112,7 +112,7 @@
         # open-sans
         # pkgs.roboto      
         pkgs.ubuntu_font_family      
-        # pkgs.fira
+        pkgs.fira
         # pkgs.fira-code-static
         # pkgs.hack-font # horrible zero
         # pkgs.dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
