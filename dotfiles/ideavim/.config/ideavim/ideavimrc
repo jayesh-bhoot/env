@@ -1,28 +1,35 @@
+" Why do we prefer map to noremap and :action Name<CR> to <Action>(Name)?
+" Follow the thread: https://github.com/JetBrains/ideavim/discussions/415#discussioncomment-1851584
+
 set idearefactormode=keep
 set ideajoin
 set clipboard+=ideaput  "Add ideaput to clipboard option to perform a put via the IDE
 set incsearch
 
-nnoremap ,a :action GotoAction<CR>
-nnoremap ,x :action SearchEverywhere<CR>
-nnoremap ,f :action GotoFile<CR>
-nnoremap ,s :action GotoSymbol<CR>
-nnoremap ,t :action GotoClass<CR>
-" go to buffer symbol
-nnoremap ,bs :action FileStructurePopup<CR>
-" inoremap ,s <esc>:action GotoSymbol<CR>
-nnoremap gl :action GotoNextError<CR>
-nnoremap gL :action GotoPreviousError<CR>
-nnoremap =b :action ReformatCode<CR>
-nnoremap =i :action OptimizeImports<CR>
-nnoremap cr :action RenameElement<CR>
-nnoremap gsd :action GotoDeclaration<CR>
-nnoremap gst :action GotoTypeDeclaration<CR>
-nnoremap gsi :action GotoImplementation<CR>
-" inoremap ,cr <ESC>:action RenameElement<CR>
-" For some reason, the normal vim ':h key-notation' <C-I> or even <C-i> do not map correctly. So use <CTRL-I>."
-nnoremap <CTRL-I> :action Forward<CR>
-nnoremap <CTRL-O> :action Back<CR>
+nmap ,a <Action>(GotoAction)
+nmap ,x <Action>(SearchEverywhere)
+nmap ,f <Action>(GotoFile)
+nmap ,s <Action>(GotoSymbol)
+nmap ,t <Action>(GotoClass)
+nmap ,bs <Action>(FileStructurePopup)
+" imap ,s <Action>(GotoSymbol)
+
+nmap gsd <Action>(GotoDeclaration)
+nmap gst <Action>(GotoTypeDeclaration)
+nmap gsi <Action>(GotoImplementation)
+nmap gl <Action>(GotoNextError)
+nmap gL <Action>(GotoPreviousError)
+" nmap gh <Action>(ShowErrorDescription)
+" nmap xyz <Action>(QuickJavaDoc)
+" nmap xyz <Action>(QuickTypeDefinition)
+
+nmap =b <Action>(ReformatCode)
+nmap =i <Action>(OptimizeImports)
+
+nmap cr <Action>(RenameElement)
+
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
