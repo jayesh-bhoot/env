@@ -20,8 +20,9 @@ nnoremap gsd :action GotoDeclaration<CR>
 nnoremap gst :action GotoTypeDeclaration<CR>
 nnoremap gsi :action GotoImplementation<CR>
 " inoremap ,cr <ESC>:action RenameElement<CR>
-nnoremap <C-i> :action Forward<CR>
-nnoremap <C-o> :action Back<CR>
+" For some reason, the normal vim ':h key-notation' <C-I> or even <C-i> do not map correctly. So use <CTRL-I>."
+nnoremap <CTRL-I> :action Forward<CR>
+nnoremap <CTRL-O> :action Back<CR>
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
