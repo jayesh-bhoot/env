@@ -66,6 +66,7 @@
 
         pkgs.wireshark-cli
 
+        pkgs.vim
         pkgs.neovim
         pkgs.rnix-lsp # perhaps automatically installs nixpkgs-fmt
       ];
