@@ -129,18 +129,6 @@ nnoremap ,lb :Diagnostics<CR>
 nnoremap ,la :DiagnosticsAll<CR>
 "===
 
-"=== clojure
-Plug 'guns/vim-sexp', {'for': 'clojure'}
-Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
-Plug 'liquidz/vim-iced', {'for': 'clojure'}
-" Plug 'tami5/vim-iced-compe', {'for': 'clojure'}
-
-let g:iced_enable_default_key_mappings = v:true
-"===
-
-"=== nix
-Plug 'LnL7/vim-nix', {'for': 'nix'}
-"===
 
 "=== text objects
 Plug 'wellle/targets.vim'
@@ -148,7 +136,14 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'chaoren/vim-wordmotion'
 "===
 
+
 "=== vim-lsc
+
+" Why not use the seemingly better-maintained vim-lsp?
+" vim-lsp did not work well. For example, while errors are highlighted,
+" putting the cursor on the error does not display the error. :LspNextError
+" also does not work. I gave up after that. vim-lsc just works.
+
 Plug 'natebosch/vim-lsc'
 
 let g:lsc_server_commands = { 
@@ -158,6 +153,22 @@ let g:lsc_server_commands = {
 
 " Use all the defaults (recommended):
 let g:lsc_auto_map = v:true
+"===
+
+
+"=== nix
+" rnix-lsp does not work withou vim-nix.
+Plug 'LnL7/vim-nix', {'for': 'nix'}
+"===
+
+
+"=== clojure
+Plug 'guns/vim-sexp', {'for': 'clojure'}
+Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
+" Plug 'tami5/vim-iced-compe', {'for': 'clojure'}
+
+let g:iced_enable_default_key_mappings = v:true
 "===
 
 call plug#end()
