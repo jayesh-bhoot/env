@@ -94,6 +94,9 @@ nnoremap \ :
 vnoremap \ :
 "====
 
+"=== gvim
+set guifont=Cascadia\ Code:h17
+"===
 
 "=== vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
