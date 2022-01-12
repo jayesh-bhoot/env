@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,132 +20,118 @@
   };
 
   outputs = { self, nixpkgs, home-manager, mypkgs, monolisa, iosevka-custom, input-mono-custom }:
-    let
-      system = "x86_64-darwin";
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [
-          mypkgs.overlays.fonts
-          # mypkgs.overlays.ocaml
-          # mypkgs.overlays.vim
-        ];
-        config.allowUnfree = true;
-      };
-      commonPkgs = [
-        pkgs.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
-        pkgs.bash-completion
-        pkgs.nix-bash-completions
+  let
+    system = "x86_64-darwin";
+    commonPkgs = [
+      nixpkgs.legacyPackages.${system}.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
+      nixpkgs.legacyPackages.${system}.bash-completion
+      nixpkgs.legacyPackages.${system}.nix-bash-completions
 
-        pkgs.pass
-        pkgs.bitwarden-cli
+      nixpkgs.legacyPackages.${system}.pass
+      nixpkgs.legacyPackages.${system}.bitwarden-cli
 
-        pkgs.zsh
-        pkgs.antigen
+      nixpkgs.legacyPackages.${system}.zsh
+      nixpkgs.legacyPackages.${system}.antigen
 
-        pkgs.parallel
-        pkgs.tree
-        pkgs.htop
-        pkgs.fzf
-        pkgs.silver-searcher
-        pkgs.jq
-        pkgs.tldr
-        pkgs.bat
+      nixpkgs.legacyPackages.${system}.parallel
+      nixpkgs.legacyPackages.${system}.tree
+      nixpkgs.legacyPackages.${system}.htop
+      nixpkgs.legacyPackages.${system}.fzf
+      nixpkgs.legacyPackages.${system}.silver-searcher
+      nixpkgs.legacyPackages.${system}.jq
+      nixpkgs.legacyPackages.${system}.tldr
+      nixpkgs.legacyPackages.${system}.bat
 
-        pkgs.rsync
-        pkgs.wget
-        pkgs.curl
+      nixpkgs.legacyPackages.${system}.rsync
+      nixpkgs.legacyPackages.${system}.wget
+      nixpkgs.legacyPackages.${system}.curl
 
-        pkgs.git
-        pkgs.stow
+      nixpkgs.legacyPackages.${system}.git
+      nixpkgs.legacyPackages.${system}.stow
 
-        pkgs.mpv
-        pkgs.ffmpeg-full
-        pkgs.imagemagickBig
+      nixpkgs.legacyPackages.${system}.mpv
+      nixpkgs.legacyPackages.${system}.ffmpeg-full
+      nixpkgs.legacyPackages.${system}.imagemagickBig
 
-        pkgs.youtube-dl
-        pkgs.transmission
+      nixpkgs.legacyPackages.${system}.youtube-dl
+      nixpkgs.legacyPackages.${system}.transmission
 
-        pkgs.wireshark-cli
+      nixpkgs.legacyPackages.${system}.wireshark-cli
 
-        pkgs.vim
-        pkgs.neovim
-        pkgs.rnix-lsp # perhaps automatically installs nixpkgs-fmt
-      ];
-      linuxOnlyPkgs = [
-        pkgs.finger_bsd
+      nixpkgs.legacyPackages.${system}.vim
+      mypkgs.packages.${system}.neovim
+      nixpkgs.legacyPackages.${system}.rnix-lsp # perhaps automatically installs nixpkgs-fmt
+    ];
+    nixosPkgs = [
+      nixpkgs.legacyPackages.${system}.finger_bsd
+      nixpkgs.legacyPackages.${system}.xclip
+      nixpkgs.legacyPackages.${system}.firefox
+      nixpkgs.legacyPackages.${system}.chromium
+      nixpkgs.legacyPackages.${system}.jetbrains.webstorm
+      nixpkgs.legacyPackages.${system}.jetbrains.idea-community
+      nixpkgs.legacyPackages.${system}.teams
+    ];
+    darwinPkgs = [
+      nixpkgs.legacyPackages.${system}.coreutils-full
+      nixpkgs.legacyPackages.${system}.findutils
+      nixpkgs.legacyPackages.${system}.diffutils
+      nixpkgs.legacyPackages.${system}.binutils
+      nixpkgs.legacyPackages.${system}.inetutils
 
-        pkgs.xclip
+      nixpkgs.legacyPackages.${system}.gnugrep
+      nixpkgs.legacyPackages.${system}.gnused
+      nixpkgs.legacyPackages.${system}.gawkInteractive
 
-        pkgs.firefox
-        pkgs.chromium
-
-        pkgs.vscodium
-        pkgs.jetbrains.webstorm
-        pkgs.jetbrains.idea-community
-
-        pkgs.teams
-      ];
-      darwinOnlyPkgs = [
-        pkgs.coreutils-full
-        pkgs.findutils
-        pkgs.diffutils
-        pkgs.binutils
-        pkgs.inetutils
-
-        pkgs.gnugrep
-        pkgs.gnused
-        pkgs.gawkInteractive
-
-        pkgs.readline
-        pkgs.bc
-        pkgs.gzip
-        pkgs.gnutar
-        pkgs.ncurses
-        pkgs.less
-        pkgs.more
-        pkgs.gnupatch
-        pkgs.time
-        pkgs.which
-        pkgs.texinfo
-        pkgs.man
-        pkgs.man-pages
-      ];
-      fontPkgs = [
-        # open-sans
-        # pkgs.roboto      
-        # pkgs.fira-code-static
-        # pkgs.hack-font # horrible zero
-        # pkgs.dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
-        # pkgs.office-code-pro
-        pkgs.ubuntu_font_family      
-        pkgs.fira
-        pkgs.roboto-mono # [] are not wide enough. But ~ and - are good.
-        pkgs.source-code-pro      
-        pkgs.courier-prime      
-        pkgs.vistafonts  # for consolas
-        pkgs.jetbrains-mono
-        pkgs.cascadia-code
-        pkgs.ibm-plex
+      nixpkgs.legacyPackages.${system}.readline
+      nixpkgs.legacyPackages.${system}.bc
+      nixpkgs.legacyPackages.${system}.gzip
+      nixpkgs.legacyPackages.${system}.gnutar
+      nixpkgs.legacyPackages.${system}.ncurses
+      nixpkgs.legacyPackages.${system}.less
+      nixpkgs.legacyPackages.${system}.more
+      nixpkgs.legacyPackages.${system}.gnupatch
+      nixpkgs.legacyPackages.${system}.time
+      nixpkgs.legacyPackages.${system}.which
+      nixpkgs.legacyPackages.${system}.texinfo
+      nixpkgs.legacyPackages.${system}.man
+      nixpkgs.legacyPackages.${system}.man-pages
+    ];
+    fontPkgs = [
+        # nixpkgs.legacyPackages.${system}.open-sans
+        # nixpkgs.legacyPackages.${system}.roboto      
+        # nixpkgs.legacyPackages.${system}.hack-font # horrible zero
+        # nixpkgs.legacyPackages.${system}.dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
+        # nixpkgs.legacyPackages.${system}.office-code-pro
+        nixpkgs.legacyPackages.${system}.ubuntu_font_family      
+        nixpkgs.legacyPackages.${system}.fira
+        nixpkgs.legacyPackages.${system}.roboto-mono # [] are not wide enough. But ~ and - are good.
+        nixpkgs.legacyPackages.${system}.source-code-pro      
+        nixpkgs.legacyPackages.${system}.courier-prime      
+        nixpkgs.legacyPackages.${system}.vistafonts  # for consolas
+        nixpkgs.legacyPackages.${system}.jetbrains-mono
+        nixpkgs.legacyPackages.${system}.cascadia-code
+        nixpkgs.legacyPackages.${system}.ibm-plex
+        nixpkgs.legacyPackages.${system}.iosevka-bin
+        # mypkgs.packages.${system}.fira-code-static
         monolisa.defaultPackage.${system}
-        pkgs.iosevka-bin
         iosevka-custom.defaultPackage.${system}
         input-mono-custom.defaultPackage.${system}
       ];
-    in
-      {
-        homeConfigurations = {
-          jayesh = home-manager.lib.homeManagerConfiguration rec {
-            inherit system;
-            username = "jayesh";
-            homeDirectory = "/Users/${username}";
-            configuration = {
-              nixpkgs.config.allowUnfree = true;
-              home.packages =
-                commonPkgs
-                ++ darwinOnlyPkgs
-                ++ fontPkgs;
-            };
+  in
+  {
+    homeConfigurations = {
+      jayesh = home-manager.lib.homeManagerConfiguration rec {
+        inherit system;
+        username = "jayesh";
+        homeDirectory = "/Users/${username}";
+        configuration = {
+          nixpkgs.config.allowUnfree = true;
+          home.packages =
+            commonPkgs
+            ++ darwinPkgs
+            ++ fontPkgs;
           };
         };
       };
-}
+    };
+  }
