@@ -22,96 +22,102 @@
   outputs = { self, nixpkgs, home-manager, mypkgs, monolisa, iosevka-custom, input-mono-custom }:
   let
     system = "x86_64-darwin";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
     commonPkgs = [
-      nixpkgs.legacyPackages.${system}.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
-      nixpkgs.legacyPackages.${system}.bash-completion
-      nixpkgs.legacyPackages.${system}.nix-bash-completions
+      pkgs.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
+      pkgs.bash-completion
+      pkgs.nix-bash-completions
 
-      nixpkgs.legacyPackages.${system}.pass
-      nixpkgs.legacyPackages.${system}.bitwarden-cli
+      pkgs.pass
+      pkgs.bitwarden-cli
 
-      nixpkgs.legacyPackages.${system}.zsh
-      nixpkgs.legacyPackages.${system}.antigen
+      pkgs.zsh
+      pkgs.antigen
 
-      nixpkgs.legacyPackages.${system}.parallel
-      nixpkgs.legacyPackages.${system}.tree
-      nixpkgs.legacyPackages.${system}.htop
-      nixpkgs.legacyPackages.${system}.fzf
-      nixpkgs.legacyPackages.${system}.silver-searcher
-      nixpkgs.legacyPackages.${system}.jq
-      nixpkgs.legacyPackages.${system}.tldr
-      nixpkgs.legacyPackages.${system}.bat
+      pkgs.parallel
+      pkgs.tree
+      pkgs.htop
+      pkgs.fzf
+      pkgs.silver-searcher
+      pkgs.jq
+      pkgs.tldr
+      pkgs.bat
 
-      nixpkgs.legacyPackages.${system}.rsync
-      nixpkgs.legacyPackages.${system}.wget
-      nixpkgs.legacyPackages.${system}.curl
+      pkgs.rsync
+      pkgs.wget
+      pkgs.curl
 
-      nixpkgs.legacyPackages.${system}.git
-      nixpkgs.legacyPackages.${system}.stow
+      pkgs.git
+      pkgs.stow
 
-      nixpkgs.legacyPackages.${system}.mpv
-      nixpkgs.legacyPackages.${system}.ffmpeg-full
-      nixpkgs.legacyPackages.${system}.imagemagickBig
+      pkgs.mpv
+      pkgs.ffmpeg-full
+      pkgs.imagemagickBig
 
-      nixpkgs.legacyPackages.${system}.youtube-dl
-      nixpkgs.legacyPackages.${system}.transmission
+      pkgs.youtube-dl
+      pkgs.transmission
 
-      nixpkgs.legacyPackages.${system}.wireshark-cli
+      pkgs.wireshark-cli
 
-      nixpkgs.legacyPackages.${system}.vim
-      mypkgs.packages.${system}.neovim
-      nixpkgs.legacyPackages.${system}.rnix-lsp # perhaps automatically installs nixpkgs-fmt
+      pkgs.vim
+      # pkgs.neovim
+      pkgs.rnix-lsp # perhaps automatically installs nixpkgs-fmt
+      pkgs.kitty
     ];
     nixosPkgs = [
-      nixpkgs.legacyPackages.${system}.finger_bsd
-      nixpkgs.legacyPackages.${system}.xclip
-      nixpkgs.legacyPackages.${system}.firefox
-      nixpkgs.legacyPackages.${system}.chromium
-      nixpkgs.legacyPackages.${system}.jetbrains.webstorm
-      nixpkgs.legacyPackages.${system}.jetbrains.idea-community
-      nixpkgs.legacyPackages.${system}.teams
+      pkgs.finger_bsd
+      pkgs.xclip
+      pkgs.firefox
+      pkgs.chromium
+      pkgs.jetbrains.webstorm
+      pkgs.jetbrains.idea-community
+      pkgs.teams
     ];
     darwinPkgs = [
-      nixpkgs.legacyPackages.${system}.coreutils-full
-      nixpkgs.legacyPackages.${system}.findutils
-      nixpkgs.legacyPackages.${system}.diffutils
-      nixpkgs.legacyPackages.${system}.binutils
-      nixpkgs.legacyPackages.${system}.inetutils
+      pkgs.coreutils-full
+      pkgs.findutils
+      pkgs.diffutils
+      pkgs.binutils
+      pkgs.inetutils
 
-      nixpkgs.legacyPackages.${system}.gnugrep
-      nixpkgs.legacyPackages.${system}.gnused
-      nixpkgs.legacyPackages.${system}.gawkInteractive
+      pkgs.gnugrep
+      pkgs.gnused
+      pkgs.gawkInteractive
 
-      nixpkgs.legacyPackages.${system}.readline
-      nixpkgs.legacyPackages.${system}.bc
-      nixpkgs.legacyPackages.${system}.gzip
-      nixpkgs.legacyPackages.${system}.gnutar
-      nixpkgs.legacyPackages.${system}.ncurses
-      nixpkgs.legacyPackages.${system}.less
-      nixpkgs.legacyPackages.${system}.more
-      nixpkgs.legacyPackages.${system}.gnupatch
-      nixpkgs.legacyPackages.${system}.time
-      nixpkgs.legacyPackages.${system}.which
-      nixpkgs.legacyPackages.${system}.texinfo
-      nixpkgs.legacyPackages.${system}.man
-      nixpkgs.legacyPackages.${system}.man-pages
+      pkgs.readline
+      pkgs.bc
+      pkgs.gzip
+      pkgs.gnutar
+      pkgs.ncurses
+      pkgs.less
+      pkgs.more
+      pkgs.gnupatch
+      pkgs.time
+      pkgs.which
+      pkgs.texinfo
+      pkgs.man
+      pkgs.man-pages
     ];
     fontPkgs = [
-        # nixpkgs.legacyPackages.${system}.open-sans
-        # nixpkgs.legacyPackages.${system}.roboto      
-        # nixpkgs.legacyPackages.${system}.hack-font # horrible zero
-        # nixpkgs.legacyPackages.${system}.dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
-        # nixpkgs.legacyPackages.${system}.office-code-pro
-        nixpkgs.legacyPackages.${system}.ubuntu_font_family      
-        nixpkgs.legacyPackages.${system}.fira
-        nixpkgs.legacyPackages.${system}.roboto-mono # [] are not wide enough. But ~ and - are good.
-        nixpkgs.legacyPackages.${system}.source-code-pro      
-        nixpkgs.legacyPackages.${system}.courier-prime      
-        nixpkgs.legacyPackages.${system}.vistafonts  # for consolas
-        nixpkgs.legacyPackages.${system}.jetbrains-mono
-        nixpkgs.legacyPackages.${system}.cascadia-code
-        nixpkgs.legacyPackages.${system}.ibm-plex
-        nixpkgs.legacyPackages.${system}.iosevka-bin
+        # pkgs.open-sans
+        # pkgs.roboto      
+        # pkgs.hack-font # horrible zero
+        # pkgs.dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
+        # pkgs.office-code-pro
+        pkgs.ubuntu_font_family      
+        pkgs.fira
+        pkgs.roboto-mono # [] are not wide enough. But ~ and - are good.
+        pkgs.source-code-pro      
+        pkgs.courier-prime      
+        pkgs.vistafonts  # for consolas
+        pkgs.jetbrains-mono
+        pkgs.cascadia-code
+        pkgs.ibm-plex
+        pkgs.iosevka-bin
         # mypkgs.packages.${system}.fira-code-static
         monolisa.defaultPackage.${system}
         iosevka-custom.defaultPackage.${system}
