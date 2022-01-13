@@ -35,7 +35,7 @@
 ### bash 
 source ~/.nix-profile/share/bash-completion/completions/git-prompt.sh
 # \ before $(__git_ps1 ensures that the function is evaluated before each prompt.
-PS1="\n\[\e[32m\]\u | bash:\j | \w \$(__git_ps1 '(%s)') \[\e[00m\] \n$ "
+PS1="\n\[\e[32m\]bash | \u@\h | \w \$(__git_ps1 '(%s)') \[\e[00m\] \n$ "
 # PS1="$ "
 
 HISTCONTROL=ignorespace:ignoredups:erasedups
