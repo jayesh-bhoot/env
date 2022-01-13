@@ -21,16 +21,14 @@ NEWLINE=$'\n'; PROMPT="%F{green}zsh | %n | %~ %k${NEWLINE}>%f ";
 
 ### plugins
 source ~/.nix-profile/share/antigen/antigen.zsh
-antigen use oh-my-zsh
-antigen bundle zsh-users/zsh-completions
-antigen bundle spwhitt/nix-zsh-completions.git
-antigen bundle chisui/zsh-nix-shell
-
+# antigen use oh-my-zsh
+# antigen bundle zsh-users/zsh-completions
+# antigen bundle spwhitt/nix-zsh-completions.git
+# antigen bundle chisui/zsh-nix-shell
 antigen bundle fzf
-antigen bundle git
-antigen bundle ag 
-
-antigen bundle zsh-users/zsh-syntax-highlighting
+# antigen bundle git
+# antigen bundle ag 
+# antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 ### editors
@@ -52,5 +50,5 @@ src=$HOME/.nix-profile/etc/profile.d/nix.sh; [ -e $src ] && source $src; src=
 # export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 export NIX_PATH=$HOME/.nix-defexpr/channels:$HOME/.nix-defexpr/channels_root
 source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-prompt_nix_shell_setup  # prefix prompt by [nix-shell] inside a nix-shell github.com/spwhitt/nix-zsh-completions
+# prompt_nix_shell_setup  # prefix prompt by [nix-shell] inside a nix-shell github.com/spwhitt/nix-zsh-completions
  
