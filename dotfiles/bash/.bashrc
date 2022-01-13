@@ -33,10 +33,15 @@
 # 3. `. $XDG_DATA_HOME/bash-completion/bash_completion`
 
 ### bash 
-PS1="\n\[\e[32m\]bash | \u | \w \[\e[00m\] \n> "
+source ~/.nix-profile/share/bash-completion/completions/git-prompt.sh
+# \ before $(__git_ps1 ensures that the function is evaluated before each prompt.
+PS1="\n\[\e[32m\]bash | \u@\h | \w \$(__git_ps1 '(%s)') \[\e[00m\] \n$ "
+# PS1="$ "
+
 HISTCONTROL=ignorespace:ignoredups:erasedups
-HISTSIZE=10000
-HISTFILESIZE=10000
+HISTSIZE=5000
+HISTFILESIZE=5000
+
 shopt -s histappend
 shopt -s autocd 
 shopt -s cdspell 
@@ -45,6 +50,7 @@ shopt -s dirspell
 shopt -s extglob extquote globstar nocaseglob 
 shopt -s checkwinsize
 shopt -s checkjobs
+
 export BASH_COMPLETION_USER_DIR=~/.nix-profile/share/bash-completion
 source ~/.nix-profile/etc/profile.d/bash_completion.sh
 source ~/.nix-profile/share/bash-completion/bash_completion
@@ -61,27 +67,16 @@ export LANG="en_US.UTF-8"
 # export SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt
 
 ### fzf
-src=/usr/share/fzf/key-bindings.bash; [ -e $src ] && source $src; src=
-# nix
-src=~/.nix-profile/share/fzf/key-bindings.bash; [ -e $src ] && source $src; src=
-src=~/.nix-profile/share/fzf/completion.bash; [ -e $src ] && source $src; src=
-# ubuntu
-src=/usr/share/doc/fzf/examples/key-bindings.bash; [ -e $src ] && source $src; src=
-# fedora
-src=/usr/share/fzf/shell/key-bindings.bash; [ -e $src ] && source $src; src=
-# opensuse
-src=/etc/bash_completion.d/fzf-key-bindings; [ -e $src ] && source $src; src=
-src=~/.fzf.bash; [ -e $src ] && source $src; src=
-# export FZF_CTRL_T_COMMAND='find . -name .git -prune -o -print'
-export FZF_DEFAULT_COMMAND='ag --hidden -l -g ""'
-export PATH="/.vim/bundle/fzf/bin:$PATH"
+source ~/.fzf.bash
 
 ### .NET
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 ### Nix
-src=$HOME/.nix-profile/etc/profile.d/nix.sh; [ -e $src ] && source $src; src=
+# ~/.nix-profile/etc/profile.d/nix.sh probably does not exist for multi-user installation, that has become necessary on M1 Mac.
+# source ~/.nix-profile/etc/profile.d/nix.sh
+source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
 # export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 export NIX_PATH=$HOME/.nix-defexpr/channels:$HOME/.nix-defexpr/channels_root
-source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 

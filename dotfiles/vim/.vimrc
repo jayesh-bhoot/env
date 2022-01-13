@@ -124,10 +124,10 @@ nnoremap ,b :Buffers<CR>
 " inoremap ,b <ESC>:Buffers<CR>
 nnoremap ,s :WorkspaceSymbols<CR>
 " inoremap ,s <ESC>:WorkspaceSymbols<CR>
-nnoremap ,bs :DocumentSymbols<CR>
-nnoremap ,bs <ESC>:DocumentSymbols<CR>
+nnoremap ,d :DocumentSymbols<CR>
+" inoremap ,bs <ESC>:DocumentSymbols<CR>
 nnoremap ,r :References<CR>
-nnoremap ,r <ESC>:References<CR>
+" inoremap ,r <ESC>:References<CR>
 nnoremap ,lb :Diagnostics<CR>
 nnoremap ,la :DiagnosticsAll<CR>
 "===
