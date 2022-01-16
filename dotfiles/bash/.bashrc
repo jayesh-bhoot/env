@@ -33,10 +33,25 @@
 # 3. `. $XDG_DATA_HOME/bash-completion/bash_completion`
 
 ### bash 
+# bash_or_nixed_bash() {
+#     if [ -n "$IN_NIX_SHELL" ]; then 
+#         echo "nix | bash"; 
+#     else 
+#         echo "bash"; 
+#     fi
+# }
+prompt_or_nixed_prompt() {
+    if [ -n "$IN_NIX_SHELL" ]; then 
+        echo "nix $"; 
+    else 
+        echo "$"; 
+    fi
+}
 source ~/.nix-profile/share/bash-completion/completions/git-prompt.sh
 # \ before $(__git_ps1 ensures that the function is evaluated before each prompt.
-PS1="\n\[\e[32m\]bash | \u@\h | \w \$(__git_ps1 '(%s)') \[\e[00m\] \n$ "
-# PS1="$ "
+start_green_text="\[\e[32m\]"
+end_green_text="\[\e[00m\]"
+export PS1="\n${start_green_text}bash | \u@\h | \w \$(__git_ps1 '(%s)') ${end_green_text} \n\$(prompt_or_nixed_prompt) "
 
 HISTCONTROL=ignorespace:ignoredups:erasedups
 HISTSIZE=5000
@@ -73,7 +88,7 @@ source ~/.fzf.bash
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 ### Nix
-# ~/.nix-profile/etc/profile.d/nix.sh probably does not exist for multi-user installation, that has become necessary on M1 Mac.
+# ~/.nix-profile/etc/profile.d/nix.sh probably does not exist for multi-user installation, which has become necessary on M1 Mac.
 # source ~/.nix-profile/etc/profile.d/nix.sh
 source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
