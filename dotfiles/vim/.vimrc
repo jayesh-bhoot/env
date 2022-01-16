@@ -112,6 +112,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tommcdo/vim-exchange'
+Plug 'itspriddle/vim-shellcheck'
 
 "=== fzf
 Plug 'junegunn/fzf'

@@ -65,6 +65,7 @@
 
       pkgs.vim
       pkgs.rnix-lsp # perhaps automatically installs nixpkgs-fmt
+      pkgs.shellcheck
     ];
     nixosPkgs = [
       pkgs.finger_bsd
