@@ -21,6 +21,7 @@
 
   outputs = { self, nixpkgs, home-manager, mypkgs, monolisa, iosevka-custom, input-mono-custom }:
   let
+    systems = [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" ];
     system = "x86_64-darwin";
     pkgs = import nixpkgs {
       inherit system;
