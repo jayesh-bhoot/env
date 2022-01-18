@@ -1,6 +1,6 @@
 source ~/.nix-profile/share/bash-completion/completions/git-prompt.sh
 
-# : Approach 1: Single workflow, special-case branches:
+# : Approach 1: Build similar workflows as a single generic workflow, branch out specific cases.
 # : single PS1, which calls functions that deal with nix and non-nix cases for specific portions.
 # bash_or_nixed_bash() {
 #     if [ -n "$IN_NIX_SHELL" ]; then 
@@ -22,7 +22,7 @@ source ~/.nix-profile/share/bash-completion/completions/git-prompt.sh
 
 # ==========
 
-# : Approach 2: Separate workflows, reuse common portions:
+# : Approach 2: Keep similar workflows separate, reuse common portions.
 # : Keep nix and non-nix prompts separate from the start. Reuse only common portions.
 # : This is a much more manageable approach.
 prompt() {
