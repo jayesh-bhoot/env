@@ -1,11 +1,12 @@
 [user]
-  name = Jayesh Bhoot
-  email = jayesh@bhoot.sh
+    name = Jayesh Bhoot
+    email = jayesh@bhoot.sh
 [color "diff"]
-  whitespace = bold red reverse
+    whitespace = bold red reverse
 [diff]
-  wserrorhighlight = all
+    wserrorhighlight = all
 [pull]
-  rebase = false
+    rebase = false
 [core]
-	autocrlf = input
+    autocrlf = input
+    excludesfile = ~/.config/git/gitignore_global
