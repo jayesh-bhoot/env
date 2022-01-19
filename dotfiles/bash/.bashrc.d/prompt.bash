@@ -18,7 +18,7 @@ source ~/.nix-profile/share/bash-completion/completions/git-prompt.sh
 # }
 # start_green_text="\[\e[32m\]"
 # end_green_text="\[\e[00m\]"
-# export PS1="\n${start_green_text}bash | \u@\h | \w \$(__git_ps1 '(%s)') ${end_green_text} \n\$(prompt_or_nixed_prompt) "
+# PS1="\n${start_green_text}bash | \u@\h | \w \$(__git_ps1 '(%s)') ${end_green_text} \n\$(prompt_or_nixed_prompt) "
 
 # ==========
 
@@ -56,10 +56,9 @@ prompt() {
     local current_dir=$(pwd | sed "s|^$HOME|~|")
     local git_prompt="$(__git_ps1 '(%s)')"
 
-    local black_fg="30"
-    local green_fg="32"
-    local brown_fg="33"
-    local blue_fg="34"
+    local red_fg="31"    # for normal shell? but how can I do this?
+    local blue_fg="34"   # for nix-triggered shell
+    local purple_fg="35" # for root shell? but how can I do this?
     local light_gray_bg="47"
 
     if [ -n "$IN_NIX_SHELL" ]; then 
@@ -70,10 +69,16 @@ prompt() {
         # So PS1="\[\033[37m\]bash$", while printf "\033[37mbash$"
 
         local colour_sequence="\033[${blue_fg};${light_gray_bg}m"
-        printf "\n${colour_sequence}nix-shell | bash | ${user_host} | ${current_dir} ${git_prompt} ${reset_colour_sequence} \n$ "
+        printf "\n${colour_sequence}${user_host} | ${current_dir} ${git_prompt} ${reset_colour_sequence} \nnix $ "
     else 
-        local colour_sequence="\033[${black_fg};${light_gray_bg}m"
-        printf "\n${colour_sequence}bash | ${user_host} | ${current_dir} ${git_prompt} ${reset_colour_sequence} \n$ "
+        local colour_sequence="\033[${red_fg};${light_gray_bg}m"
+        printf "\n${colour_sequence}${user_host} | ${current_dir} ${git_prompt} ${reset_colour_sequence} \n$ "
     fi
 }
-export PS1="\$(prompt)"
+
+# Do not export PS1.
+# While PS1 is a bash-only variable, a subshell like bash-acting-as-sh spawned with `sudo su` seems to use PS1 definition.
+# In this case, as the shell is acting as sh, it won't read .bashrc, and fail to find the `prompt` function with the error:
+# > `sh: prompt: command not found`
+# Note that bash subshells will read ~/.bashrc and so use this PS1 definition anyway. eg., bash shell spawned by `nix develop` 
+PS1="\$(prompt)"
