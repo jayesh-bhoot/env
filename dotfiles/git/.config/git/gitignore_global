@@ -1,6 +1,28 @@
 *.swp
+*-swp
 *.swo
 *.swn
 
-.idea
+*.org~
+*.html~
 
+.idea
+*.iml
+
+.vscode
+
+.DS_Store
+*.DS_Store
+
+.merlin
+_esy
+_build
+.bsb.lock
+.melange.eobjs
+
+.gradle/
+
+*.cmi
+*.cmo
+
+node_modules/
