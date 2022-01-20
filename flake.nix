@@ -48,11 +48,11 @@
           pkgs.stow
 
           pkgs.mpv
-          pkgs.ffmpeg-full
+          pkgs.ffmpeg
           pkgs.imagemagickBig
 
           pkgs.youtube-dl
-          pkgs.transmission
+          pkgs.aria
 
           pkgs.vim
 
@@ -149,18 +149,15 @@
           };
         };
 
-        # jayesh = home-manager.lib.homeManagerConfiguration rec {
-        #   inherit system;
-        #   username = "jayesh";
-        #   homeDirectory = "/Users/${username}";
-        #   configuration = {
-        #     nixpkgs.config.allowUnfree = true;
-        #     home.packages =
-        #       commonPkgs
-        #       ++ darwinPkgs
-        #       ++ fontPkgs;
-        #     };
-        #   };
+        "jayesh@Jayesh-MacbookPro13M12020.local" = home-manager.lib.homeManagerConfiguration rec {
+          system = "aarch64-darwin";
+          username = "jayesh";
+          homeDirectory = "/Users/${username}";
+          configuration = {
+            nixpkgs.config.allowUnfree = true;
+            home.packages = (commonPkgs system) ++ (darwinPkgs system);
+          };
+        };
       };
     };
 }
