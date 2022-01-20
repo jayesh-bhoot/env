@@ -56,6 +56,7 @@ prompt() {
     local current_dir=$(pwd | sed "s|^$HOME|~|")
     local git_prompt="$(__git_ps1 '(%s)')"
 
+    # colour codes: https://askubuntu.com/a/558422
     local red_fg="31"    # for normal shell? but how can I do this?
     local blue_fg="34"   # for nix-triggered shell
     local purple_fg="35" # for root shell? but how can I do this?
