@@ -149,7 +149,7 @@
           };
         };
 
-        "jayesh@Jayesh-MacbookPro13M12020.local" = home-manager.lib.homeManagerConfiguration rec {
+        "jayesh@Jayeshs-Macbook-Pro-13-M1-2020.local" = home-manager.lib.homeManagerConfiguration rec {
           system = "aarch64-darwin";
           username = "jayesh";
           homeDirectory = "/Users/${username}";
