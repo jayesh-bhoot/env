@@ -20,45 +20,9 @@
         "type": "github"
       }
     },
-    "input-mono-custom": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1642683404,
-        "narHash": "sha256-WkfTA6Cf32BpnyjoCDz1XaOFIoDnF2FAQMRy3yfixrM=",
-        "owner": "jayesh-bhoot",
-        "repo": "input-mono-custom",
-        "rev": "a9301b4cd0b48eff1adcc5c83edb88be1bc9d23b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jayesh-bhoot",
-        "repo": "input-mono-custom",
-        "type": "github"
-      }
-    },
-    "iosevka-custom": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1642683158,
-        "narHash": "sha256-jXS8smHKBppBs3ma8W3qzrq1tdMAEjriUVi5Rsi7l9o=",
-        "owner": "jayesh-bhoot",
-        "repo": "Iosevka",
-        "rev": "4a8bc0a65bf8bff1c5770b10656860f1557f55c5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jayesh-bhoot",
-        "repo": "Iosevka",
-        "type": "github"
-      }
-    },
     "monolisa": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "lastModified": 1642683591,
@@ -72,24 +36,6 @@
       "original": {
         "type": "git",
         "url": "ssh://git@github.com/jayesh-bhoot/MonoLisa"
-      }
-    },
-    "mypkgs": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_4"
-      },
-      "locked": {
-        "lastModified": 1642681736,
-        "narHash": "sha256-wknev0UCPByBduB1F5NChMb2jo6kLlob6WQxNP5ZzYY=",
-        "owner": "jayesh-bhoot",
-        "repo": "nix-pkgs",
-        "rev": "7b499f55343d926f5e963751cffdddfe77ee2fcd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jayesh-bhoot",
-        "repo": "nix-pkgs",
-        "type": "github"
       }
     },
     "nixpkgs": {
@@ -109,56 +55,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1642679494,
-        "narHash": "sha256-Y6Us2LoLjC3kQd0AG86/DXOWLIRiGMd69JcymvUhtyk=",
+        "lastModified": 1642770528,
+        "narHash": "sha256-aT9pbHQpzlqqX4/pMgJcSOTe85jb2yvlm08mkI8Ea9Q=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dd2dcbbfe893b6511a6b9fbfa610dd29531bfbc4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1642679494,
-        "narHash": "sha256-Y6Us2LoLjC3kQd0AG86/DXOWLIRiGMd69JcymvUhtyk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "dd2dcbbfe893b6511a6b9fbfa610dd29531bfbc4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1641905687,
-        "narHash": "sha256-9q6+JOLCmkCe83HqV0x0KUmU8QdAhhUE5w2fgDmf1iY=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "943c830a1cf63b0fec8cdbcbbc0b10cbcee5699d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_5": {
-      "locked": {
-        "lastModified": 1642679494,
-        "narHash": "sha256-Y6Us2LoLjC3kQd0AG86/DXOWLIRiGMd69JcymvUhtyk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "dd2dcbbfe893b6511a6b9fbfa610dd29531bfbc4",
+        "rev": "bc586b913b26efab436f01aecf68d45ed413b1b8",
         "type": "github"
       },
       "original": {
@@ -170,11 +71,8 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "input-mono-custom": "input-mono-custom",
-        "iosevka-custom": "iosevka-custom",
         "monolisa": "monolisa",
-        "mypkgs": "mypkgs",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },

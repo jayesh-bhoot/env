@@ -7,15 +7,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mypkgs.url = "github:jayesh-bhoot/nix-pkgs";
-    iosevka-custom.url = "github:jayesh-bhoot/Iosevka";
-    input-mono-custom.url = "github:jayesh-bhoot/input-mono-custom";
+    # mypkgs.url = "github:jayesh-bhoot/nix-pkgs";
+    # iosevka-custom.url = "github:jayesh-bhoot/Iosevka";
+    # input-mono-custom.url = "github:jayesh-bhoot/input-mono-custom";
     # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: Beware of master vs main branch. nix by default assumes master.
     monolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
   };
 
-  outputs = { self, nixpkgs, home-manager, mypkgs, monolisa, iosevka-custom, input-mono-custom }:
+  # outputs = { self, nixpkgs, home-manager, mypkgs, monolisa, iosevka-custom, input-mono-custom }:
+  outputs = { self, nixpkgs, home-manager, monolisa }:
     let
       commonPkgs = system:
         let
@@ -75,10 +76,10 @@
           pkgs.cascadia-code
           pkgs.ibm-plex
           pkgs.iosevka-bin
-          mypkgs.packages.${system}.fira-code-static
           monolisa.defaultPackage.${system}
-          iosevka-custom.defaultPackage.${system}
-          input-mono-custom.defaultPackage.${system}
+          # mypkgs.packages.${system}.fira-code-static
+          # iosevka-custom.defaultPackage.${system}
+          # input-mono-custom.defaultPackage.${system}
         ];
 
       nixOsPkgs = system:
@@ -139,7 +140,7 @@
         # eg., jayesh@Jayesh-MacbookProM1? implies username=jayesh, OS=macOS, machine=Jayesh-MacbookProM1?, arch=aarch64-linux
         # eg., jayesh@NixOS-ThinkpadE431 implies username=jayesh, OS=NixOS, machine=ThinkpadE431, arch=x86_64-linux
         # eg., jayesh@FedoraVM-ThinkpadE431 implies username=jayesh, OS=Fedora on VM, machine=ThinkpadE431, arch=x86_64-linux
-        "jayesh@MacMini2018.local" = home-manager.lib.homeManagerConfiguration rec {
+        "jayesh@Mac-Mini-2018.local" = home-manager.lib.homeManagerConfiguration rec {
           system = "x86_64-darwin";
           username = "jayesh";
           homeDirectory = "/Users/${username}";
