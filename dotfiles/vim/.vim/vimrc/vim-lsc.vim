@@ -12,3 +12,14 @@ let g:lsc_server_commands = {
 
 " Use all the defaults (recommended):
 let g:lsc_auto_map = v:true
+
+" https://github.com/natebosch/vim-lsc/issues/98#issuecomment-454265181
+augroup formatters
+    autocmd!
+
+    autocmd FileType ocaml setlocal formatprg=ocamlformat\ --name\ %\ -
+    autocmd FileType ocaml setlocal equalprg=ocamlformat\ --name\ %\ -
+
+    autocmd FileType nix setlocal formatprg=nixpkgs-fmt
+    autocmd FileType nix setlocal equalprg=nixpkgs-fmt
+augroup END
