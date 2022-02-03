@@ -22,4 +22,8 @@ augroup formatters
 
     autocmd FileType nix setlocal formatprg=nixpkgs-fmt
     autocmd FileType nix setlocal equalprg=nixpkgs-fmt
+
+    autocmd FileType json setlocal formatprg=jq
+    autocmd FileType json setlocal equalprg=jq
+    autocmd FileType json set foldmethod=syntax
 augroup END
