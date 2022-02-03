@@ -6,6 +6,10 @@ runtime vimrc/vim-plug.vim
 call plug#begin('~/.vim/plugged')
 
 " Plug 'vim-airline/vim-airline'
+
+" Plug 'sonph/onehalf', { 'rtp': 'vim' }
+" colorscheme onehalflight
+
 " Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tommcdo/vim-exchange'
