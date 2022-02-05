@@ -10,36 +10,49 @@ filetype plugin indent on
 syntax on
 packadd! matchit
 
+" tl;dr: Use only spaces for indentation, with a tab-key, BS-key, <<, >> using 4 spaces. Leave the tab-byte(=tab-character) alone. 
+set tabstop=8  "Set a tab-byte=character to take up 8 visual columns
+set expandtab  "Set a tab-keypress to insert space-bytes instead of a tab-byte. With this, tab-byte is never used for indentation.
+set softtabstop=4 "Set a tab-keypress or a backspace-keypress to move 4 columns. With expandtab, 4 space-bytes are inserted/removed.
+set shiftwidth=4  "Set an << or >> to indent by 4 columns. With expandtab, 4 space-bytes are inserted/removed.
+
+set autoindent
+set backspace=indent,eol,start
 set incsearch
 set path=.,,**
 set mouse=nvic
 set wildmenu
-set smarttab
-set shiftround
-set autoindent
-set backspace=indent,eol,start
-set hidden
-set ruler
 set completeopt=menu,menuone,preview
 set wildcharm=<C-z>
+set hidden
+set ruler
 set laststatus=2
 set guifont=Cascadia\ Code:h17
 
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 call plug#begin('~/.vim/plugged')
+Plug 'romainl/vim-cool'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'romainl/vim-cool'
-Plug 'romainl/vim-devdocs'
 Plug 'tommcdo/vim-exchange'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'chaoren/vim-wordmotion'
-Plug 'itspriddle/vim-shellcheck'
+Plug 'LnL7/vim-nix'
+
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'liquidz/vim-iced'
+let g:iced_enable_default_key_mappings = v:true
+
+Plug 'natebosch/vim-lsc'
+" Why not vim-lsp?
+" vim-lsp did not work well. For example, while errors are highlighted,
+" putting the cursor on the error does not display the error. :LspNextError
+" also does not work. I gave up after that. vim-lsc just works.
+let g:lsc_server_commands = { 
+            \ 'ocaml': 'ocamllsp',
+            \ 'nix': 'rnix-lsp',
+            \}
+let g:lsc_auto_map = v:true
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -51,37 +64,16 @@ nnoremap ,d :DocumentSymbols<CR>
 nnoremap ,r :References<CR>
 nnoremap ,lb :Diagnostics<CR>
 nnoremap ,la :DiagnosticsAll<CR>
-
-Plug 'natebosch/vim-lsc'
-" Why not vim-lsp?
-" vim-lsp did not work well. For example, while errors are highlighted,
-" putting the cursor on the error does not display the error. :LspNextError
-" also does not work. I gave up after that. vim-lsc just works.
-let g:lsc_server_commands = { 
-			\ 'ocaml': 'ocamllsp',
-			\ 'nix': 'rnix-lsp',
-			\}
-let g:lsc_auto_map = v:true
-
-Plug 'LnL7/vim-nix', {'for': 'nix'}
-
-Plug 'guns/vim-sexp', {'for': 'clojure'}
-Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
-Plug 'liquidz/vim-iced', {'for': 'clojure'}
-" Plug 'tami5/vim-iced-compe', {'for': 'clojure'}
-let g:iced_enable_default_key_mappings = v:true
-
 call plug#end()
 
 cnoremap <expr> <Tab>   getcmdtype() =~ '[/?]' ? "<C-g>" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
 
-augroup autosave
-	autocmd!
-	autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost,BufLeave * silent! wa
+augroup myvimrc
+    autocmd!
+    autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost,BufLeave * silent! wa
 augroup END
 
-" various adjustments of the default colorscheme
-hi ModeMsg      ctermbg=green     ctermfg=black cterm=NONE
-hi StatusLineNC ctermbg=lightgrey                cterm=bold
-hi Visual       ctermbg=lightcyan ctermfg=black cterm=bold
+highlight ModeMsg ctermbg=green ctermfg=black cterm=NONE
+highlight StatusLineNC ctermbg=lightgrey cterm=bold
+highlight Visual ctermbg=lightcyan ctermfg=black cterm=bold
