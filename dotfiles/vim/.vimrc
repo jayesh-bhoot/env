@@ -37,7 +37,7 @@ Plug 'tommcdo/vim-exchange'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'LnL7/vim-nix'
-
+Plug 'itspriddle/vim-shellcheck'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'liquidz/vim-iced'
