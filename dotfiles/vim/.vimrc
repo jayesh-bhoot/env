@@ -72,8 +72,12 @@ cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
 augroup myvimrc
     autocmd!
     autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost,BufLeave * silent! wa
+    autocmd InsertEnter * set cursorline
+    autocmd InsertLeave * set nocursorline
 augroup END
 
 highlight ModeMsg ctermbg=green ctermfg=black cterm=NONE
 highlight StatusLineNC ctermbg=lightgrey cterm=bold
 highlight Visual ctermbg=lightcyan ctermfg=black cterm=bold
+highlight Cursorline ctermbg=lightred ctermfg=black cterm=NONE
+
