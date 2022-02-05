@@ -1,7 +1,7 @@
 # TODO: use if/case to source files based on the OS
 
-# export FZF_CTRL_T_COMMAND="find . -name .git -prune -o -print"
-# export FZF_DEFAULT_COMMAND="find . -name .git -prune -o -print"
+export FZF_CTRL_T_COMMAND="find . -path '*/\.git' -prune -o -type f -print -o -type l -print | sed 's:^..::'"
+export FZF_DEFAULT_COMMAND="find . -path '*/\.git' -prune -o -type f -print -o -type l -print | sed 's:^..::'"
 export FZF_DEFAULT_OPTS="--exact"
 
 # nix
