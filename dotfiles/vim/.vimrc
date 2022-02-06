@@ -43,7 +43,6 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'liquidz/vim-iced'
 let g:iced_enable_default_key_mappings = v:true
-
 Plug 'natebosch/vim-lsc'
 " " Why not vim-lsp?
 " " vim-lsp did not work well. For example, while errors are highlighted,
@@ -54,14 +53,15 @@ let g:lsc_server_commands = {
             \ 'nix': 'rnix-lsp',
             \}
 let g:lsc_auto_map = v:true
-
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '40%' }
-nnoremap ,f :Files<CR>
-nnoremap ,b :Buffers<CR>
 call plug#end()
 
+" nnoremap ,f :Files<CR>
+" nnoremap ,b :Buffers<CR>
+nnoremap ,f :e **/
+nnoremap ,b :buffers<CR>:buffer<Space>
 cnoremap <expr> <Tab>   getcmdtype() =~ '[/?]' ? "<C-g>" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
 
