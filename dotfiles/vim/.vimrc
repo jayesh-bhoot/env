@@ -60,11 +60,6 @@ Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '40%' }
 nnoremap ,f :Files<CR>
 nnoremap ,b :Buffers<CR>
-nnoremap ,s :WorkspaceSymbols<CR>
-nnoremap ,d :DocumentSymbols<CR>
-nnoremap ,r :References<CR>
-nnoremap ,lb :Diagnostics<CR>
-nnoremap ,la :DiagnosticsAll<CR>
 call plug#end()
 
 cnoremap <expr> <Tab>   getcmdtype() =~ '[/?]' ? "<C-g>" : "<C-z>"
