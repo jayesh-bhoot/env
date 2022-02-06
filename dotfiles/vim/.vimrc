@@ -29,6 +29,10 @@ set ruler
 set laststatus=2
 set timeout ttimeout timeoutlen=2000 ttimeoutlen=20
 set updatetime=1000
+silent !mkdir -p ~/.vim/{swapfiles,backupfiles,undofiles} >/dev/null 2>&1
+set directory=~/.vim/swapfiles//,.
+set backupdir=~/.vim/backupfiles//,.
+set undodir=~/.vim/undofiles//,.
 set guifont=Cascadia\ Code:h17
 
 call plug#begin('~/.vim/plugged')
