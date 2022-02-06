@@ -27,6 +27,7 @@ set wildcharm=<C-z>
 set hidden
 set ruler
 set laststatus=2
+set timeout ttimeout timeoutlen=2000 ttimeoutlen=20
 set guifont=Cascadia\ Code:h17
 
 call plug#begin('~/.vim/plugged')
@@ -44,10 +45,10 @@ Plug 'liquidz/vim-iced'
 let g:iced_enable_default_key_mappings = v:true
 
 Plug 'natebosch/vim-lsc'
-" Why not vim-lsp?
-" vim-lsp did not work well. For example, while errors are highlighted,
-" putting the cursor on the error does not display the error. :LspNextError
-" also does not work. I gave up after that. vim-lsc just works.
+" " Why not vim-lsp?
+" " vim-lsp did not work well. For example, while errors are highlighted,
+" " putting the cursor on the error does not display the error. :LspNextError
+" " also does not work. I gave up after that. vim-lsc just works.
 let g:lsc_server_commands = { 
             \ 'ocaml': 'ocamllsp',
             \ 'nix': 'rnix-lsp',
