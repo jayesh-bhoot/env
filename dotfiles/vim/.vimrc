@@ -28,6 +28,7 @@ set hidden
 set ruler
 set laststatus=2
 set timeout ttimeout timeoutlen=2000 ttimeoutlen=20
+set updatetime=1000
 set guifont=Cascadia\ Code:h17
 
 call plug#begin('~/.vim/plugged')
@@ -67,7 +68,7 @@ cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
 
 augroup myvimrc
     autocmd!
-    autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost,BufLeave * silent! wa
+    autocmd CursorHold,InsertLeave * silent! w
     autocmd InsertEnter * set cursorline
     autocmd InsertLeave * set nocursorline
 augroup END
