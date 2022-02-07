@@ -41,6 +41,8 @@ Plug 'tpope/vim-surround'
 Plug 'tommcdo/vim-exchange'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
 Plug 'LnL7/vim-nix'
 Plug 'itspriddle/vim-shellcheck'
 Plug 'guns/vim-sexp'
@@ -66,6 +68,7 @@ call plug#end()
 " nnoremap ,b :Buffers<CR>
 nnoremap ,f :e **/
 nnoremap ,b :buffers<CR>:buffer<Space>
+nmap =ae =ae<C-o>
 cnoremap <expr> <Tab>   getcmdtype() =~ '[/?]' ? "<C-g>" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
 
