@@ -5,6 +5,14 @@ set idearefactormode=keep
 set ideajoin
 set clipboard+=ideaput  "Add ideaput to clipboard option to perform a put via the IDE
 set incsearch
+set wildcharm=<C-z>
+
+packadd matchit
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tommcdo/vim-exchange'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'kana/vim-textobj-user'
 
 nmap ,a <Action>(GotoAction)
 nmap ,x <Action>(SearchEverywhere)
@@ -12,8 +20,6 @@ nmap ,f <Action>(GotoFile)
 nmap ,s <Action>(GotoSymbol)
 nmap ,t <Action>(GotoClass)
 nmap ,bs <Action>(FileStructurePopup)
-" imap ,s <Action>(GotoSymbol)
-
 nmap gsd <Action>(GotoDeclaration)
 nmap gst <Action>(GotoTypeDeclaration)
 nmap gsi <Action>(GotoImplementation)
@@ -22,16 +28,11 @@ nmap gL <Action>(GotoPreviousError)
 " nmap gh <Action>(ShowErrorDescription)
 " nmap xyz <Action>(QuickJavaDoc)
 " nmap xyz <Action>(QuickTypeDefinition)
-
-nmap =b <Action>(ReformatCode)
+nmap =ae <Action>(ReformatCode)
 nmap =i <Action>(OptimizeImports)
-
 nmap cr <Action>(RenameElement)
-
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
+cnoremap <expr> <Tab>   getcmdtype() =~ '[/?]' ? "<C-g>" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
 
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tommcdo/vim-exchange'
-Plug 'michaeljsmith/vim-indent-object'

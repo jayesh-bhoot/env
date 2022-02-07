@@ -8,14 +8,12 @@
 
 filetype plugin indent on
 syntax on
-packadd! matchit
 
 " tl;dr: Use only spaces for indentation, with a tab-key, BS-key, <<, >> using 4 spaces. Leave the tab-byte(=tab-character) alone. 
 set tabstop=8  "Set a tab-byte=character to take up 8 visual columns
 set expandtab  "Set a tab-keypress to insert space-bytes instead of a tab-byte. With this, tab-byte is never used for indentation.
 set softtabstop=4 "Set a tab-keypress or a backspace-keypress to move 4 columns. With expandtab, 4 space-bytes are inserted/removed.
 set shiftwidth=4  "Set an << or >> to indent by 4 columns. With expandtab, 4 space-bytes are inserted/removed.
-
 set autoindent
 set backspace=indent,eol,start
 set incsearch
@@ -34,6 +32,7 @@ set backupdir=~/.vim/backupfiles//,.
 set undodir=~/.vim/undofiles//,.
 set guifont=Cascadia\ Code:h17
 
+packadd! matchit
 call plug#begin('~/.vim/plugged')
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-commentary'
