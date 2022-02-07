@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # mypkgs.url = "github:jayesh-bhoot/nix-pkgs";
-    # iosevka-custom.url = "github:jayesh-bhoot/Iosevka";
+    iosevka-custom.url = "github:jayesh-bhoot/Iosevka";
     # input-mono-custom.url = "github:jayesh-bhoot/input-mono-custom";
     # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: Beware of master vs main branch. nix by default assumes master.
@@ -16,7 +16,7 @@
   };
 
   # outputs = { self, nixpkgs, home-manager, mypkgs, monolisa, iosevka-custom, input-mono-custom }:
-  outputs = { self, nixpkgs, home-manager, monolisa }:
+  outputs = { self, nixpkgs, home-manager, iosevka-custom, monolisa }:
     let
       commonPkgs = system:
         let
@@ -78,7 +78,7 @@
           pkgs.iosevka-bin
           monolisa.defaultPackage.${system}
           # mypkgs.packages.${system}.fira-code-static
-          # iosevka-custom.defaultPackage.${system}
+          iosevka-custom.defaultPackage.${system}
           # input-mono-custom.defaultPackage.${system}
         ];
 

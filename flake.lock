@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1642676973,
-        "narHash": "sha256-bLQ6n0pXYaIuNSyJnm30JGCfjmuTi59qAmj8S2ExDXI=",
+        "lastModified": 1643933104,
+        "narHash": "sha256-NZPuFxRsZKN8pjRuHPpzlMyt6JQhcjiduBG8bMghSjE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7eb5106548eaab99ebeb21c87f93092de54fe931",
+        "rev": "63dccc4e60422c1db2c3929b2fd1541f36b7e664",
         "type": "github"
       },
       "original": {
@@ -20,16 +20,34 @@
         "type": "github"
       }
     },
-    "monolisa": {
+    "iosevka-custom": {
       "inputs": {
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1642683591,
-        "narHash": "sha256-BN5bqaHd0UoW3cn04u+5WTuIZiL9u+sxIcnxSb2eh5Q=",
+        "lastModified": 1644224561,
+        "narHash": "sha256-raiunBHyXAocNQpdH4xxU4XmVgbEfYA6LALVeCD5LW8=",
+        "owner": "jayesh-bhoot",
+        "repo": "Iosevka",
+        "rev": "700c45bcdac5d625dfd80659769684f7209f1413",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jayesh-bhoot",
+        "repo": "Iosevka",
+        "type": "github"
+      }
+    },
+    "monolisa": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1642691617,
+        "narHash": "sha256-k0pMlxvGLul2rgKlMFqlgcdR6JIGCTtK5kvN9Zw8iHs=",
         "ref": "master",
-        "rev": "f4a06a18b712d7f5ad416a699b627561b8a65f40",
-        "revCount": 3,
+        "rev": "fcd2b332c7cbe67ca9828c9b49bba59830162f53",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://git@github.com/jayesh-bhoot/MonoLisa"
       },
@@ -39,6 +57,21 @@
       }
     },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1644218403,
+        "narHash": "sha256-Fg/bC/m9bBc2fyFC3s391iYcT8xMlSTPx5Vz8AdYeyk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "baf85120d67d8fac7def0eba5c3b90439049b540",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1642679494,
         "narHash": "sha256-Y6Us2LoLjC3kQd0AG86/DXOWLIRiGMd69JcymvUhtyk=",
@@ -53,13 +86,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
-        "lastModified": 1642770528,
-        "narHash": "sha256-aT9pbHQpzlqqX4/pMgJcSOTe85jb2yvlm08mkI8Ea9Q=",
+        "lastModified": 1644218403,
+        "narHash": "sha256-Fg/bC/m9bBc2fyFC3s391iYcT8xMlSTPx5Vz8AdYeyk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bc586b913b26efab436f01aecf68d45ed413b1b8",
+        "rev": "baf85120d67d8fac7def0eba5c3b90439049b540",
         "type": "github"
       },
       "original": {
@@ -71,8 +104,9 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "iosevka-custom": "iosevka-custom",
         "monolisa": "monolisa",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       }
     }
   },
