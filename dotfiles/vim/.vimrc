@@ -19,7 +19,6 @@ set shiftwidth=4  "Set an << or >> to indent by 4 columns. With expandtab, 4 spa
 set autoindent
 set backspace=indent,eol,start
 set incsearch
-set path=.,,**
 set mouse=nvic
 set wildmenu
 set completeopt=menu,menuone,preview
