@@ -32,8 +32,9 @@ set backupdir=~/.vim/backupfiles//,.
 set undodir=~/.vim/undofiles//,.
 set guifont=Cascadia\ Code:h17
 
-packadd! matchit
 call plug#begin('~/.vim/plugged')
+packadd! matchit
+Plug 'andymass/vim-matchup'
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
