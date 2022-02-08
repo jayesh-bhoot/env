@@ -29,6 +29,7 @@
           pkgs.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
           pkgs.bash-completion
           pkgs.nix-bash-completions
+          pkgs.direnv
           pkgs.nix-direnv
 
           pkgs.pass
