@@ -45,10 +45,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'LnL7/vim-nix'
 Plug 'itspriddle/vim-shellcheck'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'liquidz/vim-iced'
-let g:iced_enable_default_key_mappings = v:true
 Plug 'natebosch/vim-lsc'
 " " Why not vim-lsp?
 " " vim-lsp did not work well. For example, while errors are highlighted,
