@@ -23,6 +23,8 @@ set wildcharm=<C-z>
 set completeopt-=preview
 set completeopt+=popup
 set previewpopup=height:10,width:60
+set splitbelow
+set splitright
 set hidden
 set ruler
 set laststatus=2
