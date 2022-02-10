@@ -19,8 +19,10 @@ set backspace=indent,eol,start
 set incsearch
 set mouse=nvic
 set wildmenu
-set completeopt=menu,menuone,preview
 set wildcharm=<C-z>
+set completeopt-=preview
+set completeopt+=popup
+set previewpopup=height:10,width:60
 set hidden
 set ruler
 set laststatus=2
