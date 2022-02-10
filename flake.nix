@@ -78,6 +78,9 @@
           pkgs.cascadia-code
           pkgs.ibm-plex
           pkgs.iosevka-bin
+          pkgs.inter
+          pkgs.source-sans
+          
           monolisa.defaultPackage.${system}
           # mypkgs.packages.${system}.fira-code-static
           iosevka-custom.defaultPackage.${system}
