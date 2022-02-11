@@ -38,6 +38,7 @@ set guifont=Cascadia\ Code:h17
 
 call plug#begin('~/.vim/plugged')
 packadd! matchit
+packadd! cfilter
 Plug 'andymass/vim-matchup'
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-commentary'
