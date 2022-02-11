@@ -64,7 +64,9 @@ Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '40%' }
 call plug#end()
 
-nnoremap <CR> :
+" Cannot map <CR> because it overrides the 'Press <CR> on an item in quicklist to jump to the
+" associated point in the buffer' feature.
+" nnoremap <CR> :
 " nnoremap ,f :Files<CR>
 " nnoremap ,b :Buffers<CR>
 nnoremap ,f :e **/
