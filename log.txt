@@ -1,2 +1,4 @@
-- Fix esc delay while exiting fzf in vim
-- Set indent etc per-filetype. start with vimscript only. https://vi.stackexchange.com/questions/4/how-can-i-change-the-default-indentation-based-on-filetype
++ Fix esc delay while exiting fzf in vim
+x Set indent etc per-filetype.
+  Start with vimscript.
+  https://vi.stackexchange.com/questions/4/how-can-i-change-the-default-indentation-based-on-filetype
