@@ -26,3 +26,5 @@ _build
 *.cmo
 
 node_modules/
+
+.direnv
