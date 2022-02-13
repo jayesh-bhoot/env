@@ -97,6 +97,7 @@
         [
           pkgs.finger_bsd
           pkgs.xclip
+          pkgs.emacs
           pkgs.firefox
           pkgs.chromium
           pkgs.jetbrains.webstorm
@@ -138,6 +139,8 @@
           pkgs.texinfo
           pkgs.man
           pkgs.man-pages
+
+          pkgs.emacsMacport
         ];
     in
     {
