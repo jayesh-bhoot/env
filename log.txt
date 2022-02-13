@@ -1,3 +1,5 @@
++ Autosave on bufleave windoleave and so on as well.
+  Switching from Normal mode to another app won't autosave otherwise.
 + Show diagnostics in a floating window.
   If this is not possible in vim-lsc, then its time to switch to the much more featureful vim-lsp.
   Switched to vim-lsp.

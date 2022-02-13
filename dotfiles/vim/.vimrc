@@ -119,7 +119,7 @@ cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
 
 augroup myvimrc
     autocmd!
-    autocmd CursorHold,InsertLeave * silent! update %
+    autocmd CursorHold,InsertLeave,FocusLost,BufLeave * silent! update %
     autocmd InsertEnter * set cursorline
     autocmd InsertLeave * set nocursorline
 augroup END
