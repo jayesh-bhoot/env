@@ -115,8 +115,11 @@
           pkgs.coreutils-full
           pkgs.findutils
           pkgs.diffutils
-          pkgs.binutils
           pkgs.inetutils
+          # Don't install binutils.
+          # binutils provide building, compiling, linking,and binary utilities, not the command-line utilities as the other packages. 
+          # Also, clang, ld, etc., provided by nix binutils somehow almost never work with errors like 'ld: symbol not found for architecture'
+          # pkgs.binutils 
 
           pkgs.gnugrep
           pkgs.gnused
