@@ -34,7 +34,7 @@ silent !mkdir -p ~/.vim/{swapfiles,backupfiles,undofiles} >/dev/null 2>&1
 set directory=~/.vim/swapfiles//,.
 set backupdir=~/.vim/backupfiles//,.
 set undodir=~/.vim/undofiles//,.
-set guifont=Cascadia\ Code:h17
+set guifont=MonoLisa\ Medium:h16
 
 call plug#begin('~/.vim/plugged')
 packadd! matchit
@@ -80,9 +80,6 @@ function! s:on_lsp_buffer_enabled() abort
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-
-    " refer to doc to add more commands
 endfunction
 augroup lsp_install
     au!
@@ -109,10 +106,10 @@ call plug#end()
 " Cannot map <CR> because it overrides the 'Press <CR> on an item in quicklist to jump to the
 " associated point in the buffer' feature.
 " nnoremap <CR> :
-" nnoremap ,f :Files<CR>
-" nnoremap ,b :Buffers<CR>
-nnoremap ,f :e **/
-nnoremap ,b :buffers<CR>:buffer<Space>
+nnoremap ,f :Files<CR>
+nnoremap ,b :Buffers<CR>
+" nnoremap ,f :e **/
+" nnoremap ,b :buffers<CR>:buffer<Space>
 nmap =ae =ae<C-o>
 cnoremap <expr> <Tab>   getcmdtype() =~ '[/?]' ? "<C-g>" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
@@ -127,5 +124,3 @@ augroup END
 highlight ModeMsg ctermbg=green ctermfg=black cterm=NONE
 highlight StatusLineNC ctermbg=lightgrey cterm=bold
 highlight Visual ctermbg=lightcyan ctermfg=black cterm=bold
-highlight Cursorline ctermbg=lightred ctermfg=black cterm=NONE
-
