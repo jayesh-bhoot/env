@@ -7,16 +7,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # mypkgs.url = "github:jayesh-bhoot/nix-pkgs";
-    iosevka-custom.url = "github:jayesh-bhoot/Iosevka";
-    # input-mono-custom.url = "github:jayesh-bhoot/input-mono-custom";
     # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: Beware of master vs main branch. nix by default assumes master.
     monolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
   };
 
-  # outputs = { self, nixpkgs, home-manager, mypkgs, monolisa, iosevka-custom, input-mono-custom }:
-  outputs = { self, nixpkgs, home-manager, iosevka-custom, monolisa }:
+  outputs = { self, nixpkgs, home-manager, monolisa }:
     let
       commonPkgs = system:
         let
@@ -63,27 +59,12 @@
           pkgs.rnix-lsp
           pkgs.shellcheck
 
-          pkgs.open-sans
           pkgs.roboto
-          pkgs.hack-font # horrible zero
-          pkgs.dejavu_fonts # ~ is not curvy enough to be distinguishable from -. – itself is too small.
-          pkgs.office-code-pro
-          pkgs.ubuntu_font_family
           pkgs.fira
           pkgs.roboto-mono # [] are not wide enough. But ~ and - are good.
           pkgs.source-code-pro
-          pkgs.courier-prime
-          pkgs.vistafonts # for consolas
-          pkgs.jetbrains-mono
           pkgs.cascadia-code
-          pkgs.ibm-plex
-          pkgs.iosevka-bin
-          pkgs.inter
-          pkgs.source-sans
           monolisa.defaultPackage.${system}
-          mypkgs.packages.${system}.fira-code-static
-          iosevka-custom.defaultPackage.${system}
-          # input-mono-custom.defaultPackage.${system}
         ];
 
       nixOsPkgs = system:

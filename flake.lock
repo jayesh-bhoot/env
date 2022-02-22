@@ -7,40 +7,22 @@
         ]
       },
       "locked": {
-        "lastModified": 1644255659,
-        "narHash": "sha256-VuPFOttrBRTOJqPY5yboxVdk1xZjSSlOSDDbBCMKioo=",
+        "lastModified": 1645244400,
+        "narHash": "sha256-o7KCd6ySFZ9/LbS62aTeuFmBWtP7Tt3Q3RcNjYgTgZU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1ca6293c8fb1dbe13c48fe518440c288256cd562",
+        "rev": "0232fe1b75e6d7864fd82b5c72f6646f87838fc3",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "iosevka-custom": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1644253902,
-        "narHash": "sha256-DAjTYcCW7iJFa8U29camq6cRKA7iV8NEzg4mnj5RRHE=",
-        "owner": "jayesh-bhoot",
-        "repo": "Iosevka",
-        "rev": "0bf97125d8e469af9264ca0eb08233fa46478018",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jayesh-bhoot",
-        "repo": "Iosevka",
         "type": "github"
       }
     },
     "monolisa": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "lastModified": 1642691617,
@@ -58,21 +40,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1644243460,
-        "narHash": "sha256-SGvxXXZ48ynuTw8MNp1Uyo4+8gJpfMl5MJOIK8zGbww=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "5bc03b163ad1fbd5339481e2d9827e9f8a658e60",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
         "lastModified": 1642679494,
         "narHash": "sha256-Y6Us2LoLjC3kQd0AG86/DXOWLIRiGMd69JcymvUhtyk=",
         "owner": "NixOS",
@@ -86,13 +53,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_2": {
       "locked": {
-        "lastModified": 1644292907,
-        "narHash": "sha256-KjI7IRzJmcpKLrFyyWMEWQ0lF8NBsTzDkG/gYo+Voe4=",
+        "lastModified": 1645412023,
+        "narHash": "sha256-sMHy8s2TOLgwAQgLDQlqlyVZr0yDQ73EMv/3Tk/vMiI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8b0b5be13a2415b12b83f9e573565a46a204d06b",
+        "rev": "b359608e4009d6a492c6c84ace5c61e341ffb80e",
         "type": "github"
       },
       "original": {
@@ -104,9 +71,8 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "iosevka-custom": "iosevka-custom",
         "monolisa": "monolisa",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },
