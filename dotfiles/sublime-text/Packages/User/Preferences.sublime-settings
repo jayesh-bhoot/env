@@ -3,6 +3,7 @@
 	"font_size": 18,
 	"line_padding_top": 1,
 	"line_padding_bottom": 1,
+	"save_on_focus_lost": true,
 	"ignored_packages":
 	[
 		"Vintage",
