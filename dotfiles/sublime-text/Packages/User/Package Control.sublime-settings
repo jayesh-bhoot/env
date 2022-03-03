@@ -9,5 +9,7 @@
 		"LSP-json",
 		"Nix",
 		"Package Control",
+		"ReScript",
+		"Terminus",
 	],
 }

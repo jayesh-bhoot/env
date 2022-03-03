@@ -26,6 +26,16 @@
 			],
 			"selector": "source.clojure",
 			"initializationOptions": {}
+		},
+		"rescript": {
+			// Instructions at: https://github.com/rescript-lang/rescript-sublime/issues/3#issuecomment-881325256
+			"enabled": true,
+			"command": [
+				"node",
+				"~/.vscode/extensions/chenglou92.rescript-vscode-1.2.1/server/out/server.js",
+				"--stdio"
+			],
+			"selector": "source.res | source.resi",
 		}
 	}
 }

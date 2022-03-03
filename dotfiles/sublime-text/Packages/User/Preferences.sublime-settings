@@ -4,10 +4,19 @@
 	"line_padding_top": 1,
 	"line_padding_bottom": 1,
 	"save_on_focus_lost": true,
-	"ignored_packages":
-	[
+	"ignored_packages": [
 		"Vintage",
 	],
 	"theme": "Default.sublime-theme",
-	"color_scheme": "Breakers.sublime-color-scheme",
+	"color_scheme": "Mariana.sublime-color-scheme",
+	"mdpopups.sublime_user_lang_map": {
+		"rescript": [
+			[
+				"rescript"
+			],
+			[
+				"ReScript/rescript-sublime/ReScript"
+			]
+		],
+	}
 }
