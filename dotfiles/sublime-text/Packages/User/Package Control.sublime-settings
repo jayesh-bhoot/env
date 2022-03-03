@@ -5,9 +5,16 @@
 	],
 	"installed_packages":
 	[
+		"Direnv",
+		"Github Color Theme",
+		"GitHub Theme",
 		"LSP",
 		"LSP-json",
 		"Nix",
 		"Package Control",
+		"ReScript",
+		"Terminus",
+		"Theme - Elementary",
+		"Theme - Soda",
 	],
 }
