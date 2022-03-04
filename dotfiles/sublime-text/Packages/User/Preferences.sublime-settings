@@ -1,6 +1,6 @@
 {
-	"font_face": "Cascadia Code",
-	"font_size": 18,
+	"font_face": "MonoLisa Medium",
+	"font_size": 16,
 	"line_padding_top": 1,
 	"line_padding_bottom": 1,
 	"save_on_focus_lost": true,
