@@ -1,12 +1,16 @@
 {
 	"font_face": "Cascadia Code",
-	"font_size": 18,
+	"font_size": 16,
 	"line_padding_top": 1,
 	"line_padding_bottom": 1,
 	"save_on_focus_lost": true,
 	"ignored_packages": [
 		"Vintage",
 	],
+	"block_caret": true,
+	"caret_style": "solid",
+	"always_show_minimap_viewport": true,
+	"draw_minimap_border": true,
 	"theme": "Default.sublime-theme",
 	"color_scheme": "Mariana.sublime-color-scheme",
 	"mdpopups.sublime_user_lang_map": {
@@ -18,5 +22,5 @@
 				"ReScript/rescript-sublime/ReScript"
 			]
 		],
-	}
+	},
 }

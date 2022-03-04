@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"Direnv",
 		"LSP",
 		"LSP-json",
 		"Nix",
