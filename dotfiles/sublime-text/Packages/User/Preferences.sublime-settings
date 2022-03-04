@@ -7,6 +7,10 @@
 	"ignored_packages": [
 		"Vintage",
 	],
+	"block_caret": true,
+	"caret_style": "solid",
+	"always_show_minimap_viewport": true,
+	"draw_minimap_border": true,
 	"theme": "Default.sublime-theme",
 	"color_scheme": "Mariana.sublime-color-scheme",
 	"mdpopups.sublime_user_lang_map": {
@@ -18,5 +22,5 @@
 				"ReScript/rescript-sublime/ReScript"
 			]
 		],
-	}
+	},
 }
