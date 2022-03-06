@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1645244400,
-        "narHash": "sha256-o7KCd6ySFZ9/LbS62aTeuFmBWtP7Tt3Q3RcNjYgTgZU=",
+        "lastModified": 1646364779,
+        "narHash": "sha256-481vkO9b3h++bHzLbGDDhgpBoXQ0Wlo4lm4h5/EJMO4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0232fe1b75e6d7864fd82b5c72f6646f87838fc3",
+        "rev": "d119cea3763977801ad66330668c1ab4346cb7f7",
         "type": "github"
       },
       "original": {
@@ -25,11 +25,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1642691617,
-        "narHash": "sha256-k0pMlxvGLul2rgKlMFqlgcdR6JIGCTtK5kvN9Zw8iHs=",
+        "lastModified": 1646542606,
+        "narHash": "sha256-YWVZ4U+/gi7Ufh+B5zzxdRmjHIJb5pirk2VluEJlFJA=",
         "ref": "master",
-        "rev": "fcd2b332c7cbe67ca9828c9b49bba59830162f53",
-        "revCount": 4,
+        "rev": "239a2f4b1b0ab6d48185b35c06dadfe2e0b89eeb",
+        "revCount": 5,
         "type": "git",
         "url": "ssh://git@github.com/jayesh-bhoot/MonoLisa"
       },
@@ -55,11 +55,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1645412023,
-        "narHash": "sha256-sMHy8s2TOLgwAQgLDQlqlyVZr0yDQ73EMv/3Tk/vMiI=",
+        "lastModified": 1646543193,
+        "narHash": "sha256-TGdL32G5MTRKmw1MAODDulMIOHD26baqaJFXLsoRMwk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b359608e4009d6a492c6c84ace5c61e341ffb80e",
+        "rev": "a0820a9d0d8be04268e66ffb46142d3e7458d558",
         "type": "github"
       },
       "original": {

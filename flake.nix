@@ -54,6 +54,7 @@
           pkgs.aria
 
           pkgs.vim
+	  pkgs.nano
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
@@ -118,6 +119,7 @@
           pkgs.texinfo
           pkgs.man
           pkgs.man-pages
+
         ];
     in
     {
