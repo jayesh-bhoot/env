@@ -69,11 +69,11 @@ prompt() {
         # printf does not need to enclose escape sequence with [].
         # So PS1="\[\033[37m\]bash$", while printf "\033[37mbash$"
 
-        local colour_sequence="\033[${blue_fg};${light_gray_bg}m"
+        local colour_sequence="\033[${blue_fg}m"
         printf "\n${colour_sequence}nix bash | ${current_dir} ${git_prompt} ${reset_colour_sequence} \n$ "
     else 
-        local colour_sequence="\033[${red_fg};${light_gray_bg}m"
-        printf "\n${colour_sequence}bash | ${current_dir} ${git_prompt} ${reset_colour_sequence} \n$ "
+        local colour_sequence="\033[${red_fg}m"
+        printf "\nbash | ${current_dir} ${git_prompt} \n$ "
     fi
 }
 
