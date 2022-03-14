@@ -130,7 +130,7 @@
         # eg., jayesh@Jayesh-MacbookProM1? implies username=jayesh, OS=macOS, machine=Jayesh-MacbookProM1?, arch=aarch64-linux
         # eg., jayesh@NixOS-ThinkpadE431 implies username=jayesh, OS=NixOS, machine=ThinkpadE431, arch=x86_64-linux
         # eg., jayesh@FedoraVM-ThinkpadE431 implies username=jayesh, OS=Fedora on VM, machine=ThinkpadE431, arch=x86_64-linux
-        "jayesh@Mac-Mini-2018.local" = home-manager.lib.homeManagerConfiguration rec {
+        "jayesh@Jayeshs-Mac-Mini-2018.local" = home-manager.lib.homeManagerConfiguration rec {
           system = "x86_64-darwin";
           username = "jayesh";
           homeDirectory = "/Users/${username}";
