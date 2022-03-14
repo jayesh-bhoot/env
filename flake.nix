@@ -55,6 +55,7 @@
 
           pkgs.vim
 	  pkgs.nano
+          pkgs.kakoune
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
