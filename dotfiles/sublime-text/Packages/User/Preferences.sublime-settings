@@ -6,13 +6,14 @@
 	"save_on_focus_lost": true,
 	"fade_fold_buttons": false,
 	"ignored_packages": [
+		"Terminus",
 		"Vintage",
 	],
 	"block_caret": false,
 	"caret_style": "solid",
 	"always_show_minimap_viewport": true,
 	"draw_minimap_border": true,
-	"theme": "Default.sublime-theme",
+	"theme": "Soda Light 3.sublime-theme",
 	"color_scheme": "Mariana.sublime-color-scheme",
 	"mdpopups.sublime_user_lang_map": {
 		"rescript": [
