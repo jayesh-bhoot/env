@@ -72,10 +72,10 @@ prompt() {
         # So PS1="\[\033[37m\]bash$", while printf "\033[37mbash$"
 
         local prompt_marker="\033[${blue_bg}m"
-        printf "\n${prompt_marker} ${reset_colour_sequence} nix bash | ${current_dir} ${git_prompt} \n$ "
+        printf "\n${prompt_marker} ${reset_colour_sequence} nix bash | ${current_dir} \n$ "
     else 
         local prompt_marker="\033[${green_bg}m"
-        printf "\n${prompt_marker} ${reset_colour_sequence} bash | ${current_dir} ${git_prompt}\n$ "
+        printf "\n${prompt_marker} ${reset_colour_sequence} bash | ${current_dir} \n$ "
     fi
 }
 
