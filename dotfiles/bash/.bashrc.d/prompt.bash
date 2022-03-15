@@ -61,6 +61,8 @@ prompt() {
     local blue_fg="34"   # for nix-triggered shell
     local purple_fg="35" # for root shell? but how can I do this?
     local light_gray_bg="47"
+    local blue_bg="44"
+    local green_bg="42"
 
     if [ -n "$IN_NIX_SHELL" ]; then 
         # Why use printf over echo?
@@ -69,11 +71,11 @@ prompt() {
         # printf does not need to enclose escape sequence with [].
         # So PS1="\[\033[37m\]bash$", while printf "\033[37mbash$"
 
-        local colour_sequence="\033[${blue_fg}m"
-        printf "\n${colour_sequence}---| nix bash | ${current_dir} ${git_prompt} ${reset_colour_sequence}|---\n$ "
+        local prompt_marker="\033[${blue_bg}m"
+        printf "\n${prompt_marker} ${reset_colour_sequence} nix bash | ${current_dir} ${git_prompt} \n$ "
     else 
-        local colour_sequence="\033[${red_fg}m"
-        printf "\n---| bash | ${current_dir} ${git_prompt}|---\n$ "
+        local prompt_marker="\033[${green_bg}m"
+        printf "\n${prompt_marker} ${reset_colour_sequence} bash | ${current_dir} ${git_prompt}\n$ "
     fi
 }
 
