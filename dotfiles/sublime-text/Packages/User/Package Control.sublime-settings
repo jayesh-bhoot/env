@@ -7,13 +7,15 @@
 	[
 		"Direnv",
 		"LSP",
+		"LSP-css",
+		"LSP-eslint",
 		"LSP-json",
+		"LSP-typescript",
 		"Nix",
 		"Package Control",
 		"ReScript",
 		"SideBarEnhancements",
 		"Theme - Soda",
-		"Theme - SoDaReloaded",
 		"TOML",
 	],
 }
