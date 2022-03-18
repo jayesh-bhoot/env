@@ -1,18 +1,29 @@
 {
+	"hot_exit": "disabled",
+	"remember_layout": true,
+	"open_files_in_new_window": "never",
+	"close_windows_when_empty": true,
+	"show_full_path": true,
+	"show_rel_path": true,
 	"font_face": "MonoLisa Medium",
 	"font_size": 16,
 	"line_padding_top": 1,
 	"line_padding_bottom": 1,
 	"save_on_focus_lost": true,
 	"fade_fold_buttons": false,
+	"translate_tabs_to_spaces": true,
+	"highlight_line": true,
 	"ignored_packages": [
 		"Terminus",
 		"Vintage",
 	],
-	"block_caret": false,
-	"caret_style": "solid",
+	"caret_extra_width": 2,
+	"caret_extra_top": 1,
+	"caret_extra_bottom": 1,
+	"match_brackets_angle": true,
 	"always_show_minimap_viewport": true,
 	"draw_minimap_border": true,
+	"show_project_first": true,
 	"theme": "Soda Light 3.sublime-theme",
 	"color_scheme": "Mariana.sublime-color-scheme",
 	"mdpopups.sublime_user_lang_map": {
@@ -25,7 +36,6 @@
 			]
 		],
 	},
-	"close_windows_when_empty": true,
 	"folder_exclude_patterns": [
 		".svn",
 		".git",
@@ -48,5 +58,5 @@
 		"*.swf",
 		"*.jar",
 		"*.zip"
-	]
+	],
 }
