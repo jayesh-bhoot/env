@@ -1,0 +1,59 @@
+// Documentation at https://www.sublimetext.com/docs/themes.html
+// Documentation at https://www.sublimetext.com/docs/themes.html
+{
+	"variables": {},
+	"rules": [
+		{
+			"class": "tab_label",
+			"fg": "#000",
+			"shadow_color": "#000",
+			"shadow_offset": [
+				0,
+				0
+			],
+			"font.italic": false,
+			"font.face": "Fira Sans",
+			"font.size": 13,
+		},
+		{
+			"class": "sidebar_label",
+			"color": "#000",
+			"shadow_color": "#000",
+			"shadow_offset": [
+				0,
+				0
+			],
+			"font.bold": false,
+			"font.italic": false,
+			"font.size": 14,
+			"font.face": "Fira Sans"
+		},
+		{
+			"class": "label_control",
+			"parents": [
+				{
+					"class": "status_bar"
+				}
+			],
+			"color": "#000",
+			"shadow_color": "#000",
+			"shadow_offset": [
+				0,
+				0
+			]
+		},
+		{
+			"class": "quick_panel",
+			"row_padding": [
+				8,
+				6
+			],
+			"layer0.tint": [
+				252,
+				252,
+				252
+			],
+			"layer0.opacity": 1.0
+		},
+	]
+}
