@@ -1,5 +1,24 @@
 // Settings in here override those in "LSP/LSP.sublime-settings"
 {
+	"show_diagnostics_panel_on_save": 0,
+	"show_diagnostics_count_in_view_status": true,
+	"diagnostics_gutter_marker": "sign",
+	"document_highlight_style": "underline",
+	"diagnostics_highlight_style": {
+		"error": "box",
+		"warning": "box",
+		"info": "stippled",
+		"hint": "stippled"
+	},
+	"show_code_actions": "annotation",
+	"show_code_lens": "phantom",
+	"show_references_in_quick_panel": true,
+	"lsp_format_on_save": true,
+	"lsp_code_actions_on_save": {
+		"source.fixAll": true,
+		"source.organizeImports": true,
+	},
+	"popup_max_characters_width": 150,
 	"log_debug": true,
 	"log_server": [
 		"panel"
