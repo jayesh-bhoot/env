@@ -1,5 +1,4 @@
 {
-	"hot_exit": "disabled",
 	"remember_layout": true,
 	"open_files_in_new_window": "never",
 	"close_windows_when_empty": true,
@@ -12,14 +11,14 @@
 	"save_on_focus_lost": true,
 	"fade_fold_buttons": false,
 	"translate_tabs_to_spaces": true,
-	"highlight_line": true,
 	"ignored_packages": [
 		"Terminus",
 		"Vintage",
 	],
 	"caret_extra_width": 2,
-	"caret_extra_top": 1,
-	"caret_extra_bottom": 1,
+	"caret_extra_top": 4,
+	"caret_extra_bottom": 4,
+	"caret_style": "smooth",
 	"match_brackets_angle": true,
 	"always_show_minimap_viewport": true,
 	"draw_minimap_border": true,
