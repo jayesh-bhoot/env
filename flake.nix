@@ -64,6 +64,7 @@
           pkgs.roboto
           pkgs.fira
           pkgs.roboto-mono # [] are not wide enough. But ~ and - are good.
+          pkgs.ibm-plex
           pkgs.source-code-pro
           pkgs.cascadia-code
           monolisa.defaultPackage.${system}
