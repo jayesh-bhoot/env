@@ -54,20 +54,17 @@
           pkgs.aria
 
           pkgs.vim
-	  pkgs.nano
+          pkgs.nano
           pkgs.kakoune
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
           pkgs.shellcheck
 
-          pkgs.roboto
-          pkgs.fira
-          pkgs.roboto-mono # [] are not wide enough. But ~ and - are good.
-          pkgs.ibm-plex
-          pkgs.source-code-pro
-          pkgs.cascadia-code
-          monolisa.defaultPackage.${system}
+          pkgs.fira # Fira Sans for thick body text
+          monolisa.defaultPackage.${system} # For thick monospaced fonts
+          pkgs.cascadia-code # An alternative to MonoLisa for thick monospaced fonts
+          pkgs.source-code-pro # An alternative to MonoLisa for thick monospaced fonts
         ];
 
       nixOsPkgs = system:
