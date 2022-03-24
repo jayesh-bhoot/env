@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"AutoFileName",
 		"BracketHighlighter",
 		"LSP",
 		"LSP-css",
