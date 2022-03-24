@@ -54,14 +54,14 @@
           pkgs.aria
 
           pkgs.vim
-	  pkgs.nano
+          pkgs.nano
           pkgs.kakoune
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
           pkgs.shellcheck
 
-	  pkgs.fira # Fira Sans for thick body text
+          pkgs.fira # Fira Sans for thick body text
           monolisa.defaultPackage.${system} # For thick monospaced fonts
           pkgs.cascadia-code # An alternative to MonoLisa for thick monospaced fonts
           pkgs.source-code-pro # An alternative to MonoLisa for thick monospaced fonts

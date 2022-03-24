@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"BracketHighlighter",
 		"LSP",
 		"LSP-css",
 		"LSP-eslint",
