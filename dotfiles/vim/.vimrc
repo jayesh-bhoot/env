@@ -51,7 +51,7 @@ Plug 'kana/vim-textobj-entire'
 Plug 'LnL7/vim-nix'
 Plug 'itspriddle/vim-shellcheck'
 
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " Plug 'prabirshrestha/vim-lsp'
 " au User lsp_setup call lsp#register_server({
@@ -119,8 +119,6 @@ cnoremap <expr> <S-Tab> getcmdtype() =~ '[/?]' ? "<C-t>" : "<S-Tab>"
 augroup myvimrc
     autocmd!
     autocmd CursorHold,InsertLeave,FocusLost,BufLeave * silent! update %
-    autocmd InsertEnter * set cursorline
-    autocmd InsertLeave * set nocursorline
 augroup END
 
 highlight ModeMsg ctermbg=green ctermfg=black cterm=NONE
