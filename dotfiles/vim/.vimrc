@@ -37,7 +37,6 @@ set undodir=~/.vim/undofiles//,.
 set guifont=MonoLisa\ Medium:h16
 
 call plug#begin('~/.vim/plugged')
-packadd! matchit
 packadd! cfilter
 Plug 'andymass/vim-matchup'
 Plug 'romainl/vim-cool'
