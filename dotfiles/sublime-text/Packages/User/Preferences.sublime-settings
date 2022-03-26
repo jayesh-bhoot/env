@@ -1,7 +1,6 @@
 {
-	"remember_layout": true,
-	"open_files_in_new_window": "never",
-	"close_windows_when_empty": true,
+	"hot_exit": "disabled",
+	"close_windows_when_empty": false,
 	"show_full_path": true,
 	"show_rel_path": true,
 	"font_face": "MonoLisa Medium",
