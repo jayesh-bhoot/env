@@ -61,10 +61,16 @@
           pkgs.rnix-lsp
           pkgs.shellcheck
 
-          pkgs.fira # Fira Sans for thick body text
+          pkgs.fira # for Fira Sans for thick body text
           monolisa.defaultPackage.${system} # For thick monospaced fonts
+          pkgs.jetbrains-mono # An alternative to MonoLisa for thick monospaced fonts
           pkgs.cascadia-code # An alternative to MonoLisa for thick monospaced fonts
-          pkgs.source-code-pro # An alternative to MonoLisa for thick monospaced fonts
+          pkgs.noto-fonts
+          pkgs.noto-fonts-extra
+          pkgs.roboto
+          pkgs.roboto-mono
+          pkgs.fantasque-sans-mono
+          pkgs.courier-prime
         ];
 
       nixOsPkgs = system:
