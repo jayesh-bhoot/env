@@ -3,8 +3,8 @@ export LANG="en_US.UTF-8"
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-export EDITOR='subl -w'
-export VISUAL='subl -w'
+export EDITOR='kak'
+export VISUAL='kak'
 
 # TODO: Not a cross-platform solution
 export PATH="/Applications/MacVim.app/Contents/bin:$PATH"
