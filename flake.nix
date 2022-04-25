@@ -270,6 +270,7 @@
                   gnome.gnome-clocks
                   gnomeExtensions.gsconnect
                   gnomeExtensions.keyboard-modifiers-status
+                  gnomeExtensions.overview-keyboard-navigation-fix
                   transmission-gtk
                   home-manager
                   firefox
