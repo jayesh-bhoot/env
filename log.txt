@@ -1,9 +1,0 @@
-+ Autosave on bufleave windoleave and so on as well.
-  Switching from Normal mode to another app won't autosave otherwise.
-+ Show diagnostics in a floating window.
-  If this is not possible in vim-lsc, then its time to switch to the much more featureful vim-lsp.
-  Switched to vim-lsp.
-+ Fix esc delay while exiting fzf in vim
-x Set indent etc per-filetype.
-  Start with vimscript.
-  https://vi.stackexchange.com/questions/4/how-can-i-change-the-default-indentation-based-on-filetype
