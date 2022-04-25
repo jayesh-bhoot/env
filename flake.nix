@@ -269,6 +269,7 @@
                   gnome.cheese
                   gnome.gnome-clocks
                   gnomeExtensions.gsconnect
+                  gnomeExtensions.keyboard-modifiers-status
                   transmission-gtk
                   home-manager
                   firefox
