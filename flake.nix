@@ -272,6 +272,10 @@ chrome-gnome-shell.enable = true;
           xclip
           chromium
           teams
+vscodium
+jetbrains.webstorm
+jetbrains.datagrip
+jetbrains.idea-ultimate
 		  ] ++ (commonPkgs nixpkgs system) ;
 
 
