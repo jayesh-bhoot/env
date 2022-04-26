@@ -61,12 +61,14 @@
           pkgs.youtube-dl
           pkgs.aria
 
-          pkgs.vim
+          # pkgs.vim
           pkgs.kakoune
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
           pkgs.shellcheck
+
+          pkgs.bc
 
           pkgs.fira # for Fira Sans for thick body text
           monolisa.defaultPackage.${system} # For thick monospaced fonts
@@ -124,7 +126,6 @@
           pkgs.gawkInteractive
 
           pkgs.readline
-          pkgs.bc
           pkgs.gzip
           pkgs.gnutar
           pkgs.ncurses
@@ -135,7 +136,7 @@
           pkgs.which
           pkgs.texinfo
           pkgs.man
-          pkgs.man-pages
+          # pkgs.man-pages
         ];
     in
     {
