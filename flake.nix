@@ -178,7 +178,10 @@
 
                   hostName = "Jayeshs-Thinkpad-E431"; # Define your hostname.
                   networkmanager.enable = true;
+                  firewall.checkReversePath = "loose";
+                  wireguard.enable = true;
                 };
+                services.mullvad-vpn.enable = true;
 
                 time = {
                   timeZone = "Asia/Kolkata";
@@ -269,6 +272,8 @@
                   gnomeExtensions.gsconnect
                   gnomeExtensions.keyboard-modifiers-status
                   gnomeExtensions.overview-keyboard-navigation-fix
+                  mullvad-vpn
+                  gnomeExtensions.mullvad-indicator
                   home-manager
                   firefox
                   finger_bsd
