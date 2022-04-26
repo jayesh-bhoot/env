@@ -49,6 +49,7 @@
           pkgs.wget
           pkgs.curl
           pkgs.wireshark-cli
+          pkgs.entr
 
           pkgs.git
           pkgs.stow
