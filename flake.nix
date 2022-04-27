@@ -91,7 +91,7 @@
         in
         [
           pkgs.finger_bsd
-          pkgs.xclip
+          pkgs.xsel
           pkgs.chromium
           pkgs.teams
           pkgs.upwork
