@@ -93,11 +93,11 @@
           pkgs.finger_bsd
           pkgs.xsel
           pkgs.chromium
-          pkgs.teams
           pkgs.upwork
           pkgs.transmission-gtk
           pkgs.chromium
           pkgs.teams
+          pkgs.slack
           pkgs.vscode
           pkgs.jetbrains.webstorm
           pkgs.jetbrains.datagrip
