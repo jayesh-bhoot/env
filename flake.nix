@@ -263,6 +263,7 @@
                   gnome.gnome-characters
                   gnome.file-roller
                   gnome.gnome-terminal
+                  gnome-text-editor
                   gnome.gnome-weather
                   evince
                   gnome.gnome-color-manager
