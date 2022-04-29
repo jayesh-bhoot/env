@@ -50,6 +50,7 @@
           pkgs.curl
           pkgs.wireshark-cli
           pkgs.entr
+          pkgs.devd
 
           pkgs.git
           pkgs.stow
