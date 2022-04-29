@@ -36,6 +36,21 @@
         "type": "github"
       }
     },
+    "kmousetoolChan": {
+      "locked": {
+        "lastModified": 1651156594,
+        "narHash": "sha256-CNF5pOBr//JlJxDcuF1egNzWiIElRyAmXncvr8G1oUY=",
+        "owner": "jayesh-bhoot",
+        "repo": "nixpkgs",
+        "rev": "3d73b5999c02667dcc7421e19cb8ffd60944f896",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jayesh-bhoot",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "monolisa": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -109,6 +124,7 @@
       "inputs": {
         "darwinChan": "darwinChan",
         "darwinChanHM": "darwinChanHM",
+        "kmousetoolChan": "kmousetoolChan",
         "monolisa": "monolisa",
         "nixosChan": "nixosChan",
         "nixosChanHM": "nixosChanHM"

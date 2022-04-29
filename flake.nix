@@ -14,12 +14,14 @@
       inputs.nixpkgs.follows = "darwinChan";
     };
 
+    kmousetoolChan.url = "github:jayesh-bhoot/nixpkgs";
+
     # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: Beware of master vs main branch. nix by default assumes master.
     monolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
   };
 
-  outputs = { self, nixosChan, nixosChanHM, darwinChan, darwinChanHM, monolisa }:
+  outputs = { self, nixosChan, nixosChanHM, darwinChan, darwinChanHM, kmousetoolChan, monolisa }:
     let
       commonPkgs = chan: system:
         let
@@ -88,10 +90,14 @@
             inherit system;
             config.allowUnfree = true;
           };
+          kmousetoolPkgs = import kmousetoolChan {
+              inherit system;
+          };
         in
         [
           pkgs.finger_bsd
           pkgs.xsel
+          kmousetoolPkgs.libsForQt5.kmousetool
           pkgs.chromium
           pkgs.upwork
           pkgs.transmission-gtk
