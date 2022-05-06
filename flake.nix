@@ -103,6 +103,8 @@
           pkgs.upwork
           pkgs.transmission-gtk
           pkgs.chromium
+          pkgs.evolution
+          pkgs.evolution-ews
           pkgs.teams
           pkgs.slack
           pkgs.vscode
@@ -110,6 +112,7 @@
           pkgs.jetbrains.datagrip
           pkgs.jetbrains.idea-ultimate
           pkgs.celluloid
+          pkgs.resilio-sync
         ];
 
       darwinPkgs = system:
