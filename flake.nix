@@ -8,6 +8,8 @@
       inputs.nixpkgs.follows = "nixosChan";
     };
 
+    nixos21_11Chan.url = "github:NixOS/nixpkgs/nixos-21.11";
+
     darwinChan.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     darwinChanHM = {
       url = "github:nix-community/home-manager";
@@ -19,7 +21,7 @@
     monolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
   };
 
-  outputs = { self, nixosChan, nixosChanHM, darwinChan, darwinChanHM, monolisa }:
+  outputs = { self, nixosChan, nixosChanHM, nixos21_11Chan, darwinChan, darwinChanHM, monolisa }:
     let
       commonPkgs = chan: system:
         let
@@ -106,6 +108,7 @@
           pkgs.jetbrains.webstorm
           pkgs.jetbrains.datagrip
           pkgs.jetbrains.idea-ultimate
+          pkgs.whatsapp-for-linux
           pkgs.celluloid
           pkgs.resilio-sync
         ];
@@ -147,6 +150,138 @@
     in
     {
       nixosConfigurations = {
+        "Jayeshs-Dell-Precision-3460" = nixosChan.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules =
+            [
+              ({ config, lib, pkgs, modulesPath, options, specialArgs }: {
+                imports =
+                  [
+                    (modulesPath + "/installer/scan/not-detected.nix")
+                  ];
+
+                boot.kernelPackages = pkgs.linuxPackages_latest;
+                boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+                boot.initrd.kernelModules = [ "i915" ];
+                boot.kernelModules = [ "kvm-intel" ];
+                boot.extraModulePackages = [ ];
+
+                fileSystems."/" =
+                  {
+                    device = "/dev/disk/by-uuid/b1dcaf95-1fae-4171-b232-5cfbdf2bdf76";
+                    fsType = "ext4";
+                  };
+
+                fileSystems."/boot" =
+                  {
+                    device = "/dev/disk/by-uuid/D351-5B2B";
+                    fsType = "vfat";
+                  };
+
+                swapDevices = [ ];
+
+                powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+                hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+              })
+
+
+              ({ config, lib, pkgs, modulesPath, options, specialArgs }:
+                let
+                  nixos21_11Pkgs = import nixos21_11Chan {
+                    system = "x86_64-linux";
+                  };
+                in
+                {
+                  # Use the systemd-boot EFI boot loader.
+                  boot.loader.systemd-boot.enable = true;
+                  boot.loader.systemd-boot.consoleMode = "2"; # Enable large fonts on EFI bootloader for HiDPI screen
+                  boot.loader.efi.canTouchEfiVariables = true;
+
+                  time.timeZone = "Asia/Kolkata";
+                  time.hardwareClockInLocalTime = false;
+
+                  nix.package = pkgs.nixUnstable; # Using pkgs.nixFlakes throws some error during evaluation.
+                  nix.extraOptions = ''
+                    experimental-features = nix-command flakes
+                  '';
+                  nixpkgs.config.allowUnfree = true;
+
+                  i18n.defaultLocale = "en_US.UTF-8";
+
+                  # Use large fonts so that text don't render tiny on HiDPI aka 4K monitor.
+                  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+                  console.keyMap = "us";
+
+                  hardware.bluetooth.enable = true;
+                  # Use nixos21.11 until this PR lands: https://github.com/NixOS/nixpkgs/pull/170194
+                  hardware.bluetooth.package = nixos21_11Pkgs.bluezFull;
+
+                  sound.enable = true;
+                  hardware.pulseaudio.enable = true;
+                  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+
+                  networking.hostName = "Jayeshs-Dell-Precision-3460";
+                  networking.networkmanager.enable = true;
+                  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+                  # Per-interface useDHCP will be mandatory in the future, so this generated config
+                  # replicates the default behaviour.
+                  networking.useDHCP = false;
+                  networking.interfaces.enp0s31f6.useDHCP = true;
+                  networking.interfaces.wlp0s20f3.useDHCP = true;
+                  networking.firewall.enable = true;
+                  networking.firewall.checkReversePath = "loose";
+                  networking.wireguard.enable = true;
+
+                  services.openssh.enable = true;
+                  services.sshd.enable = true;
+                  services.mullvad-vpn.enable = true;
+                  services.xserver.enable = true;
+                  services.xserver.layout = "us";
+                  services.xserver.videoDrivers = [ "modesetting" ];
+                  services.xserver.useGlamor = true;
+                  services.xserver.displayManager.gdm.enable = true;
+                  services.xserver.displayManager.gdm.wayland = false;
+                  services.xserver.desktopManager.gnome.enable = true;
+                  services.gnome.chrome-gnome-shell.enable = true;
+                  nixpkgs.config.firefox.enableGnomeExtensions = true;
+
+                  users.users.jayesh = {
+                    isNormalUser = true;
+                    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+                  };
+
+
+                  environment.systemPackages = with pkgs; [
+                    vim
+                    kakoune
+                    wget
+                    git # system requirement because of flake
+                    mullvad-vpn
+                    firefox
+                    gnome.gnome-session
+                    gnome.gnome-tweaks
+                    gnome.dconf-editor
+                    gnome.gnome-color-manager
+                    gnome.gnome-themes-extra
+                    # gnomeExtensions.keyboard-modifiers-status  # installed from website because the one in nixpkgs don't support GNOME 42
+                    gnomeExtensions.gsconnect
+                    gnomeExtensions.overview-keyboard-navigation-fix
+                    gnomeExtensions.mullvad-indicator
+                    home-manager
+                    finger_bsd
+                    xclip
+                  ];
+
+                  # This value determines the NixOS release from which the default
+                  # settings for stateful data, like file locations and database versions
+                  # on your system were taken. It‘s perfectly fine and recommended to leave
+                  # this value at the release version of the first install of this system.
+                  # Before changing this value read the documentation for this option
+                  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+                  system.stateVersion = "21.11"; # Did you read the comment?
+                })
+            ];
+        };
         "Jayeshs-Thinkpad-E431" = nixosChan.lib.nixosSystem {
           system = "x86_64-linux";
           modules =
@@ -181,10 +316,9 @@
                   interfaces.enp5s0.useDHCP = true;
                   interfaces.wlp4s0.useDHCP = true;
                   firewall.enable = true;
-
+                  firewall.checkReversePath = "loose";
                   hostName = "Jayeshs-Thinkpad-E431"; # Define your hostname.
                   networkmanager.enable = true;
-                  firewall.checkReversePath = "loose";
                   wireguard.enable = true;
                 };
                 services.mullvad-vpn.enable = true;
@@ -330,6 +464,17 @@
             home.packages = (commonPkgs nixosChan system) ++ (nixosPkgs system);
           };
         };
+        "jayesh@Jayeshs-Dell-Precision-3460" = nixosChanHM.lib.homeManagerConfiguration rec {
+          system = "x86_64-linux";
+          username = "jayesh";
+          homeDirectory = "/home/${username}";
+          stateVersion = "21.11";
+          configuration = {
+            nixpkgs.config.allowUnfree = true;
+            home.packages = (commonPkgs nixosChan system) ++ (nixosPkgs system);
+          };
+        };
+
       };
     };
 }

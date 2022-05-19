@@ -54,6 +54,22 @@
         "url": "ssh://git@github.com/jayesh-bhoot/MonoLisa"
       }
     },
+    "nixos21_11Chan": {
+      "locked": {
+        "lastModified": 1652559422,
+        "narHash": "sha256-jPVTNImBTUIFdtur+d4IVot6eXmsvtOcBm0TzxmhWPk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8b3398bc7587ebb79f93dfeea1b8c574d3c6dba1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixosChan": {
       "locked": {
         "lastModified": 1651558728,
@@ -110,6 +126,7 @@
         "darwinChan": "darwinChan",
         "darwinChanHM": "darwinChanHM",
         "monolisa": "monolisa",
+        "nixos21_11Chan": "nixos21_11Chan",
         "nixosChan": "nixosChan",
         "nixosChanHM": "nixosChanHM"
       }
