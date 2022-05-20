@@ -1,33 +1,17 @@
 {
   "nodes": {
-    "darwinChan": {
-      "locked": {
-        "lastModified": 1651634615,
-        "narHash": "sha256-VtvcS61bLh5mIBm9cV3idUHdlfPRFus/NwdJfaj5s8o=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "abfd31179174133ab8131139d650297bf4da63b7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "darwinChanHM": {
+    "hmRepoNixosUnstable": {
       "inputs": {
         "nixpkgs": [
-          "darwinChan"
+          "repoNixosUnstable"
         ]
       },
       "locked": {
-        "lastModified": 1651652192,
-        "narHash": "sha256-3FUsIJ81p57rOxODRVZ+anhnVav96VWbgNA1H3Np+TY=",
+        "lastModified": 1652996682,
+        "narHash": "sha256-7ZWyd5W2tM/uxXGn16AJUXenlGPUt/r6zitEcorz5j0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "267462dfb36d447421c789a3adf9d460cd09c147",
+        "rev": "02b15de8ad714409358cffdc6ed518ade03402c4",
         "type": "github"
       },
       "original": {
@@ -36,68 +20,18 @@
         "type": "github"
       }
     },
-    "monolisa": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1646542606,
-        "narHash": "sha256-YWVZ4U+/gi7Ufh+B5zzxdRmjHIJb5pirk2VluEJlFJA=",
-        "ref": "master",
-        "rev": "239a2f4b1b0ab6d48185b35c06dadfe2e0b89eeb",
-        "revCount": 5,
-        "type": "git",
-        "url": "ssh://git@github.com/jayesh-bhoot/MonoLisa"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/jayesh-bhoot/MonoLisa"
-      }
-    },
-    "nixos21_11Chan": {
-      "locked": {
-        "lastModified": 1652559422,
-        "narHash": "sha256-jPVTNImBTUIFdtur+d4IVot6eXmsvtOcBm0TzxmhWPk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "8b3398bc7587ebb79f93dfeea1b8c574d3c6dba1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-21.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixosChan": {
-      "locked": {
-        "lastModified": 1651558728,
-        "narHash": "sha256-8HzyRnWlgZluUrVFNOfZAOlA1fghpOSezXvxhalGMUo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "cbe587c735b734405f56803e267820ee1559e6c1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixosChanHM": {
+    "hmRepoNixpkgsUnstable": {
       "inputs": {
         "nixpkgs": [
-          "nixosChan"
+          "repoNixpkgsUnstable"
         ]
       },
       "locked": {
-        "lastModified": 1651652192,
-        "narHash": "sha256-3FUsIJ81p57rOxODRVZ+anhnVav96VWbgNA1H3Np+TY=",
+        "lastModified": 1652996682,
+        "narHash": "sha256-7ZWyd5W2tM/uxXGn16AJUXenlGPUt/r6zitEcorz5j0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "267462dfb36d447421c789a3adf9d460cd09c147",
+        "rev": "02b15de8ad714409358cffdc6ed518ade03402c4",
         "type": "github"
       },
       "original": {
@@ -121,14 +55,80 @@
         "type": "github"
       }
     },
+    "repoMonolisa": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1646542606,
+        "narHash": "sha256-YWVZ4U+/gi7Ufh+B5zzxdRmjHIJb5pirk2VluEJlFJA=",
+        "ref": "master",
+        "rev": "239a2f4b1b0ab6d48185b35c06dadfe2e0b89eeb",
+        "revCount": 5,
+        "type": "git",
+        "url": "ssh://git@github.com/jayesh-bhoot/MonoLisa"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/jayesh-bhoot/MonoLisa"
+      }
+    },
+    "repoNixos21-11": {
+      "locked": {
+        "lastModified": 1652881001,
+        "narHash": "sha256-k9JmPCojaJnqGz4aRXXT1HZqJKHCXijoMfBAb24abXk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2d474d6a4a43a0348b78db68dc00c491032cf5cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "repoNixosUnstable": {
+      "locked": {
+        "lastModified": 1652885393,
+        "narHash": "sha256-YIgvvlk4iQ1Hi7KD9o5gsojc+ApB+jiH1d5stK8uXiw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "48037fd90426e44e4bf03e6479e88a11453b9b66",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "repoNixpkgsUnstable": {
+      "locked": {
+        "lastModified": 1652840887,
+        "narHash": "sha256-gEK4NNa4GwIgTZE63kt/4WTFAWRTJVSa30+h4ZjFh9U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "52dc75a4fee3fdbcb792cb6fba009876b912bfe0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "darwinChan": "darwinChan",
-        "darwinChanHM": "darwinChanHM",
-        "monolisa": "monolisa",
-        "nixos21_11Chan": "nixos21_11Chan",
-        "nixosChan": "nixosChan",
-        "nixosChanHM": "nixosChanHM"
+        "hmRepoNixosUnstable": "hmRepoNixosUnstable",
+        "hmRepoNixpkgsUnstable": "hmRepoNixpkgsUnstable",
+        "repoMonolisa": "repoMonolisa",
+        "repoNixos21-11": "repoNixos21-11",
+        "repoNixosUnstable": "repoNixosUnstable",
+        "repoNixpkgsUnstable": "repoNixpkgsUnstable"
       }
     }
   },
