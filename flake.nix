@@ -29,7 +29,12 @@
           config.allowUnfree = true;
         };
 
-      serverTools = pkgs:
+      serverTools = pkgs: 
+      [
+        # specifically for a NixOS server. A minimal set which will overlap with cliTools.
+      ];
+
+      cliTools = pkgs:
         [
           pkgs.bashInteractive_5 # why not bash_5? bashInteractive_5 comes with readline support by default.
           pkgs.bash-completion
@@ -61,10 +66,6 @@
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
           pkgs.shellcheck
-        ];
-
-      cliTools = pkgs:
-        [
           pkgs.pass
           pkgs.bitwarden-cli
           pkgs.wireshark-cli
@@ -265,10 +266,7 @@
                     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
                   };
 
-                  environment.systemPackages =
-                    serverTools pkgs
-                    ++ cliTools pkgs
-                    ++ desktop pkgs;
+                  environment.systemPackages = desktop pkgs;
 
                   # This value determines the NixOS release from which the default
                   # settings for stateful data, like file locations and database versions
@@ -298,8 +296,7 @@
           configuration = {
             nixpkgs.config.allowUnfree = true;
             home.packages =
-              (serverTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (cliTools (makePkgSet repoNixpkgsUnstable system))
+              (cliTools (makePkgSet repoNixpkgsUnstable system))
               ++ (darwinTools (makePkgSet repoNixpkgsUnstable system))
               ++ (darwinRosettaTools repoNixpkgsUnstable)
               ++ (fonts (makePkgSet repoNixpkgsUnstable system))
@@ -315,8 +312,7 @@
           configuration = {
             nixpkgs.config.allowUnfree = true;
             home.packages =
-              (serverTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (cliTools (makePkgSet repoNixpkgsUnstable system))
+              (cliTools (makePkgSet repoNixpkgsUnstable system))
               ++ (darwinTools (makePkgSet repoNixpkgsUnstable system))
               ++ (darwinRosettaTools repoNixpkgsUnstable)
               ++ (fonts (makePkgSet repoNixpkgsUnstable system))
@@ -332,7 +328,8 @@
           configuration = {
             nixpkgs.config.allowUnfree = true;
             home.packages =
-              (guiTools (makePkgSet repoNixosUnstable system))
+              (cliTools (makePkgSet repoNixpkgsUnstable system))
+              ++ (guiTools (makePkgSet repoNixosUnstable system))
               ++ (fonts (makePkgSet repoNixosUnstable system))
               ++ (customFonts system);
           };
