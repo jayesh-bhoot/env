@@ -233,9 +233,16 @@
                   # Use nixos21.11 until this PR lands: https://github.com/NixOS/nixpkgs/pull/170194
                   hardware.bluetooth.package = nixos21_11Pkgs.bluezFull;
 
-                  sound.enable = true;
-                  hardware.pulseaudio.enable = true;
-                  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+                  sound.enable = false;
+                  hardware.pulseaudio.enable = false;
+                  # hardware.pulseaudio.package = pkgs.pulseaudioFull;
+                  security.rtkit.enable = true;
+                  services.pipewire = {
+                    enable = true;
+                    alsa.enable = true;
+                    alsa.support32Bit = true;
+                    pulse.enable = true;
+                  };
 
                   networking.hostName = "Jayeshs-Dell-Precision-3460";
                   networking.networkmanager.enable = true;
