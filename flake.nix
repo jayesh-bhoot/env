@@ -29,10 +29,10 @@
           config.allowUnfree = true;
         };
 
-      serverTools = pkgs: 
-      [
-        # specifically for a NixOS server. A minimal set which will overlap with cliTools.
-      ];
+      serverTools = pkgs:
+        [
+          # specifically for a NixOS server. A minimal set which will overlap with cliTools.
+        ];
 
       cliTools = pkgs:
         [
