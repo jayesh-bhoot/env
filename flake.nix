@@ -96,24 +96,21 @@
 
       desktop = pkgs:
         [
-          pkgs.gnome.gnome-session
           pkgs.gnome.gnome-tweaks
           pkgs.gnome.dconf-editor
-          pkgs.gnome.gnome-color-manager
-          pkgs.gnome.gnome-themes-extra
-          # pkgs.gnomeExtensions.keyboard-modifiers-status  # installed from website because the one in nixpkgs don't support GNOME 42
-          pkgs.gnomeExtensions.gsconnect
-          pkgs.gnomeExtensions.overview-keyboard-navigation-fix
-          pkgs.gnomeExtensions.mullvad-indicator
-          pkgs.home-manager
           pkgs.xsel
           pkgs.xclip
           pkgs.orca
+          pkgs.home-manager
         ];
 
       guiTools = pkgs:
         [
+          pkgs.gnomeExtensions.gsconnect
+          pkgs.gnomeExtensions.overview-keyboard-navigation-fix
+          # pkgs.gnomeExtensions.keyboard-modifiers-status  # installed from website because the one in nixpkgs don't support GNOME 42
           pkgs.mullvad-vpn
+          pkgs.gnomeExtensions.mullvad-indicator
           pkgs.firefox
           pkgs.libsForQt5.kmousetool
           pkgs.chromium
