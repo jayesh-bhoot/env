@@ -117,8 +117,6 @@
           pkgs.upwork
           pkgs.transmission-gtk
           pkgs.chromium
-          pkgs.evolution
-          pkgs.evolution-ews
           pkgs.teams
           pkgs.slack
           pkgs.vscode
@@ -261,12 +259,18 @@
                   services.xserver.layout = "us";
                   services.xserver.videoDrivers = [ "modesetting" ];
                   services.xserver.useGlamor = true;
+
                   services.xserver.displayManager.gdm.enable = true;
                   services.xserver.displayManager.gdm.wayland = false;
                   services.xserver.desktopManager.gnome.enable = true;
                   services.gnome.chrome-gnome-shell.enable = true;
+                  programs.evolution.enable = true;
+                  programs.evolution.plugins = [ pkgs.evolution-ews ];
+                  services.gnome.evolution-data-server.enable = true;
+
                   # services.xserver.displayManager.sddm.enable = true;
                   # services.xserver.desktopManager.plasma5.enable = true;
+
                   nixpkgs.config.firefox.enableGnomeExtensions = true;
 
                   users.users.jayesh = {
