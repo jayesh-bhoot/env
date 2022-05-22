@@ -126,6 +126,7 @@
           pkgs.jetbrains.datagrip
           pkgs.jetbrains.idea-ultimate
           pkgs.whatsapp-for-linux
+          pkgs.tdesktop
           pkgs.celluloid
           pkgs.resilio-sync
         ];
