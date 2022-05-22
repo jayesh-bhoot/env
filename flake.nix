@@ -98,31 +98,31 @@
         [
           pkgs.gnome.gnome-tweaks
           pkgs.gnome.dconf-editor
+          pkgs.gnomeExtensions.appindicator
+          pkgs.gnomeExtensions.gsconnect
+          pkgs.gnomeExtensions.overview-keyboard-navigation-fix
+          # pkgs.gnomeExtensions.keyboard-modifiers-status  # installed from website because the one in nixpkgs don't support GNOME 42
           pkgs.xsel
           pkgs.xclip
           pkgs.orca
+          pkgs.libsForQt5.kmousetool
           pkgs.home-manager
         ];
 
       guiTools = pkgs:
         [
-          pkgs.gnomeExtensions.gsconnect
-          pkgs.gnomeExtensions.overview-keyboard-navigation-fix
-          # pkgs.gnomeExtensions.keyboard-modifiers-status  # installed from website because the one in nixpkgs don't support GNOME 42
           pkgs.mullvad-vpn
           pkgs.gnomeExtensions.mullvad-indicator
           pkgs.firefox
-          pkgs.libsForQt5.kmousetool
           pkgs.chromium
-          pkgs.upwork
           pkgs.transmission-gtk
-          pkgs.chromium
           pkgs.teams
           pkgs.slack
           pkgs.vscode
           pkgs.jetbrains.webstorm
           pkgs.jetbrains.datagrip
           pkgs.jetbrains.idea-ultimate
+          pkgs.upwork
           pkgs.whatsapp-for-linux
           pkgs.tdesktop
           pkgs.celluloid
@@ -267,6 +267,7 @@
                   programs.evolution.enable = true;
                   programs.evolution.plugins = [ pkgs.evolution-ews ];
                   services.gnome.evolution-data-server.enable = true;
+                  services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
 
                   # services.xserver.displayManager.sddm.enable = true;
                   # services.xserver.desktopManager.plasma5.enable = true;
