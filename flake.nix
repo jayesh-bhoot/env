@@ -108,6 +108,7 @@
           pkgs.home-manager
           pkgs.xsel
           pkgs.xclip
+          pkgs.orca
         ];
 
       guiTools = pkgs:
