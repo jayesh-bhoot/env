@@ -260,6 +260,8 @@
                   services.xserver.displayManager.gdm.wayland = false;
                   services.xserver.desktopManager.gnome.enable = true;
                   services.gnome.chrome-gnome-shell.enable = true;
+                  # services.xserver.displayManager.sddm.enable = true;
+                  # services.xserver.desktopManager.plasma5.enable = true;
                   nixpkgs.config.firefox.enableGnomeExtensions = true;
 
                   users.users.jayesh = {
