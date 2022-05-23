@@ -93,7 +93,6 @@
       desktop = pkgs:
         [
           pkgs.gnome.gnome-tweaks
-          pkgs.gnome.dconf-editor
           pkgs.gnomeExtensions.appindicator
           pkgs.gnomeExtensions.gsconnect
           pkgs.gnomeExtensions.overview-keyboard-navigation-fix
@@ -259,10 +258,12 @@
                   services.xserver.displayManager.gdm.enable = true;
                   services.xserver.displayManager.gdm.wayland = false;
                   services.xserver.desktopManager.gnome.enable = true;
-                  services.gnome.chrome-gnome-shell.enable = true;
+                  services.gnome.core-developer-tools.enable = true;
                   programs.evolution.enable = true;
                   programs.evolution.plugins = [ pkgs.evolution-ews ];
-                  services.gnome.evolution-data-server.enable = true;
+                  environment.gnome.excludePackages = [
+                    pkgs.gnome.geary
+                  ];
                   services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
 
                   # services.xserver.displayManager.sddm.enable = true;
