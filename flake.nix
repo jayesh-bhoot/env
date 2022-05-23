@@ -78,20 +78,16 @@
 
       fonts = pkgs:
         [
-          pkgs.fira # for Fira Sans for thick body text
-          pkgs.jetbrains-mono # An alternative to MonoLisa for thick monospaced fonts
-          pkgs.cascadia-code # An alternative to MonoLisa for thick monospaced fonts
+          pkgs.fira
+          pkgs.jetbrains-mono
+          pkgs.cascadia-code
           pkgs.noto-fonts
           pkgs.noto-fonts-extra
-          pkgs.roboto
-          pkgs.roboto-mono
-          pkgs.fantasque-sans-mono
-          pkgs.courier-prime
         ];
 
       customFonts = system:
         [
-          repoMonolisa.defaultPackage.${system} # For thick monospaced fonts
+          repoMonolisa.defaultPackage.${system}
         ];
 
       desktop = pkgs:
