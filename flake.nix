@@ -112,6 +112,8 @@
           pkgs.teams
           pkgs.slack
           pkgs.vscode
+          pkgs.sublime4
+          pkgs.sublime-merge
           pkgs.jetbrains.webstorm
           pkgs.jetbrains.datagrip
           pkgs.jetbrains.idea-ultimate
