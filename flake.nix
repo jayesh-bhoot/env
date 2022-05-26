@@ -120,6 +120,7 @@
           pkgs.tdesktop
           pkgs.celluloid
           pkgs.resilio-sync
+          pkgs.libreoffice
         ];
 
       darwinTools = pkgs:
