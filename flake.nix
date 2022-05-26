@@ -89,6 +89,7 @@
 
       desktop = pkgs:
         [
+          pkgs.gnome.gnome-terminal
           pkgs.gnome.gnome-tweaks
           pkgs.gnomeExtensions.appindicator
           pkgs.gnomeExtensions.gsconnect
