@@ -80,9 +80,6 @@
         [
           pkgs.fira
           pkgs.jetbrains-mono
-          pkgs.cascadia-code
-          pkgs.noto-fonts
-          pkgs.noto-fonts-extra
         ];
 
       customFonts = system:
