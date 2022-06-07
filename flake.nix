@@ -110,6 +110,7 @@
           pkgs.chromium
           pkgs.transmission-gtk
           pkgs.teams
+          pkgs.skypeforlinux
           pkgs.slack
           pkgs.vscode
           pkgs.sublime4
@@ -176,7 +177,9 @@
                 boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
                 boot.initrd.kernelModules = [ "i915" ];
                 boot.kernelModules = [ "kvm-intel" ];
-                boot.extraModulePackages = [ ];
+                boot.extraModprobeConfig = ''
+                  options hid_apple fnmode=2
+                '';
 
                 fileSystems."/" =
                   {
