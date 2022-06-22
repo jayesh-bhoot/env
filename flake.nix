@@ -344,6 +344,7 @@
           username = "jayesh";
           homeDirectory = "/home/${username}";
           stateVersion = "21.11";
+          pkgs = makePkgSet repoNixosUnstable  system;
           configuration = {
             nixpkgs.config.allowUnfree = true;
             home.packages =
