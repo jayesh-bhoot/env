@@ -110,6 +110,7 @@
           pkgs.chromium
           pkgs.transmission-gtk
           pkgs.teams
+          pkgs.zoom-us
           pkgs.skypeforlinux
           pkgs.slack
           pkgs.vscode
