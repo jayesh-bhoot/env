@@ -348,7 +348,7 @@
           configuration = {
             nixpkgs.config.allowUnfree = true;
             home.packages =
-              (cliTools (makePkgSet repoNixpkgsUnstable system))
+              (cliTools (makePkgSet repoNixosUnstable system))
               ++ (guiTools (makePkgSet repoNixosUnstable system))
               ++ (fonts (makePkgSet repoNixosUnstable system))
               ++ (customFonts system);
