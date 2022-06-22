@@ -89,11 +89,11 @@
 
       desktop = pkgs:
         [
-          pkgs.gnome.gnome-terminal
-          pkgs.gnome.gnome-tweaks
-          pkgs.gnomeExtensions.appindicator
-          pkgs.gnomeExtensions.gsconnect
-          pkgs.gnomeExtensions.overview-keyboard-navigation-fix
+          # pkgs.gnome.gnome-terminal
+          # pkgs.gnome.gnome-tweaks
+          # pkgs.gnomeExtensions.appindicator
+          # pkgs.gnomeExtensions.gsconnect
+          # pkgs.gnomeExtensions.overview-keyboard-navigation-fix
           # pkgs.gnomeExtensions.keyboard-modifiers-status  # installed from website because the one in nixpkgs don't support GNOME 42
           pkgs.xsel
           pkgs.xclip
@@ -105,7 +105,7 @@
       guiTools = pkgs:
         [
           pkgs.mullvad-vpn
-          pkgs.gnomeExtensions.mullvad-indicator
+          # pkgs.gnomeExtensions.mullvad-indicator
           pkgs.firefox
           pkgs.chromium
           pkgs.transmission-gtk
@@ -124,6 +124,10 @@
           pkgs.celluloid
           pkgs.resilio-sync
           pkgs.libreoffice
+          pkgs.thunderbird
+
+          pkgs.partition-manager # kde
+          pkgs.plasma-pa # plasma-pulseaudio widget so that Sound in System Settings don't load a blank
         ];
 
       darwinTools = pkgs:
@@ -259,21 +263,21 @@
                   services.xserver.videoDrivers = [ "modesetting" ];
                   services.xserver.useGlamor = true;
 
-                  services.xserver.displayManager.gdm.enable = true;
-                  services.xserver.displayManager.gdm.wayland = false;
-                  services.xserver.desktopManager.gnome.enable = true;
-                  services.gnome.core-developer-tools.enable = true;
-                  programs.evolution.enable = true;
-                  programs.evolution.plugins = [ pkgs.evolution-ews ];
-                  environment.gnome.excludePackages = [
-                    pkgs.gnome.geary
-                  ];
-                  services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+                  # services.xserver.displayManager.gdm.enable = true;
+                  # services.xserver.displayManager.gdm.wayland = false;
+                  # services.xserver.desktopManager.gnome.enable = true;
+                  # services.gnome.core-developer-tools.enable = true;
+                  # programs.evolution.enable = true;
+                  # programs.evolution.plugins = [ pkgs.evolution-ews ];
+                  # environment.gnome.excludePackages = [
+                  #   pkgs.gnome.geary
+                  # ];
+                  # services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+                  # nixpkgs.config.firefox.enableGnomeExtensions = true;
 
-                  # services.xserver.displayManager.sddm.enable = true;
-                  # services.xserver.desktopManager.plasma5.enable = true;
-
-                  nixpkgs.config.firefox.enableGnomeExtensions = true;
+                  services.xserver.displayManager.sddm.enable = true;
+                  services.xserver.desktopManager.plasma5.enable = true;
+                  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
                   users.users.jayesh = {
                     isNormalUser = true;
