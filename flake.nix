@@ -307,53 +307,69 @@
         # eg., jayesh@NixOS-ThinkpadE431 implies username=jayesh, OS=NixOS, machine=ThinkpadE431, arch=x86_64-linux
         # eg., jayesh@FedoraVM-ThinkpadE431 implies username=jayesh, OS=Fedora on VM, machine=ThinkpadE431, arch=x86_64-linux
 
-        "jayesh@Jayeshs-Mac-Mini-2018.local" = hmRepoNixpkgsUnstable.lib.homeManagerConfiguration rec {
-          system = "x86_64-darwin";
-          username = "jayesh";
-          homeDirectory = "/Users/${username}";
-          stateVersion = "21.11";
-          configuration = {
-            nixpkgs.config.allowUnfree = true;
-            home.packages =
-              (cliTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (darwinTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (darwinRosettaTools repoNixpkgsUnstable)
-              ++ (fonts (makePkgSet repoNixpkgsUnstable system))
-              ++ (customFonts system);
+        "jayesh@Jayeshs-Mac-Mini-2018.local" =
+          let system = "x86_64-darwin";
+          in
+          hmRepoNixosUnstable.lib.homeManagerConfiguration rec {
+            # pkgs set as instructed at https://rycee.gitlab.io/home-manager/release-notes.html#sec-release-22.11
+            pkgs = repoNixpkgsUnstable.legacyPackages.${system};
+            modules = [
+              {
+                home = rec {
+                  username = "jayesh";
+                  homeDirectory = "/home/${username}";
+                  stateVersion = "21.11";
+                  packages =
+                    (cliTools (makePkgSet repoNixosUnstable system))
+                    ++ (guiTools (makePkgSet repoNixosUnstable system))
+                    ++ (fonts (makePkgSet repoNixosUnstable system))
+                    ++ (customFonts system);
+                };
+              }
+            ];
           };
-        };
 
-        "jayesh@Jayeshs-Macbook-Pro-13-M1-2020.local" = hmRepoNixpkgsUnstable.lib.homeManagerConfiguration rec {
-          system = "aarch64-darwin";
-          username = "jayesh";
-          homeDirectory = "/Users/${username}";
-          stateVersion = "21.11";
-          configuration = {
-            nixpkgs.config.allowUnfree = true;
-            home.packages =
-              (cliTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (darwinTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (darwinRosettaTools repoNixpkgsUnstable)
-              ++ (fonts (makePkgSet repoNixpkgsUnstable system))
-              ++ (customFonts system);
+        "jayesh@Jayeshs-Macbook-Pro-13-M1-2020.local" =
+          let system = "aarch64-darwin";
+          in
+          hmRepoNixosUnstable.lib.homeManagerConfiguration rec {
+            pkgs = repoNixpkgsUnstable.legacyPackages.${system};
+            modules = [
+              {
+                home = rec {
+                  username = "jayesh";
+                  homeDirectory = "/home/${username}";
+                  stateVersion = "21.11";
+                  packages =
+                    (cliTools (makePkgSet repoNixosUnstable system))
+                    ++ (guiTools (makePkgSet repoNixosUnstable system))
+                    ++ (fonts (makePkgSet repoNixosUnstable system))
+                    ++ (customFonts system);
+                };
+              }
+            ];
           };
-        };
 
-        "jayesh@Jayeshs-Dell-Precision-3460" = hmRepoNixosUnstable.lib.homeManagerConfiguration rec {
-          system = "x86_64-linux";
-          username = "jayesh";
-          homeDirectory = "/home/${username}";
-          stateVersion = "21.11";
-          pkgs = makePkgSet repoNixosUnstable  system;
-          configuration = {
-            nixpkgs.config.allowUnfree = true;
-            home.packages =
-              (cliTools (makePkgSet repoNixosUnstable system))
-              ++ (guiTools (makePkgSet repoNixosUnstable system))
-              ++ (fonts (makePkgSet repoNixosUnstable system))
-              ++ (customFonts system);
+        "jayesh@Jayeshs-Dell-Precision-3460" =
+          let system = "x86_64-linux";
+          in
+          hmRepoNixosUnstable.lib.homeManagerConfiguration rec {
+            pkgs = repoNixpkgsUnstable.legacyPackages.${system};
+            modules = [
+              {
+                home = rec {
+                  username = "jayesh";
+                  homeDirectory = "/home/${username}";
+                  stateVersion = "21.11";
+                  packages =
+                    (cliTools (makePkgSet repoNixosUnstable system))
+                    ++ (guiTools (makePkgSet repoNixosUnstable system))
+                    ++ (fonts (makePkgSet repoNixosUnstable system))
+                    ++ (customFonts system);
+                };
+              }
+            ];
           };
-        };
       };
     };
 }
