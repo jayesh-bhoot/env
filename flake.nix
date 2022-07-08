@@ -98,6 +98,7 @@
           pkgs.xsel
           pkgs.xclip
           pkgs.orca
+          pkgs.ark
           pkgs.libsForQt5.kmousetool
           pkgs.home-manager
         ];
