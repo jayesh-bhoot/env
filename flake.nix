@@ -379,6 +379,19 @@
                     enable = true;
                     extensions = with pkgs.vscode-extensions; [
                       chenglou92.rescript-vscode
+                      bradlc.vscode-tailwindcss
+                      eamodio.gitlens
+                      # guilhermestella.github-light-hight-contrast-theme
+                      jnoortheen.nix-ide
+                      # k--kato.intellij-idea-keybindings
+                      # ms-vscode.js-debug-companion
+                      ocamllabs.ocaml-platform
+                      # pranaygp.vscode-css-peek
+                      # pucelle.vscode-css-navigation
+                      # rickynormandeau.mariana-pro
+                      usernamehw.errorlens
+                      # wayou.vscode-icons-mac
+                      # zignd.html-css-class-completion
                     ];
                     # Without the following setting, extensions fail to install with an error:
                     # https://github.com/nix-community/home-manager/issues/2798#issuecomment-1073165352
