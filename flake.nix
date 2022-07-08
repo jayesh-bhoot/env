@@ -321,7 +321,6 @@
                   stateVersion = "21.11";
                   packages =
                     (cliTools (makePkgSet repoNixosUnstable system))
-                    ++ (guiTools (makePkgSet repoNixosUnstable system))
                     ++ (fonts (makePkgSet repoNixosUnstable system))
                     ++ (customFonts system);
                 };
@@ -342,7 +341,6 @@
                   stateVersion = "21.11";
                   packages =
                     (cliTools (makePkgSet repoNixosUnstable system))
-                    ++ (guiTools (makePkgSet repoNixosUnstable system))
                     ++ (fonts (makePkgSet repoNixosUnstable system))
                     ++ (customFonts system);
                 };
