@@ -109,7 +109,6 @@
           pkgs.zoom-us
           pkgs.skypeforlinux
           pkgs.slack
-          pkgs.vscode
           pkgs.sublime4
           pkgs.sublime-merge
           pkgs.jetbrains.webstorm
@@ -364,6 +363,18 @@
                     ++ (guiTools (makePkgSet repoNixosUnstable system))
                     ++ (fonts (makePkgSet repoNixosUnstable system))
                     ++ (customFonts system);
+
+                };
+                programs = {
+                  vscode = {
+                    enable = true;
+                    extensions = with pkgs.vscode-extensions; [
+                      chenglou92.rescript-vscode
+                    ];
+                    # Without the following setting, extensions fail to install with an error:
+                    # https://github.com/nix-community/home-manager/issues/2798#issuecomment-1073165352
+                    mutableExtensionsDir = false;
+                  };
                 };
               }
             ];
