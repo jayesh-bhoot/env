@@ -16,7 +16,7 @@
     hmRepo.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, repoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, repoMonolisa, hmRepo}:
+  outputs = { self, repoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, repoMonolisa, hmRepo }:
     let
       makePkgSet = repo: system:
         import repo {
