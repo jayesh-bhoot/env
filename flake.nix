@@ -82,26 +82,38 @@
           repoMonolisa.defaultPackage.${system}
         ];
 
+      gnomeDesktop = pkgs:
+        [
+          pkgs.gnome.gnome-terminal
+          pkgs.gnome.gnome-tweaks
+          pkgs.gnomeExtensions.appindicator
+          pkgs.gnomeExtensions.gsconnect
+          pkgs.gnomeExtensions.overview-keyboard-navigation-fix
+          pkgs.gnomeExtensions.keyboard-modifiers-status # installed from website because the one in nixpkgs don't support GNOME 42
+          pkgs.gnomeExtensions.mullvad-indicator
+        ];
+
+      kdeDesktop = pkgs:
+        [
+          pkgs.ark
+          pkgs.partition-manager
+          pkgs.plasma-pa # plasma-pulseaudio widget so that Sound in System Settings don't load a blank
+        ];
+
       desktop = pkgs:
         [
-          # pkgs.gnome.gnome-terminal
-          # pkgs.gnome.gnome-tweaks
-          # pkgs.gnomeExtensions.appindicator
-          # pkgs.gnomeExtensions.gsconnect
-          # pkgs.gnomeExtensions.overview-keyboard-navigation-fix
-          # pkgs.gnomeExtensions.keyboard-modifiers-status  # installed from website because the one in nixpkgs don't support GNOME 42
+          pkgs.home-manager
           pkgs.xsel
           pkgs.xclip
           pkgs.orca
-          pkgs.ark
           pkgs.libsForQt5.kmousetool
-          pkgs.home-manager
-        ];
+          pkgs.mullvad-vpn
+        ]
+        # ++ gnomeDesktop pkgs;
+        ++ kdeDesktop pkgs;
 
       guiTools = pkgs:
         [
-          pkgs.mullvad-vpn
-          # pkgs.gnomeExtensions.mullvad-indicator
           pkgs.firefox
           pkgs.chromium
           pkgs.transmission-gtk
@@ -121,9 +133,6 @@
           pkgs.resilio-sync
           pkgs.libreoffice
           pkgs.thunderbird
-
-          pkgs.partition-manager # kde
-          pkgs.plasma-pa # plasma-pulseaudio widget so that Sound in System Settings don't load a blank
         ];
 
       darwinTools = pkgs:
