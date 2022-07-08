@@ -279,7 +279,6 @@
 
                   services.xserver.displayManager.sddm.enable = true;
                   services.xserver.desktopManager.plasma5.enable = true;
-                  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
                   users.users.jayesh = {
                     isNormalUser = true;
