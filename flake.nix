@@ -3,25 +3,20 @@
 
   inputs = {
     repoNixosUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hmRepoNixosUnstable = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "repoNixosUnstable";
-    };
-
     repoNixos21-11.url = "github:NixOS/nixpkgs/nixos-21.11";
-
     repoNixpkgsUnstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    hmRepoNixpkgsUnstable = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "repoNixpkgsUnstable";
-    };
 
     # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: nix by default assumes (or has hardcoded? Don't remember which one it is) master branch.
     repoMonolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
+
+    # HM per nixpkgs repo is no longer needed, because HM's nixpkgs can now be set with `pkgs` attr
+    # within a `hmRepo.lib.homeManagerConfiguration` attrset.
+    # src: https://github.com/nix-community/home-manager/issues/2954#issuecomment-1125237638
+    hmRepo.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, repoNixosUnstable, hmRepoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, hmRepoNixpkgsUnstable, repoMonolisa }:
+  outputs = { self, repoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, repoMonolisa, hmRepo}:
     let
       makePkgSet = repo: system:
         import repo {
@@ -310,9 +305,14 @@
         "jayesh@Jayeshs-Mac-Mini-2018.local" =
           let system = "x86_64-darwin";
           in
-          hmRepoNixosUnstable.lib.homeManagerConfiguration rec {
-            # pkgs set as instructed at https://rycee.gitlab.io/home-manager/release-notes.html#sec-release-22.11
-            pkgs = repoNixpkgsUnstable.legacyPackages.${system};
+          hmRepo.lib.homeManagerConfiguration rec {
+            # Official instruction to set pkgs at https://rycee.gitlab.io/home-manager/release-notes.html#sec-release-22.11
+            # seems to be: pkgs = repoNixpkgsUnstable.legacyPackages.${system};
+            # However, then I can't find where to set nixpkgs.config.allowUnfree = true;
+            # This comment at https://github.com/nix-community/home-manager/issues/2954#issuecomment-1137145673
+            # suggested to import and override, which works, and also allows to set allowUnfree.
+            # So let's keep it so, until something breaks.
+            pkgs = makePkgSet repoNixpkgsUnstable system;
             modules = [
               {
                 home = rec {
@@ -331,8 +331,8 @@
         "jayesh@Jayeshs-Macbook-Pro-13-M1-2020.local" =
           let system = "aarch64-darwin";
           in
-          hmRepoNixosUnstable.lib.homeManagerConfiguration rec {
-            pkgs = repoNixpkgsUnstable.legacyPackages.${system};
+          hmRepo.lib.homeManagerConfiguration rec {
+            pkgs = makePkgSet repoNixpkgsUnstable system;
             modules = [
               {
                 home = rec {
@@ -351,8 +351,8 @@
         "jayesh@Jayeshs-Dell-Precision-3460" =
           let system = "x86_64-linux";
           in
-          hmRepoNixosUnstable.lib.homeManagerConfiguration rec {
-            pkgs = repoNixpkgsUnstable.legacyPackages.${system};
+          hmRepo.lib.homeManagerConfiguration rec {
+            pkgs = makePkgSet repoNixpkgsUnstable system;
             modules = [
               {
                 home = rec {
