@@ -108,14 +108,14 @@
           pkgs.orca
           pkgs.libsForQt5.kmousetool
           pkgs.mullvad-vpn
+          pkgs.firefox # Plasma-browser-integration doesn't work unless Firefox is put in systemPackages (and not in home-manager packages. home.firefox.enable may work though. Not tested that.).
+          pkgs.chromium
         ]
         # ++ gnomeDesktop pkgs;
         ++ kdeDesktop pkgs;
 
       guiTools = pkgs:
         [
-          pkgs.firefox
-          pkgs.chromium
           pkgs.transmission-gtk
           pkgs.teams
           pkgs.zoom-us
@@ -282,6 +282,18 @@
 
                   services.xserver.displayManager.sddm.enable = true;
                   services.xserver.desktopManager.plasma5.enable = true;
+
+                  xdg.portal = {
+                    # Enable the xdg desktop integration for the respective desktop env.
+                    # So, this will automatically enable pkgs.xdg-desktop-portal-kde for plasma desktop, and so on,
+                    # enabling kde-native file-chooser dialog, for example.
+                    enable = true;
+
+                    # Sets environment variable GTK_USE_PORTAL to 1.
+                    # This is needed for packages ran outside Flatpak to respect and use XDG Desktop Portals.
+                    # For example, you'd need to set this for non-flatpak Firefox to use native filechoosers. 
+                    gtkUsePortal = true;
+                  };
 
                   users.users.jayesh = {
                     isNormalUser = true;
