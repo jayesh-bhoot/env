@@ -386,6 +386,7 @@
                     ++ (customFonts system);
 
                 };
+                fonts.fontconfig.enable = true; # so that fc-cache doesn't have to be called separately
                 programs = {
                   vscode = {
                     enable = true;
