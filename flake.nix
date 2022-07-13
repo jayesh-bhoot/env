@@ -55,7 +55,7 @@
           pkgs.git
           pkgs.stow
 
-          pkgs.vim
+          pkgs.vimHugeX
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
