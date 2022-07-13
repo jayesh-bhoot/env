@@ -56,7 +56,6 @@
           pkgs.stow
 
           pkgs.vim
-          pkgs.kakoune
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
