@@ -75,6 +75,8 @@
         [
           pkgs.fira
           pkgs.jetbrains-mono
+          pkgs.cascadia-code
+          pkgs.vistafonts
         ];
 
       customFonts = system:
