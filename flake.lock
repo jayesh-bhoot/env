@@ -6,11 +6,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1657241847,
-        "narHash": "sha256-/aN3p2LaRNVXf7w92GWgXq9H5f23YRQPOvsm3BrBqzU=",
+        "lastModified": 1657719085,
+        "narHash": "sha256-nQt3MEBwKuKlmFKSRhdoh60AGlc+YlspV5e8kO/3y8U=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8160b3b45b8457d58d2b3af2aeb2eb6f47042e0f",
+        "rev": "2c94b9801f1a11cde0fc97aa850687bb9137d42c",
         "type": "github"
       },
       "original": {
@@ -86,11 +86,11 @@
     },
     "repoNixosUnstable": {
       "locked": {
-        "lastModified": 1657114324,
-        "narHash": "sha256-fWuaUNXrHcz/ciHRHlcSO92dvV3EVS0GJQUSBO5JIB4=",
+        "lastModified": 1657533762,
+        "narHash": "sha256-/cxTFSMmpAb8tBp1yVga1fj+i8LB9aAxnMjYFpRMuVs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a5c867d9fe9e4380452628e8f171c26b69fa9d3d",
+        "rev": "38860c9e91cb00f4d8cd19c7b4e36c45680c89b5",
         "type": "github"
       },
       "original": {
@@ -102,16 +102,32 @@
     },
     "repoNixpkgsUnstable": {
       "locked": {
-        "lastModified": 1657208011,
-        "narHash": "sha256-BlIFwopAykvdy1DYayEkj6ZZdkn+cVgPNX98QVLc0jM=",
+        "lastModified": 1657649905,
+        "narHash": "sha256-gth8ki7Sme/DjUc/hXBHpn+cvQSx9oTLCXUjQbbrn3M=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2770cc0b1e8faa0e20eb2c6aea64c256a706d4f2",
+        "rev": "09066922296d9ef06bfadb937b2560524dd10785",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "repoRescriptVsCode": {
+      "locked": {
+        "lastModified": 1657647587,
+        "narHash": "sha256-28ywppZNCioXq816nKhcCXx9Qa52V3Fr2il2g72/ets=",
+        "owner": "jayesh-bhoot",
+        "repo": "nixpkgs",
+        "rev": "2049d52bcf602e6964df8970c551d7ca5b8a6375",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jayesh-bhoot",
+        "ref": "rescript-vscode",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -122,7 +138,8 @@
         "repoMonolisa": "repoMonolisa",
         "repoNixos21-11": "repoNixos21-11",
         "repoNixosUnstable": "repoNixosUnstable",
-        "repoNixpkgsUnstable": "repoNixpkgsUnstable"
+        "repoNixpkgsUnstable": "repoNixpkgsUnstable",
+        "repoRescriptVsCode": "repoRescriptVsCode"
       }
     },
     "utils": {

@@ -6,6 +6,8 @@
     repoNixos21-11.url = "github:NixOS/nixpkgs/nixos-21.11";
     repoNixpkgsUnstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    repoRescriptVsCode.url = "github:jayesh-bhoot/nixpkgs/rescript-vscode";
+
     # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: nix by default assumes (or has hardcoded? Don't remember which one it is) master branch.
     repoMonolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
@@ -16,7 +18,7 @@
     hmRepo.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, repoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, repoMonolisa, hmRepo }:
+  outputs = { self, repoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, repoRescriptVsCode, repoMonolisa, hmRepo }:
     let
       makePkgSet = repo: system:
         import repo {
@@ -392,7 +394,7 @@
                   vscode = {
                     enable = true;
                     extensions = with pkgs.vscode-extensions; [
-                      chenglou92.rescript-vscode
+                      (makePkgSet repoRescriptVsCode system).vscode-extensions.chenglou92.rescript-vscode
                       bradlc.vscode-tailwindcss
                       eamodio.gitlens
                       # guilhermestella.github-light-hight-contrast-theme
