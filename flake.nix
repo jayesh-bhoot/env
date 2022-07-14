@@ -57,7 +57,7 @@
           pkgs.git
           pkgs.stow
 
-          pkgs.vimHugeX
+          pkgs.vim
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
@@ -120,6 +120,7 @@
 
       guiTools = pkgs:
         [
+          pkgs.vimHugeX
           pkgs.transmission-gtk
           pkgs.teams
           pkgs.zoom-us
