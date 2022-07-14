@@ -341,7 +341,7 @@
               {
                 home = rec {
                   username = "jayesh";
-                  homeDirectory = "/home/${username}";
+                  homeDirectory = "/Users/${username}";
                   stateVersion = "21.11";
                   packages =
                     (cliTools (makePkgSet repoNixosUnstable system))
@@ -361,7 +361,7 @@
               {
                 home = rec {
                   username = "jayesh";
-                  homeDirectory = "/home/${username}";
+                  homeDirectory = "/Users/${username}";
                   stateVersion = "21.11";
                   packages =
                     (cliTools (makePkgSet repoNixosUnstable system))
