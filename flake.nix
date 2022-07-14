@@ -57,7 +57,7 @@
           pkgs.git
           pkgs.stow
 
-          pkgs.vimHugeX
+          pkgs.vim
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
@@ -120,6 +120,7 @@
 
       guiTools = pkgs:
         [
+          pkgs.vimHugeX
           pkgs.transmission-gtk
           pkgs.teams
           pkgs.zoom-us
@@ -341,7 +342,7 @@
               {
                 home = rec {
                   username = "jayesh";
-                  homeDirectory = "/home/${username}";
+                  homeDirectory = "/Users/${username}";
                   stateVersion = "21.11";
                   packages =
                     (cliTools (makePkgSet repoNixosUnstable system))
@@ -361,7 +362,7 @@
               {
                 home = rec {
                   username = "jayesh";
-                  homeDirectory = "/home/${username}";
+                  homeDirectory = "/Users/${username}";
                   stateVersion = "21.11";
                   packages =
                     (cliTools (makePkgSet repoNixosUnstable system))
