@@ -3,25 +3,22 @@
 
   inputs = {
     repoNixosUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hmRepoNixosUnstable = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "repoNixosUnstable";
-    };
-
     repoNixos21-11.url = "github:NixOS/nixpkgs/nixos-21.11";
-
     repoNixpkgsUnstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    hmRepoNixpkgsUnstable = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "repoNixpkgsUnstable";
-    };
+
+    repoRescriptVsCode.url = "github:jayesh-bhoot/nixpkgs/rescript-vscode";
 
     # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: nix by default assumes (or has hardcoded? Don't remember which one it is) master branch.
     repoMonolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
+
+    # HM per nixpkgs repo is no longer needed, because HM's nixpkgs can now be set with `pkgs` attr
+    # within a `hmRepo.lib.homeManagerConfiguration` attrset.
+    # src: https://github.com/nix-community/home-manager/issues/2954#issuecomment-1125237638
+    hmRepo.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, repoNixosUnstable, hmRepoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, hmRepoNixpkgsUnstable, repoMonolisa }:
+  outputs = { self, repoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, repoRescriptVsCode, repoMonolisa, hmRepo }:
     let
       makePkgSet = repo: system:
         import repo {
@@ -60,8 +57,7 @@
           pkgs.git
           pkgs.stow
 
-          pkgs.vim
-          pkgs.kakoune
+          pkgs.vimHugeX
 
           pkgs.nixpkgs-fmt
           pkgs.rnix-lsp
@@ -82,8 +78,7 @@
           pkgs.fira-code
           pkgs.jetbrains-mono
           pkgs.cascadia-code
-          pkgs.noto-fonts
-          pkgs.noto-fonts-extra
+          pkgs.vistafonts
         ];
 
       customFonts = system:
@@ -91,30 +86,47 @@
           repoMonolisa.defaultPackage.${system}
         ];
 
-      desktop = pkgs:
+      gnomeDesktop = pkgs:
         [
+          pkgs.gnome.gnome-terminal
           pkgs.gnome.gnome-tweaks
           pkgs.gnomeExtensions.appindicator
           pkgs.gnomeExtensions.gsconnect
           pkgs.gnomeExtensions.overview-keyboard-navigation-fix
-          # pkgs.gnomeExtensions.keyboard-modifiers-status  # installed from website because the one in nixpkgs don't support GNOME 42
+          pkgs.gnomeExtensions.keyboard-modifiers-status # installed from website because the one in nixpkgs don't support GNOME 42
+          pkgs.gnomeExtensions.mullvad-indicator
+        ];
+
+      kdeDesktop = pkgs:
+        [
+          pkgs.ark
+          pkgs.partition-manager
+          pkgs.plasma-pa # plasma-pulseaudio widget so that Sound in System Settings don't load a blank
+        ];
+
+      desktop = pkgs:
+        [
+          pkgs.home-manager
           pkgs.xsel
           pkgs.xclip
           pkgs.orca
           pkgs.libsForQt5.kmousetool
-          pkgs.home-manager
-        ];
+          pkgs.mullvad-vpn
+          pkgs.firefox # Plasma-browser-integration doesn't work unless Firefox is put in systemPackages (and not in home-manager packages. home.firefox.enable may work though. Not tested that.).
+          pkgs.chromium
+        ]
+        # ++ gnomeDesktop pkgs;
+        ++ kdeDesktop pkgs;
 
       guiTools = pkgs:
         [
-          pkgs.mullvad-vpn
-          pkgs.gnomeExtensions.mullvad-indicator
-          pkgs.firefox
-          pkgs.chromium
           pkgs.transmission-gtk
           pkgs.teams
+          pkgs.zoom-us
+          pkgs.skypeforlinux
           pkgs.slack
-          pkgs.vscode
+          pkgs.sublime4
+          pkgs.sublime-merge
           pkgs.jetbrains.webstorm
           pkgs.jetbrains.datagrip
           pkgs.jetbrains.idea-ultimate
@@ -123,6 +135,8 @@
           pkgs.tdesktop
           pkgs.celluloid
           pkgs.resilio-sync
+          pkgs.libreoffice
+          pkgs.thunderbird
         ];
 
       darwinTools = pkgs:
@@ -176,7 +190,9 @@
                 boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
                 boot.initrd.kernelModules = [ "i915" ];
                 boot.kernelModules = [ "kvm-intel" ];
-                boot.extraModulePackages = [ ];
+                boot.extraModprobeConfig = ''
+                  options hid_apple fnmode=2
+                '';
 
                 fileSystems."/" =
                   {
@@ -256,21 +272,32 @@
                   services.xserver.videoDrivers = [ "modesetting" ];
                   services.xserver.useGlamor = true;
 
-                  services.xserver.displayManager.gdm.enable = true;
-                  services.xserver.displayManager.gdm.wayland = false;
-                  services.xserver.desktopManager.gnome.enable = true;
-                  services.gnome.core-developer-tools.enable = true;
-                  programs.evolution.enable = true;
-                  programs.evolution.plugins = [ pkgs.evolution-ews ];
-                  environment.gnome.excludePackages = [
-                    pkgs.gnome.geary
-                  ];
-                  services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+                  # services.xserver.displayManager.gdm.enable = true;
+                  # services.xserver.displayManager.gdm.wayland = false;
+                  # services.xserver.desktopManager.gnome.enable = true;
+                  # services.gnome.core-developer-tools.enable = true;
+                  # programs.evolution.enable = true;
+                  # programs.evolution.plugins = [ pkgs.evolution-ews ];
+                  # environment.gnome.excludePackages = [
+                  #   pkgs.gnome.geary
+                  # ];
+                  # services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+                  # nixpkgs.config.firefox.enableGnomeExtensions = true;
 
-                  # services.xserver.displayManager.sddm.enable = true;
-                  # services.xserver.desktopManager.plasma5.enable = true;
+                  services.xserver.displayManager.sddm.enable = true;
+                  services.xserver.desktopManager.plasma5.enable = true;
 
-                  nixpkgs.config.firefox.enableGnomeExtensions = true;
+                  xdg.portal = {
+                    # Enable the xdg desktop integration for the respective desktop env.
+                    # So, this will automatically enable pkgs.xdg-desktop-portal-kde for plasma desktop, and so on,
+                    # enabling kde-native file-chooser dialog, for example.
+                    enable = true;
+
+                    # Sets environment variable GTK_USE_PORTAL to 1.
+                    # This is needed for packages ran outside Flatpak to respect and use XDG Desktop Portals.
+                    # For example, you'd need to set this for non-flatpak Firefox to use native filechoosers. 
+                    gtkUsePortal = true;
+                  };
 
                   users.users.jayesh = {
                     isNormalUser = true;
@@ -299,52 +326,98 @@
         # eg., jayesh@NixOS-ThinkpadE431 implies username=jayesh, OS=NixOS, machine=ThinkpadE431, arch=x86_64-linux
         # eg., jayesh@FedoraVM-ThinkpadE431 implies username=jayesh, OS=Fedora on VM, machine=ThinkpadE431, arch=x86_64-linux
 
-        "jayesh@Jayeshs-Mac-Mini-2018.local" = hmRepoNixpkgsUnstable.lib.homeManagerConfiguration rec {
-          system = "x86_64-darwin";
-          username = "jayesh";
-          homeDirectory = "/Users/${username}";
-          stateVersion = "21.11";
-          configuration = {
-            nixpkgs.config.allowUnfree = true;
-            home.packages =
-              (cliTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (darwinTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (darwinRosettaTools repoNixpkgsUnstable)
-              ++ (fonts (makePkgSet repoNixpkgsUnstable system))
-              ++ (customFonts system);
+        "jayesh@Jayeshs-Mac-Mini-2018.local" =
+          let system = "x86_64-darwin";
+          in
+          hmRepo.lib.homeManagerConfiguration rec {
+            # Official instruction to set pkgs at https://rycee.gitlab.io/home-manager/release-notes.html#sec-release-22.11
+            # seems to be: pkgs = repoNixpkgsUnstable.legacyPackages.${system};
+            # However, then I can't find where to set nixpkgs.config.allowUnfree = true;
+            # This comment at https://github.com/nix-community/home-manager/issues/2954#issuecomment-1137145673
+            # suggested to import and override, which works, and also allows to set allowUnfree.
+            # So let's keep it so, until something breaks.
+            pkgs = makePkgSet repoNixpkgsUnstable system;
+            modules = [
+              {
+                home = rec {
+                  username = "jayesh";
+                  homeDirectory = "/home/${username}";
+                  stateVersion = "21.11";
+                  packages =
+                    (cliTools (makePkgSet repoNixosUnstable system))
+                    ++ (fonts (makePkgSet repoNixosUnstable system))
+                    ++ (customFonts system);
+                };
+              }
+            ];
           };
-        };
 
-        "jayesh@Jayeshs-Macbook-Pro-13-M1-2020.local" = hmRepoNixpkgsUnstable.lib.homeManagerConfiguration rec {
-          system = "aarch64-darwin";
-          username = "jayesh";
-          homeDirectory = "/Users/${username}";
-          stateVersion = "21.11";
-          configuration = {
-            nixpkgs.config.allowUnfree = true;
-            home.packages =
-              (cliTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (darwinTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (darwinRosettaTools repoNixpkgsUnstable)
-              ++ (fonts (makePkgSet repoNixpkgsUnstable system))
-              ++ (customFonts system);
+        "jayesh@Jayeshs-Macbook-Pro-13-M1-2020.local" =
+          let system = "aarch64-darwin";
+          in
+          hmRepo.lib.homeManagerConfiguration rec {
+            pkgs = makePkgSet repoNixpkgsUnstable system;
+            modules = [
+              {
+                home = rec {
+                  username = "jayesh";
+                  homeDirectory = "/home/${username}";
+                  stateVersion = "21.11";
+                  packages =
+                    (cliTools (makePkgSet repoNixosUnstable system))
+                    ++ (fonts (makePkgSet repoNixosUnstable system))
+                    ++ (customFonts system);
+                };
+              }
+            ];
           };
-        };
 
-        "jayesh@Jayeshs-Dell-Precision-3460" = hmRepoNixosUnstable.lib.homeManagerConfiguration rec {
-          system = "x86_64-linux";
-          username = "jayesh";
-          homeDirectory = "/home/${username}";
-          stateVersion = "21.11";
-          configuration = {
-            nixpkgs.config.allowUnfree = true;
-            home.packages =
-              (cliTools (makePkgSet repoNixpkgsUnstable system))
-              ++ (guiTools (makePkgSet repoNixosUnstable system))
-              ++ (fonts (makePkgSet repoNixosUnstable system))
-              ++ (customFonts system);
+        "jayesh@Jayeshs-Dell-Precision-3460" =
+          let system = "x86_64-linux";
+          in
+          hmRepo.lib.homeManagerConfiguration rec {
+            pkgs = makePkgSet repoNixpkgsUnstable system;
+            modules = [
+              {
+                home = rec {
+                  username = "jayesh";
+                  homeDirectory = "/home/${username}";
+                  stateVersion = "21.11";
+                  packages =
+                    (cliTools (makePkgSet repoNixosUnstable system))
+                    ++ (guiTools (makePkgSet repoNixosUnstable system))
+                    ++ (fonts (makePkgSet repoNixosUnstable system))
+                    ++ (customFonts system);
+
+                };
+                fonts.fontconfig.enable = true; # so that fc-cache doesn't have to be called separately
+                programs = {
+                  vscode = {
+                    enable = true;
+                    extensions = with pkgs.vscode-extensions; [
+                      (makePkgSet repoRescriptVsCode system).vscode-extensions.chenglou92.rescript-vscode
+                      bradlc.vscode-tailwindcss
+                      eamodio.gitlens
+                      # guilhermestella.github-light-hight-contrast-theme
+                      jnoortheen.nix-ide
+                      # k--kato.intellij-idea-keybindings
+                      # ms-vscode.js-debug-companion
+                      ocamllabs.ocaml-platform
+                      # pranaygp.vscode-css-peek
+                      # pucelle.vscode-css-navigation
+                      # rickynormandeau.mariana-pro
+                      usernamehw.errorlens
+                      # wayou.vscode-icons-mac
+                      # zignd.html-css-class-completion
+                    ];
+                    # Without the following setting, extensions fail to install with an error:
+                    # https://github.com/nix-community/home-manager/issues/2798#issuecomment-1073165352
+                    mutableExtensionsDir = false;
+                  };
+                };
+              }
+            ];
           };
-        };
       };
     };
 }
