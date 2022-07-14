@@ -8,9 +8,9 @@
 
     repoRescriptVsCode.url = "github:jayesh-bhoot/nixpkgs/rescript-vscode";
 
-    # NOTE1: MonoLisa is a private flake: https://github.com/NixOS/nix/issues/3991
+    # NOTE1: nix-pkgs is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: nix by default assumes (or has hardcoded? Don't remember which one it is) master branch.
-    repoMonolisa.url = "git+ssh://git@github.com/jayesh-bhoot/MonoLisa";
+    repoMyPkgs.url = "git+ssh://git@github.com/jayesh-bhoot/nix-pkgs";
 
     # HM per nixpkgs repo is no longer needed, because HM's nixpkgs can now be set with `pkgs` attr
     # within a `hmRepo.lib.homeManagerConfiguration` attrset.
@@ -18,7 +18,7 @@
     hmRepo.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, repoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, repoRescriptVsCode, repoMonolisa, hmRepo }:
+  outputs = { self, repoNixosUnstable, repoNixos21-11, repoNixpkgsUnstable, repoRescriptVsCode, repoMyPkgs, hmRepo }:
     let
       makePkgSet = repo: system:
         import repo {
@@ -82,7 +82,8 @@
 
       customFonts = system:
         [
-          repoMonolisa.defaultPackage.${system}
+          repoMyPkgs.packages.${system}.monolisa
+          repoMyPkgs.packages.${system}.fira-code-static
         ];
 
       gnomeDesktop = pkgs:
@@ -129,7 +130,7 @@
           pkgs.jetbrains.webstorm
           pkgs.jetbrains.datagrip
           pkgs.jetbrains.idea-ultimate
-          pkgs.upwork
+          repoMyPkgs.packages.x86_64-linux.upwork
           pkgs.whatsapp-for-linux
           pkgs.tdesktop
           pkgs.celluloid
