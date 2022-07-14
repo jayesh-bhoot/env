@@ -79,6 +79,7 @@
       fonts = pkgs:
         [
           pkgs.fira
+          pkgs.fira-code
           pkgs.jetbrains-mono
           pkgs.cascadia-code
           pkgs.noto-fonts
