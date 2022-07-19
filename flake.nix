@@ -411,6 +411,13 @@
                       usernamehw.errorlens
                       # wayou.vscode-icons-mac
                       # zignd.html-css-class-completion
+                    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+                      {
+                        name = "mariana-pro";
+                        publisher = "rickynormandeau";
+                        version = "3.0.12";
+                        sha256 = "sha256-xXPvQ2kEi20AVMQyDNyWqf7hK17RlIvliw5hvRBgVLY=";
+                      }
                     ];
                     # Without the following setting, extensions fail to install with an error:
                     # https://github.com/nix-community/home-manager/issues/2798#issuecomment-1073165352
