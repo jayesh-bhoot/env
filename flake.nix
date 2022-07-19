@@ -77,6 +77,8 @@
           pkgs.jetbrains-mono
           pkgs.cascadia-code
           pkgs.vistafonts
+          pkgs.meslo-lg
+          pkgs.roboto-mono
         ];
 
       customFonts = system:
