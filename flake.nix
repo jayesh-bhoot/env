@@ -6,7 +6,7 @@
     repoNixos21-11.url = "github:NixOS/nixpkgs/nixos-21.11";
     repoNixpkgsUnstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    repoRescriptVsCode.url = "github:jayesh-bhoot/nixpkgs/rescript-vscode";
+    repoRescriptVsCode.url = "github:jayesh-bhoot/nixpkgs/rescript-vscode-1.4.0";
 
     # NOTE1: nix-pkgs is a private flake: https://github.com/NixOS/nix/issues/3991
     # NOTE2: nix by default assumes (or has hardcoded? Don't remember which one it is) master branch.

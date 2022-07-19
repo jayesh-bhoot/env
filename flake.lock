@@ -6,11 +6,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1657887110,
-        "narHash": "sha256-8VV0/kZed2z8fGtEc2zr+WLxTow+JTIlMjnSisyv0GQ=",
+        "lastModified": 1658151168,
+        "narHash": "sha256-0uHoOHr20pJTOGzgS4kNgOP4wfrch0fc+9vZ/6LgD44=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4c5106ed0f3168ff2df21b646aef67e86cbfc11c",
+        "rev": "4a724cb84cc3aa464af1713d11bf0cfbbdb56c00",
         "type": "github"
       },
       "original": {
@@ -58,7 +58,7 @@
       "locked": {
         "lastModified": 1657900752,
         "narHash": "sha256-+c3eCLdjZS7VHYpSYdH64+zh4r4uc+98g16/XKyeqUc=",
-        "ref": "master",
+        "ref": "refs/heads/master",
         "rev": "488b32ec0b1fa7463bcc72431f4e1ccdc95bb36e",
         "revCount": 34,
         "type": "git",
@@ -87,11 +87,11 @@
     },
     "repoNixosUnstable": {
       "locked": {
-        "lastModified": 1657802959,
-        "narHash": "sha256-9+JWARSdlL8KiH3ymnKDXltE1vM+/WEJ78F5B1kjXys=",
+        "lastModified": 1658103945,
+        "narHash": "sha256-1/kQlzKGt1563JZ+gIlNHU6rEbaDh2KopZLJ4CzraWI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4a01ca36d6bfc133bc617e661916a81327c9bbc8",
+        "rev": "2e3f6efdeda4cfff0259912495761885d8bee74a",
         "type": "github"
       },
       "original": {
@@ -103,11 +103,11 @@
     },
     "repoNixpkgsUnstable": {
       "locked": {
-        "lastModified": 1657888067,
-        "narHash": "sha256-GnwJoFBTPfW3+mz7QEeJEEQ9OMHZOiIJ/qDhZxrlKh8=",
+        "lastModified": 1658119717,
+        "narHash": "sha256-4upOZIQQ7Bc4CprqnHsKnqYfw+arJeAuU+QcpjYBXW0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "65fae659e31098ca4ac825a6fef26d890aaf3f4e",
+        "rev": "9eb60f25aff0d2218c848dd4574a0ab5e296cabe",
         "type": "github"
       },
       "original": {
@@ -119,16 +119,16 @@
     },
     "repoRescriptVsCode": {
       "locked": {
-        "lastModified": 1657647587,
-        "narHash": "sha256-28ywppZNCioXq816nKhcCXx9Qa52V3Fr2il2g72/ets=",
+        "lastModified": 1658203432,
+        "narHash": "sha256-D63HQefn7uYJoZuMzFLGGNuZv5OqIh7XZwAx5g/wMs8=",
         "owner": "jayesh-bhoot",
         "repo": "nixpkgs",
-        "rev": "2049d52bcf602e6964df8970c551d7ca5b8a6375",
+        "rev": "1359c95f8023a87019a5a563cbed8ba80ae359ff",
         "type": "github"
       },
       "original": {
         "owner": "jayesh-bhoot",
-        "ref": "rescript-vscode",
+        "ref": "rescript-vscode-1.4.0",
         "repo": "nixpkgs",
         "type": "github"
       }
